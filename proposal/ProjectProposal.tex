@@ -110,6 +110,240 @@
 		% ยังไม่เอา finite difference ไปแตะ 
 		% ต้องขมวดว่า solve ยังไง 
 		% ต้องวาดว่าจะเขียนอะไร		
+		\subsection{วิธีการทางคณิตศาสตร์สำหรับการต่อเติมภาพด้วยการแปรผัน}
+		ในการต่อเติมภาพเฉดสีเทาด้วยวิธีการเชิงแปรผัน เราพิจารณาภาพ
+		
+		$$ u : \Omega \subset \mathbb{R}^2 \rightarrow V \subset [0,\infty) $$
+		
+		เป็นฟังก์ชันต่อเนื่อง โดยที่ $ \mathbf{x} = (x,y) \in \Omega $ แทนพิกัดทางกายภาพ (physical position) ของภาพ $ u(\mathbf{x}) \in V $ แทนระดับความเข้มของภาพ (image intensity) ที่ $ \mathbf{x} $ และ $ \Omega $ แทนโดเมนของภาพ ซึ่งในที่นี้เราสามารถสมมติได้โดย $ \Omega = [0,n]^2 $ และ $ V = [0,1] $ เมื่อ $n>0$ เป็นจำนวนเต็มบวก ทั้งนี้ เราจะเรียกภาพ $u$ ที่นิยามข้างต้นว่าภาพเฉดสีเทา (grayscale image)
+			\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\linewidth]{images/sample-domain.png}
+			\caption{ตัวอย่าง โดเมนต่อเติม}
+		\end{figure}
+		ซึ่งสำหรับปัญหาการต่อเติมภาพโทนสีเทานั้น จะเรียกพื้นที่ซึ่งต้องการต่อเติมว่า โดเมนต่อเติม (inpaint domain) โดย $D$ เป็นโดเมนซึ่ง $D \subset \Omega$ 
+		
+		โดยการต่อเติมภาพเฉดเทานี้ จะใช้การแปรผันรวม (Total Variation) ซึ่งถูกคิดค้นโดย Chan และ Shen \cite{ref:rof-inpaint-chan-shen} ซึ่งประยุกต์มาจากการแปรผันรวมเพื่อกำจัดสัญญาณรบกวนบนตัวแบบ ROF \cite{ref:ROF-template}
+		
+		ได้ว่าจะสามารถหาภาพที่ถูกต่อเติมอย่างเหมาะสม $u$ จะสามารถหาได้จาก
+		
+			$$\min_{u} \{ \mathcal{J}(u)= \lambda \mathcal{D}(u,f)+  \mathcal{R}(u) \}$$
+		
+		ซึ่ง $ \mathcal{D} $ คือพจน์สำหรับวัดค่าเหมาะสม เพื่อไม่ให้ภาพก่อนต่อเติมและหลังจากต่อเติมมีความแตกต่างกันมากเกินไป $ \mathcal{R} $ คือพจน์สำหรับการต่อเติมภาพ และ $ \lambda $  คือเปนพารามิเตอรเร็กกิวลารไรซเซชัน (regularization parameter) สำหรับกำหนดปริมาณของสัญญาณรบกวนที่ตองการกำจัดออก 
+		
+		โดย Chan และ Shen ได้ทำการแก้ปัญหาการแปรผัน (Variational Problem) ได้ว่า
+		
+		$$\min_{u} \{ \mathcal{J}(u) = \frac{\lambda}{2} \int_{\Omega \textbackslash D} (u-z)^2 d\Omega +  \int_{\Omega}  |\bigtriangledown u|  d\Omega \}$$
+	
+		ซึ่งเมื่อทำให้ได้สมการออยเลอร์ลากรางซ์ สำหรับ fuctional $\mathcal{J}$ คือ 
+		
+		$$ \left \{ \begin{array}{ll}  - \bigtriangledown \cdot  \Big( \frac{\bigtriangledown u}{|\bigtriangledown u|} \Big) + \lambda (u-z) = 0  & \hspace{1cm} x \in \Omega = (0,n)^2 \\ \frac{\partial u}{\partial n} = 0 & \hspace{1cm} x \in \partial \Omega \end{array} \right . $$
+		
+		สำหรับ $\mathbf{x} \in \Omega$ ได้ว่า $\lambda$ ถูกกำหนดโดย
+		
+		$$ \lambda(\mathbf{x}) \left \{ \begin{array}{ll}  \lambda & \mathbf{x} \in \Omega \textbackslash D \\ 0 &\mathbf{x} \in D  \end{array} \right . $$
+		
+		จะเห็นได้ว่าเป็นสมการออยเลอร์ ลากรางซ์ดังกล่าวเป็น สมการอนุพันธ์ย่อยไม่เป็นเชิงเส้น จึงสามารถใช้วิธีเชิงตัวเลขด้วยวิธีต่างๆ ได้ดังนี้
+		
+		วิธีการ Explicit Time Marching  \cite{ref:ExplicitTimeMarching}  โดยแนวคิดของวิธีการนี้คือการแนะนําตัวแปรเวลาสังเคราะห์ (time artificial variable) จากนั้นหาคําตอบแบบสภาวะคงตัว (steady-state solution) ของสมการเชิงอนุพันธ์ย่อยไม่เป็นเชิงเส้นที่ขึ้นอยู่กับเวลา และเพื่อจะแก้ความไม่เป็นเชิงเส้นของสมการเชิงอนุพันธ์ย่อย จะสามารถใช้รูปแบบที่ชัดแจ้งของออยเลอร์ (Euler's explicit scheme) ที่กำหนดโดย
+		$$
+		u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+\tau\left(\nabla\cdot\left(\frac{\nabla u ( \mathbf{x},t_k)}{\lvert \nabla u ( \mathbf{x},t_k) \rvert }\right) + \lambda(\mathbf{x})(u ( \mathbf{x},t_k)-z(\mathbf{x})) \right)
+		$$
+		แต่เนื่องจากเมื่อ $\lvert \nabla u ( \mathbf{x},t_k) \rvert = 0 $ จะทำให้ไม่สามารถคำนวณได้ เนื่องจากไม่สามารถหารด้วย 0 ได้ จึงกำหนดให้ $\lvert \nabla u ( \mathbf{x},t_k) \rvert = \sqrt{u_x^2+u_y^2 + \beta}$ สำหรับ $\beta > 0$ และ $\beta$ มีค่าใกล้ 0 เพื่อหลีกเลี่ยงเหตุการณ์ดังกล่าว
+		
+		โดยเมื่อ $\tau>0$ แทนขั้นเวลา (time step) ที่ได้จากการดิสครีตไทซ์โดเมนเวลา $[0,\infty)$ ซึ่งเห็นได้ว่าวิธีการเชิงตัวเลขดังกล่าวข้างต้นนั้นง่ายในการคํานวณ แต่การลู่เข้าสู่คําตอบที่เหมาะสมของปัญหา เชิงแปรผันค่อนข้างช้ามากเนื่องจากต้องใช้ $\tau$ ที่มีขนาดเล็กในการทำให้ลำดับของคำตอบลู่เข้า 
+		
+		วิธีการทำซ้ำแบบ Fixed Point \cite{ref:FixpointSolver} จะทำการแบ่งการทำซ้ำออกเป็น  2 ชั้น เรียกชั้นในกับชั้นนอก โดยการทำซ้ำชั้นใน เป็นการทำซ้ำแบบ Gauss-seidel เพื่อให้หาค่า u เป็นลำดับถัดไป จากนั้นชั้นนอกจะเป็นการทำซ้ำแบบตรึงจุด (Fixed Point) เพื่อให้ค่า $u$ ลู่เข้าสู่ค่าที่ต้องการ 
+		
+		ซึ่งการทำซ้ำชั้นในจะหาค่า $u$ จากการใช้ Gauss-seidel กับสมการ
+		$$
+		- \nabla\cdot\left(\frac{\nabla u^{[v+1]}}{{\lvert \nabla u \rvert}^{[v]} }\right) + \lambda(u^{[v+1]}-z)  = 0
+		$$
+		
+		โดยที่ $v = 0,1,2,... $ ซึ่งคือค่าของจำนวนครั้งในการทำชั้นนอกที่ถูกทำไป
+		
+		และเช่นเดียวกับวิธี Explicit Time Marching เนื่องจากวิธีนี้เมื่อ $\lvert \nabla u ( \mathbf{x},t_k) = 0\rvert $ จะทำให้ไม่สามารถคำนวณได้ เนื่องจากไม่สามารถหารด้วย 0 ได้ จึงกำหนดให้ $\lvert \nabla u ( \mathbf{x},t_k) \rvert = \sqrt{u_x^2+u_y^2 + \beta}$ สำหรับ $\beta > 0$ และ $\beta$ มีค่าใกล้ 0 เพื่อหลีกเลี่ยงเหตุการณ์ดังกล่าว
+		
+		ซึ่งทั้งวิธี Explicit Time Marching และวิธี Fixed Point จำเป็นต้องเพิ่ม $\beta$ เพื่อหลีกเลี่ยงการหารด้วย 0 ซึ่งจะทำให้เกิดค่าคลาดเคลื่อน  จึงได้มีการสร้างวิธี Split Bergman สำหรับแก้ปัญหานี้
+		
+		วิธี Split Bergman \cite{ref:splitbergman-inpaint} โดยวิธีการนี้คือการแยกส่วนการดำเนินการ (Spliting) และใช้การทำซ้ำ Bergman (Bergman Iteration)  โดยวิธีนี้จะเป็นการแก้ปัญหาการแปรผัน โดยการเพิ่มตัวแปร $w$ ในการแก้ปัญหา ซึ่งจะได้ปัญหาการแปรผันดังต่อไปนี้แทน
+		
+			$$\min_{u} \{ \mathcal{J}(u) = \frac{\lambda}{2} \int_{\Omega \textbackslash D} (u-z)^2 d\Omega +  \int_{\Omega}  |\bigtriangledown w|  d\Omega + \frac{\theta}{2} \int_{\Omega} (w - \bigtriangledown u + b) d\Omega \}$$
+			
+			โดยเมื่อเพิ่มตัวแปร $w$ สำหรับช่วยใจการคำนวณแล้ว จะมีพจน์ $ \int_{\Omega}  |\bigtriangledown w|  d\Omega$ เพื่อบีบบังคับให้ $w$ ไม่เปลี่ยนแปลงผลของคำตอบ, $\theta$ คือค่าบวกใดๆ ซึ่งเกี่ยวข้องกับความแรงของการต่อเติมซึ่งไม่ควรเล็กหรือใหญ่เกินไปเพื่อให้สามารถลู่เข้าได้ดี $b$ คือตัวแปรช่วยสำหรับการทำซ้ำ Bergman ซึ่งปัญหาดังกล่าวสามารถแบ่งปัญหาได้เป็น 2 ส่วนคือ
+			
+			ปัญหาย่อย $w$ โดยการคงค่า $u$ ไว้จะได้ว่าปัญหาย่อยคือ
+			$$\min_{u} \{ \mathcal{J}(u) =  \int_{\Omega}  |\bigtriangledown w|  d\Omega + \frac{\theta}{2} \int_{\Omega} (w - \bigtriangledown u + b) d\Omega \}$$
+			
+			ซึ่งเมื่อทำการแก้ปัญหาย่นอนี้แล้วจะได้ว่า
+			
+				$$ w_{i,j} = \frac{\bigtriangledown u_{i,j}  + b_{i,j} }{ | \bigtriangledown u_{i,j}  + b_{i,j} | } max \{  | \bigtriangledown u_{i,j}  + b_{i,j} | - \frac{1}{\theta} , 0\} $$
+				
+			ปัญหาย่อย $u$ โดยการคงค่า $w$ ไว้จะได้ว่าปัญหาย่อยคือ
+
+				$$\min_{u} \{ \mathcal{J}(u) = \frac{\lambda}{2} \int_{\Omega \textbackslash D} (u-z)^2 d\Omega + \frac{\theta}{2} \int_{\Omega} (w - \bigtriangledown u + b) d\Omega \}$$
+				
+			ซึ่งเมื่อทำการแก้ปัญหาย่อยนี้แล้วจะได้ว่า
+			$$ \frac{1}{\theta}\lambda u - \bigtriangleup u = \frac{1}{\theta} \lambda z - \bigtriangledown \cdot (w-b) $$
+			
+			เราจะประมาณคำตอบนี้โดยการใช้ หนึ่งรอบ Gauss-seidel ต่อหนึ่งรอบการทำซ้ำของ Bergman ซึ่ง subproblem จะถูกแก้หนึ่งครั้ง ต่อหนึ่งรอบ bergman iteration แต่ทั้งนี้การทำซ้ำ Gauss-seidel หลายครั้ง จะทำให้การแก้ปัญหาย่อยมีความแม่นยำขึ้น
+			ส่วนตัวแปรช่วย $b$ มีค่าเริ่มต้นเป็น 0 จากนั้นทำการปรับค่าโดย
+			
+			$$ b^{k+1} = b^k  + \bigtriangledown u - w $$
+						
+			จึงได้ว่าวิธีการ Split Bergman มีการทำงานในภาพรวมเป็นดังนี้
+			
+			
+			
+			\begin{algorithm}[H]
+				\begin{framed}
+					initialization $u = 0, d = 0, b = 0$\\
+					\While{ $|| u_{cur} - u_{prev} ||_2 > Tol$}{
+						Solve the $w$ subproblem \\
+						Solve the $u$ subproblem \\
+						$ b = b + \bigtriangledown u - w$
+					}
+				\end{framed}
+			\end{algorithm}
+			
+			
+			
+			โดยการทำซ้ำนี้จะกระทำจนกระทั่ง นอร์ม L2 ระหว่างรอบปัจจุบันต่างกับรอบก่อนหน้าไม่เกินค่า Tol ที่กำหนดไว้หรือจำนวนรอบการทำซ้ำมากจนถึงจุดสิ้นสุดที่เพียงพอที่จะให้ลู่เข้าซึ่งไม่ควรใหญ่เกินไปเพื่อไม่ให้เสียเวลาประมวลผลจนนานเกินไป 
+
+			โดยผลการต่อเติมภาพจากทั้ง 3 วิธีข้างต้น สำหรับการกำหนดรอบการทำซ้ำไม่เกิน 1000 รอบและค่านอร์ม L2 ภาพปัจจุบันและภาพก่อนหน้าต่างกันไม่เกิน 0.0001 ได้ผลลัพธ์ดังนี้
+			
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.3\linewidth]{images/grayscale_inpaint/original.png}
+					\caption{ภาพต้นฉบับ}
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.3\linewidth]{images/grayscale_inpaint/toinapint.png}
+					\caption{ภาพที่ต้องการทำการต่อเติม}
+				\end{subfigure}
+			\begin{subfigure}{0.3\linewidth}
+				\centering
+					\includegraphics[width=0.3\linewidth]{images/grayscale_inpaint/inpaintdomain.png}
+				\caption{โดเมนต่อเติม}
+			\end{subfigure}
+		\begin{subfigure}{0.3\linewidth}
+			\centering
+			\includegraphics[width=0.3\linewidth]{images/grayscale_inpaint/result_timemarch.png}
+			\caption{ภาพจากวิธี Explicit Time Marching ใช้เวลา 3.10 วินาที PSNR 19.6733}
+		\end{subfigure}
+		\begin{subfigure}{0.3\linewidth}
+			\centering
+			\includegraphics[width=0.3\linewidth]{images/grayscale_inpaint/result_fixpoint.png}
+			\caption{ภาพจากวิธี Fixed Point ใช้เวลา 6.93 วินาที PSNR 42.6631}
+		\end{subfigure}
+		\begin{subfigure}{0.3\linewidth}
+			\centering
+			\includegraphics[width=0.3\linewidth]{images/grayscale_inpaint/result_splitbergman.png}
+				\caption{ภาพจากวิธี Split Bergman ใช้เวลา 1.86 วินาที PSNR 44.4275}
+		\end{subfigure}
+		\end{figure}
+			
+			จากการทดลองจะเห็นว่าวิธีการ Split Bergman ได้ผลลัพธ์ที่ดีที่สุด จึงได้มีความสนใจที่จะศึกษาวิธี Split bergman เป็นลำดับถัดไป
+			
+			\subsection{วิธีการทางคณิตศาสตร์สำหรับการต่อเติมภาพด้วยการแปรผันบนภาพสี} 
+
+			สำหรับการต่อเติมภาพเชิงแปรผันซึ่งเป็นภาพสีในระบบ RGB จะพิจารณา
+			
+			$$ u: \Omega  \rightarrow V^3 $$
+
+			เมื่อ $\u=(u_1,u_2,u_3)$ โดยที่ $u_1,u_2,u_3: \Omega  \rightarrow V$ แทนภาพเฉดสีแดง สีเขียว และสีน้ำเงินของ $u$ ตามลำดับ จะสามารถปรับปรุงตัวแบบ ROF ได้ดังนี้
+			
+			$$\min_{u} \{ \mathcal{J}(u)= \lambda \mathcal{\bar{D}}(u,f)+  \mathcal{\bar{R}}(u) \}$$
+			
+			โดยที่ $\mathcal{\bar{D}}$ เป็นพจน์วัดค่าเหมาะสมเพื่อไม่ให้ภาพก่อนการต่อและหลังต่อเติมต่างกันมาเกินไปซึ่ง
+			\begin{align*}
+			\mathcal{\bar{D}}(\boldsymbol{u},\boldsymbol{z})  &= \underset{l=1}{\overset{3}{\sum}}\mathcal{D}(u_l,z_l) \\
+			&= \frac{1}{2}\int_{\Omega}^{}(u_1 - z_1)^2 d\Omega + \frac{1}{2}\int_{\Omega}^{}(u_2 - z_2)^2 d\Omega + \frac{1}{2}\int_{\Omega}^{}(u_3 - z_3)^2 d\Omega
+			\end{align*}
+			
+			และ $ \mathcal{\bar{R}} $ คือพจน์สำหรับการต่อเติมภาพ 
+			
+			\begin{align*}
+			\mathcal{\bar{R}}(\boldsymbol{u}) &= \underset{l=1}{\overset{3}{\sum}}\mathcal{R}(u_l) = \int_{\Omega}^{}\lvert\nabla u_1 \rvert d\Omega + \int_{\Omega}^{}\lvert\nabla u_2 \rvert d\Omega + \int_{\Omega}^{}\lvert\nabla u_3 \rvert d\Omega
+			\end{align*}
+			
+			ซึ่งงานนี้ได้สนใจที่จะนำวิธี Split Bergman มาประยุกต์ใช้กับปัญหาเชิงแปรผัน จึงแนะนำเวกเตอร์เสริม $w_1, w_2, w_3$ พร้อมทั้งตัวแปรสำหรับการทำซ้ำ Bregman $b_1, b_2, b_3$ และตัวแปรช่วย $\theta_1, \theta_2, \theta_3 > 0 $ เพื่อแก้ปัญหาเชิงแปรผัน ซึ่งจะได้ปัญหาเชิงแปรผันเป็น
+			
+			$$ 
+			\min_{u} \{\bar{\mathcal{J}}= \lambda \mathcal{\bar{D}}(u,z) +  \underset{l=1}{\overset{3}{\sum}} \int_{\Omega}^{}|\boldsymbol{w_l}|d\Omega
+			+ \frac{\theta_l}{2} \underset{l=1}{\overset{3}{\sum}}\int_{\Omega}^{}(\boldsymbol{w_l} - \nabla u_l - \boldsymbol{b_l})^{2}d\Omega\}
+			$$
+			
+			ปัญหาย่อย $w$ โดยการคงค่า $u$ ไว้จะได้ว่าปัญหาย่อยคือ
+			
+			$$ 
+			\min_{u} \{\bar{\mathcal{J}}= \underset{l=1}{\overset{3}{\sum}} \int_{\Omega}^{}|{w_l}|d\Omega
+			+ \frac{\theta_l}{2} \underset{l=1}{\overset{3}{\sum}}\int_{\Omega}^{}({w_l} - \nabla u_l - {b_l})^{2}d\Omega\}
+			$$
+			
+			ซึ่งเมื่อทำการแก้ปัญหาย่อยนี้จะได้คำตอบที่แม่นตรงคือ
+			
+			$$ w_{l_{i,j}} = \frac{\bigtriangledown u_{l_{i,j}}  + b_{l_{i,j}} }{ | \bigtriangledown u_{l_{i,j}}  + b_{l_{i,j}} | } max \{  | \bigtriangledown u_{l_{i,j}}  + b_{l_{i,j}} | - \frac{1}{\theta} , 0\} \hspace{1cm}  \hspace{0.1cm} l = 1,2,3$$ 
+			
+			
+			ปัญหาย่อย $u$ โดยการคงค่า $w$ ไว้จะได้ว่าปัญหาย่อยคือ
+			
+				$$ 
+			\min_{u} \{\bar{\mathcal{J}}= \lambda \mathcal{\bar{D}}(u,z) + \frac{\theta_l}{2} \underset{l=1}{\overset{3}{\sum}}\int_{\Omega}^{}(\boldsymbol{w_l} - \nabla u_l - \boldsymbol{b_l})^{2}d\Omega\}
+			$$
+			
+			ซึ่งเมื่อทำการแก้ปัญหาย่อยนี้แล้วจะได้ระบบสมการออยเลอร์ลากรางจ์คือ
+			
+			$$ \frac{1}{\theta}\lambda u_1 - \bigtriangleup u_1 = \frac{1}{\theta} \lambda z_1 - \bigtriangledown \cdot (w_1-b_1) $$
+			
+			$$ \frac{1}{\theta}\lambda u_2 - \bigtriangleup u_2 = \frac{1}{\theta} \lambda z_2 - \bigtriangledown \cdot (w_2-b_2) $$
+			
+			$$ \frac{1}{\theta}\lambda u_3 - \bigtriangleup u_3 = \frac{1}{\theta} \lambda z_3 - \bigtriangledown \cdot (w_3-b_3) $$
+			
+			ซึ่งเมื่อแก้ระบบสมการดังกล่าวด้วยวิธี Gauss-seidel แล้วจะนำค่าที่ได้มาเปลี่ยนค่าตัวแปร $b$ โดยที่
+			
+			$$ b_{l}^{k+1} = b_{l}^k  + \bigtriangledown u_{l} - w_{l} \hspace{1cm}  \hspace{0.1cm} l = 1,2,3 $$
+			
+			ซึ่งจากวิธีการ Split Bergman สำหรับภาพสี จะได้ภาพผลลัพธ์ดังนี้
+			
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.4\linewidth]{images/color_inpaint/original.png}
+					\caption{ภาพต้นฉบับ}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.4\linewidth]{images/color_inpaint/toinpaint.png}
+					\caption{ภาพที่ต้องการทำการต่อเติม}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.4\linewidth]{images/color_inpaint/inpaintdomain.png}
+					\caption{โดเมนต่อเติม}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.4\linewidth]{images/color_inpaint/result_splitbergman.png}
+					\caption{ภาพจากวิธี Explicit Time Marching ใช้เวลา 6.72 วินาที PSNR 37.2374}
+				\end{subfigure}
+			\end{figure}
+			
+			\subsection{การประยุกต์ใช้สำหรับต่อเติมภาพวาดศิลปะไทย}
+			
+			เนื่องจากการต่อเติมภาพด้วยการแปรผันจะสนใจที่ความต่อเนื่องของโครงสร้างทางเรขาคณิต ซึ่งวิธีการต่อเติมภาพรูปภาพด้วยการแปรผันมักจะให้ผลลัพธ์ได้ดีกับรูปภาพที่ราบเรียบเป็นช่วง (piecewise smooth image) \cite{ref:defination-of-variation-inpaint}  ซึ่งภาพวาดศิลปะไทยนั้น เป็นภาพซึ่งมีลักษณะราบเรียบเป็นช่วงจึงเหมาะสำหรับใช้แม่แบบวิธี ROF สำหรับการต่อเติมภาพ เพื่อช่วยให้จิตรกรผู้มีหน้าที่ซ่อมแซมภาพ สามารถเห็นตัวอย่างภาพที่ผ่านการต่อเติม เพื่อให้จิตรกรสามารถวางแผนในการซ่อมแซมได้ หรือการเข้าชมพิพิธภัณฑ์ ก็อาจพัฒนาเป็นแอปพลิเคชันสำหรับโทรศัพท์มือถือ ที่สามารถใช้ส่องภาพงานศิลปะและแสดงศิลปะที่สมบูรณ์ขึ้นมาทางหน้าจอได้
+			
+			
+			\subsection{กาประยุกต์ใช้สำหรับการลบคำบรรยายบนอนิเมะ}
+			อนิเมะคือวิดีโอภาพวาดการ์ตูนสไตล์ญี่ปุ่น ซึ่งภาพวาดสไตล์ของอนิเมะเองก็
+			
+	SAVE POINT
+		
+		
 		ซึ่งการซ่อมแซมรูปภาพมีวิธีการทางคณิตศาสตร์ที่ใช้แตกต่างกันไปจำนวนมาก แต่การซ่อมแซมด้วยการแปรผันจะสนใจที่ความต่อเนื่องของโครงสร้างทางเรขาคณิต ซึ่งวิธีการซ่อมแซมรูปภาพด้วยการแปรผันมักจะให้ผลลัพธ์ได้ดีกับพื้นที่แคบและเล็ก ในรูปภาพที่ราบเรียบเป็นช่วง (piecewise smooth image) หรือที่เรียกกันว่าภาพการ์ตูน เนื่องจากวิธีการนี้ไม่สามารถทำการสร้างพื้นผิว (Texture) ขึ้นมาได้ \cite{ref:defination-of-variation-inpaint} โดยวิธีการแปรผันที่สนใจ จะใช้ตัวแบบ   Rudin-Osher-Fatemi (ROF) \cite{ref:ROF-template}ซึ่งถูกนำเสนอในรูปเชิงแปรผัน  (variational formulation) ไว้ดังนี้ 
 		
 		$$\min_{u} \{ \mathcal{J}(u)= \lambda \mathcal{D}(u,f)+  \mathcal{R}(u) \}$$
@@ -340,6 +574,9 @@
 \renewcommand{\section}[2]{} % addition mod: remove reference text
 \begin{thebibliography}{}
 	% ให้ใส่แบบหลังเปเปอร์
+	\bibitem{ref:rof-inpaint-chan-shen} 
+	T.F. Chan, J. Shen, “Mathematical models of local non-texture inpaintings”, SIAM Journal on Applied Mathematics, vol. 62, no. 3, pp. 1019–1043, 2001. http://www.jstor.org/stable/ 3061798
+	
 	\bibitem{ref:defination-of-inpaint} 
 	Furht B., อ้างอิง 2561: Encyclopedia of Multimedia [จาก \url{https://doi.org/10.1007/0-387-30038-4_98}] สืบค้นเมื่อ 5 สิงหาคม 2561
 	
@@ -347,10 +584,13 @@
 	Işık Barış Fidaner, อ้างอิง 2561: A Survey on Variational Image Inpainting , Texture Synthesis and Image Completion [จาก \url{https://www.semanticscholar.org/paper/_/36f4d32ce45f72091510ab4d4d1cc3bf81ffe879}] สืบค้นเมื่อ 5 สิงหาคม 2561
 	
 	\bibitem{ref:ROF-template} 
-	Leonid I.Rudin และคณะ., อ้างอิง 2561: Nonlinear total variation based noise removal algorithms [จาก \url{https://doi.org/10.1016/0167-2789(92)90242-F}] สืบค้นเมื่อ 10 กันยายน 2561
+	Leonid I. Rudin, Stanley Osher, Emad Fatemi, "Nonlinear total variation based noise removal algorithms", Physica D: Nonlinear Phenomena, Volume 60, Issues 1–4, pp. 259-268, 1992. \url{https://doi.org/10.1016/0167-2789(92)90242-F}
 	
 	\bibitem{ref:ExplicitTimeMarching} 
 	A. Marquina และ S. Osher, อ้างอิง 2561: Explicit algorithms for a new time dependent model based on level set motion for nonlinear deblurring and noise removal [จาก \url{https://doi.org/10.1137/S1064827599351751}] สืบค้นเมื่อ 10 กันยายน 2561
+	
+	\bibitem{ref:FixpointSolver}
+	C.R. Vogel and M.E. Oman,"Iterative methods for total variation denoising", SIAM J. Sci. Comput. 17, pp. 227-238, 1996.
 	
 	\bibitem{ref:splitbergman-denoise}
 	Pascal Getreuer, อ้างอิง 2561:  Rudin-Osher-Fatemi Total Variation Denoising using Split Bregman , [จาก \url{https://doi.org/10.5201/ipol.2012.g-tvd}] สืบค้นเมื่อ 5 สิงหาคม 2561

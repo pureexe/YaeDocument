@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  13 SEP 2018 09:45
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  17 SEP 2018 01:25
 entering extended mode
 **./ProjectProposal.tex
 (ProjectProposal.tex
@@ -968,47 +968,102 @@ File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 
 )
 LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 8.60997pt on input line 105.
+(Font)              scaled to size 14.75995pt on input line 113.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
+(Font)              scaled to size 14.75995pt on input line 113.
 LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 6.14998pt on input line 105.
-LaTeX Font Info:    Try loading font information for U+msa on input line 105.
+(Font)              scaled to size 8.60997pt on input line 116.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 6.14998pt on input line 116.
+LaTeX Font Info:    Try loading font information for U+msa on input line 116.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 105.
+LaTeX Font Info:    Try loading font information for U+msb on input line 116.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 105.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 116.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 105.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 116.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-) [1
+)
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
+(Font)              scaled to size 8.60997pt on input line 118.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
+(Font)              scaled to size 6.14998pt on input line 118.
+File: images/sample-domain.png Graphic file (type bmp)
+<images/sample-domain.png>
+ [1
 
 ]
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 124.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 136.
+
+
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 144.
+
+[2]
+
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 171.
+
+
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 184.
+
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/it' will be
+(Font)              scaled to size 12.29996pt on input line 206.
+[3]
+File: images/grayscale_inpaint/original.png Graphic file (type bmp)
+<images/grayscale_inpaint/original.png>
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 11.06996pt on input line 220.
+File: images/grayscale_inpaint/toinapint.png Graphic file (type bmp)
+<images/grayscale_inpaint/toinapint.png>
+File: images/grayscale_inpaint/inpaintdomain.png Graphic file (type bmp)
+<images/grayscale_inpaint/inpaintdomain.png>
+File: images/grayscale_inpaint/result_timemarch.png Graphic file (type bmp)
+<images/grayscale_inpaint/result_timemarch.png>
+File: images/grayscale_inpaint/result_fixpoint.png Graphic file (type bmp)
+<images/grayscale_inpaint/result_fixpoint.png>
+File: images/grayscale_inpaint/result_splitbergman.png Graphic file (type bmp)
+<images/grayscale_inpaint/result_splitbergman.png>
+
+
+LaTeX Warning: Command \u invalid in math mode on input line 257.
+
+
+LaTeX Warning: Command \textbrevemacron invalid in math mode on input line 257.
+
+
+Missing character: There is no ̄ in font cmmi10!
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 265.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 265.
+[4]
+File: images/color_inpaint/original.png Graphic file (type bmp)
+<images/color_inpaint/original.png>
+File: images/color_inpaint/toinpaint.png Graphic file (type bmp)
+<images/color_inpaint/toinpaint.png>
+File: images/color_inpaint/inpaintdomain.png Graphic file (type bmp)
+<images/color_inpaint/inpaintdomain.png>
+File: images/color_inpaint/result_splitbergman.png Graphic file (type bmp)
+<images/color_inpaint/result_splitbergman.png>
+ [5] [6]
+
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 368.
 
 Missing character: There is no λ in font cmmi10!
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
-(Font)              scaled to size 8.60997pt on input line 137.
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
-(Font)              scaled to size 6.14998pt on input line 137.
-[2]
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/it' will be
-(Font)              scaled to size 12.29996pt on input line 201.
- [3]
+[7] [8]
 File: images/detection-original.png Graphic file (type bmp)
 <images/detection-original.png>
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 11.06996pt on input line 237.
 File: images/detection-threshold.png Graphic file (type bmp)
 <images/detection-threshold.png>
 File: images/detection-inverse.png Graphic file (type bmp)
@@ -1019,33 +1074,33 @@ File: images/detection-erode-opening.png Graphic file (type bmp)
 <images/detection-erode-opening.png>
 File: images/detection-stoke.png Graphic file (type bmp)
 <images/detection-stoke.png>
- [4]
-Overfull \hbox (61.88135pt too wide) in paragraph at lines 310--323
+ [9]
+Overfull \hbox (61.88135pt too wide) in paragraph at lines 554--567
  [] 
  []
 
-[5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 353.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 353.
+[10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 604.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 604.
  (ProjectProposal.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 353.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 353.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 604.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 604.
 Package rerunfilecheck Info: File `ProjectProposal.out' has not changed.
-(rerunfilecheck)             Checksum: B08EC8EEE0D41F89612C38191265E716.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 353.
+(rerunfilecheck)             Checksum: 7F14CE20463ED88EB71737AD50F72C02.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 604.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 49 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25067 strings out of 427798
- 448322 string characters out of 3151797
- 539060 words of memory out of 3000000
- 28895 multiletter control sequences out of 15000+200000
- 535378 words of font info for 60 fonts, out of 3000000 for 9000
+ 25140 strings out of 427798
+ 450420 string characters out of 3151797
+ 540586 words of memory out of 3000000
+ 28946 multiletter control sequences out of 15000+200000
+ 538257 words of font info for 72 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 42i,12n,65p,815b,565s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,13n,65p,808b,569s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on ProjectProposal.pdf (6 pages).
+Output written on ProjectProposal.pdf (11 pages).
