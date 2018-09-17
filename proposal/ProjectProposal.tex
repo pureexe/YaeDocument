@@ -92,7 +92,7 @@
 %	-------------------------------------
 	
 	%ความสำคัญของการประมวลผลภาพ 1 ย่อหน้า (General Idea) ถูกนำไปใช้อะไรบ้าง 
-	ภาพดิจิตัล (digital images)  คือภาพที่นิยมใช้กันอย่างแพร่หลายในปัจจุบันอาจจะสร้างได้หลายวิธีทั้งการใช้กล้องถ่ายภาพเพื่อให้ได้ภาพ หรืออาจจะใช้อุปกรณ์ทางการแพทย์ต่างๆ จนไปถึงการใช้คลื่นที่มองไม่เห็นเพื่อถ่ายภาพดาราจักรต่างๆ ในอวกาศ  ซึ่งภาพที่ได้ออกมานั้นมักจะผ่านการประมวลการประมวลผลอยู่เสมอ ตัวอย่างเช่น ภาพถ่ายพื้นผิวดวงจันทร์เมื่อส่งสัญญาณกลับมาจากดาวเทียมจะมีสัญญาณรบกวนเข้ามาแทรก จึงจำเป็นที่จะต้องผ่านการกำจัดสัญญาณรบกวนออกจากภาพ (images denoising) การติดตามอาการคนไข้ที่มีอาการเนื้องอกจะเป็นต้องทำการลงทะเบียนภาพ (image registration) เพื่อให้แพทย์สามารถติดตามการเปลี่ยนแปลงของเนื้องอกได้ การติดตามรถที่กระทำผิดกฏจราจร จำเป็นต้องแยกรถยนตร์ออกจากพื้นหลังโดยใช้การแบ่งส่วนภาพ (image segmentation) และการลบวัตถุที่ไม่ต้องการออกไปจากภาพจะใช้การซ่อมแซมภาพ (image inpainting) เป็นต้น 
+	ภาพดิจิตัล (digital images)  คือภาพที่นิยมใช้กันอย่างแพร่หลายในปัจจุบันอาจจะสร้างได้หลายวิธีทั้งการใช้กล้องถ่ายภาพเพื่อให้ได้ภาพ หรืออาจจะใช้อุปกรณ์ทางการแพทย์ต่างๆ จนไปถึงการใช้คลื่นที่มองไม่เห็นเพื่อถ่ายภาพดาราจักรต่างๆ ในอวกาศ  ซึ่งภาพที่ได้ออกมานั้นมักจะผ่านการประมวลการประมวลผลอยู่เสมอ ตัวอย่างเช่น ภาพถ่ายพื้นผิวดวงจันทร์เมื่อส่งสัญญาณกลับมาจากดาวเทียมจะมีสัญญาณรบกวนเข้ามาแทรก จึงจำเป็นที่จะต้องผ่านการกำจัดสัญญาณรบกวนออกจากภาพ (images denoising) การติดตามอาการคนไข้ที่มีอาการเนื้องอกจะเป็นต้องทำการลงทะเบียนภาพ (image registration) เพื่อให้แพทย์สามารถติดตามการเปลี่ยนแปลงของเนื้องอกได้ การติดตามรถที่กระทำผิดกฏหมายจราจร จำเป็นต้องแยกรถยนตร์ออกจากพื้นหลังโดยใช้การแบ่งส่วนภาพ (image segmentation) และการลบวัตถุที่ไม่ต้องการออกไปจากภาพจะใช้การต่อเติมภาพ (image inpainting) เป็นต้น 
 	
 	%	Image Inpainting เป็น area หนึ่งของ processing คืออะไร ไปใช้ที่ไหน อยู่ส่วนไหนของ processing  เขาใช้ในทางไหนบ้าง
 	
@@ -123,7 +123,7 @@
 		\end{figure}
 		ซึ่งสำหรับปัญหาการต่อเติมภาพโทนสีเทานั้น จะเรียกพื้นที่ซึ่งต้องการต่อเติมว่า โดเมนต่อเติม (inpaint domain) โดย $D$ เป็นโดเมนซึ่ง $D \subset \Omega$ 
 		
-		โดยการต่อเติมภาพเฉดเทานี้ จะใช้การแปรผันรวม (Total Variation) ซึ่งถูกคิดค้นโดย Chan และ Shen \cite{ref:rof-inpaint-chan-shen} ซึ่งประยุกต์มาจากการแปรผันรวมเพื่อกำจัดสัญญาณรบกวนบนตัวแบบ ROF \cite{ref:ROF-template}
+		โดยการต่อเติมภาพเฉดเทานี้ จะใช้การแปรผันรวม (total variation) ซึ่งถูกคิดค้นโดย Chan และ Shen \cite{ref:rof-inpaint-chan-shen} ซึ่งประยุกต์มาจากการแปรผันรวมเพื่อกำจัดสัญญาณรบกวนบนตัวแบบ ROF \cite{ref:ROF-template}
 		
 		ได้ว่าจะสามารถหาภาพที่ถูกต่อเติมอย่างเหมาะสม $u$ จะสามารถหาได้จาก
 		
@@ -131,7 +131,7 @@
 		
 		ซึ่ง $ \mathcal{D} $ คือพจน์สำหรับวัดค่าเหมาะสม เพื่อไม่ให้ภาพก่อนต่อเติมและหลังจากต่อเติมมีความแตกต่างกันมากเกินไป $ \mathcal{R} $ คือพจน์สำหรับการต่อเติมภาพ และ $ \lambda $  คือเปนพารามิเตอรเร็กกิวลารไรซเซชัน (regularization parameter) สำหรับกำหนดปริมาณของสัญญาณรบกวนที่ตองการกำจัดออก 
 		
-		โดย Chan และ Shen ได้ทำการแก้ปัญหาการแปรผัน (Variational Problem) ได้ว่า
+		โดย Chan และ Shen ได้ทำการแก้ปัญหาการแปรผัน (variational problem) ได้ว่า
 		
 		$$\min_{u} \{ \mathcal{J}(u) = \frac{\lambda}{2} \int_{\Omega \textbackslash D} (u-z)^2 d\Omega +  \int_{\Omega}  |\bigtriangledown u|  d\Omega \}$$
 	
@@ -149,13 +149,13 @@
 		$$
 		u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+\tau\left(\nabla\cdot\left(\frac{\nabla u ( \mathbf{x},t_k)}{\lvert \nabla u ( \mathbf{x},t_k) \rvert }\right) + \lambda(\mathbf{x})(u ( \mathbf{x},t_k)-z(\mathbf{x})) \right)
 		$$
-		แต่เนื่องจากเมื่อ $\lvert \nabla u ( \mathbf{x},t_k) \rvert = 0 $ จะทำให้ไม่สามารถคำนวณได้ เนื่องจากไม่สามารถหารด้วย 0 ได้ จึงกำหนดให้ $\lvert \nabla u ( \mathbf{x},t_k) \rvert = \sqrt{u_x^2+u_y^2 + \beta}$ สำหรับ $\beta > 0$ และ $\beta$ มีค่าใกล้ 0 เพื่อหลีกเลี่ยงเหตุการณ์ดังกล่าว
+		แต่เนื่องจากเมื่อ $\lvert \nabla u ( \mathbf{x},t_k) \rvert = 0 $ จะทำให้ไม่สามารถคำนวณได้ เนื่องจากหารด้วย 0 ไม่ได้ จึงกำหนดให้ $\lvert \nabla u ( \mathbf{x},t_k) \rvert = \sqrt{u_x^2+u_y^2 + \beta}$ สำหรับ $\beta > 0$ และ $\beta$ มีค่าใกล้ 0 เพื่อหลีกเลี่ยงเหตุการณ์ดังกล่าว
 		
 		โดยเมื่อ $\tau>0$ แทนขั้นเวลา (time step) ที่ได้จากการดิสครีตไทซ์โดเมนเวลา $[0,\infty)$ ซึ่งเห็นได้ว่าวิธีการเชิงตัวเลขดังกล่าวข้างต้นนั้นง่ายในการคํานวณ แต่การลู่เข้าสู่คําตอบที่เหมาะสมของปัญหา เชิงแปรผันค่อนข้างช้ามากเนื่องจากต้องใช้ $\tau$ ที่มีขนาดเล็กในการทำให้ลำดับของคำตอบลู่เข้า 
 		
-		วิธีการทำซ้ำแบบ Fixed Point \cite{ref:FixpointSolver} จะทำการแบ่งการทำซ้ำออกเป็น  2 ชั้น เรียกชั้นในกับชั้นนอก โดยการทำซ้ำชั้นใน เป็นการทำซ้ำแบบ Gauss-seidel เพื่อให้หาค่า u เป็นลำดับถัดไป จากนั้นชั้นนอกจะเป็นการทำซ้ำแบบตรึงจุด (Fixed Point) เพื่อให้ค่า $u$ ลู่เข้าสู่ค่าที่ต้องการ 
+		วิธีการทำซ้ำแบบ Fixed Point \cite{ref:FixpointSolver} จะทำการแบ่งการทำซ้ำออกเป็น  2 ชั้น เรียกชั้นในกับชั้นนอก โดยการทำซ้ำชั้นใน เป็นการทำซ้ำแบบ Gauss-seidel เพื่อให้หาค่า u เป็นลำดับถัดไป จากนั้นชั้นนอกจะเป็นการทำซ้ำแบบตรึงจุด (fixed point) เพื่อให้ค่า $u$ ลู่เข้าสู่ค่าที่ต้องการ 
 		
-		ซึ่งการทำซ้ำชั้นในจะหาค่า $u$ จากการใช้ Gauss-seidel กับสมการ
+		ซึ่งการทำซ้ำชั้นในจะหาค่า $u$ จากการใช้ Gauss-Seidel กับสมการ
 		$$
 		- \nabla\cdot\left(\frac{\nabla u^{[v+1]}}{{\lvert \nabla u \rvert}^{[v]} }\right) + \lambda(u^{[v+1]}-z)  = 0
 		$$
@@ -166,7 +166,7 @@
 		
 		ซึ่งทั้งวิธี Explicit Time Marching และวิธี Fixed Point จำเป็นต้องเพิ่ม $\beta$ เพื่อหลีกเลี่ยงการหารด้วย 0 ซึ่งจะทำให้เกิดค่าคลาดเคลื่อน  จึงได้มีการสร้างวิธี Split Bergman สำหรับแก้ปัญหานี้
 		
-		วิธี Split Bergman \cite{ref:splitbergman-inpaint} โดยวิธีการนี้คือการแยกส่วนการดำเนินการ (Spliting) และใช้การทำซ้ำ Bergman (Bergman Iteration)  โดยวิธีนี้จะเป็นการแก้ปัญหาการแปรผัน โดยการเพิ่มตัวแปร $w$ ในการแก้ปัญหา ซึ่งจะได้ปัญหาการแปรผันดังต่อไปนี้แทน
+		วิธี Split Bergman \cite{ref:splitbergman-inpaint} โดยวิธีการนี้คือการแยกส่วนการดำเนินการ (spliting) และใช้การทำซ้ำ Bergman (bergman iteration)  โดยวิธีนี้จะเป็นการแก้ปัญหาการแปรผัน โดยการเพิ่มตัวแปร $w$ ในการแก้ปัญหา ซึ่งจะได้ปัญหาการแปรผันดังต่อไปนี้แทน
 		
 			$$\min_{u} \{ \mathcal{J}(u) = \frac{\lambda}{2} \int_{\Omega \textbackslash D} (u-z)^2 d\Omega +  \int_{\Omega}  |\bigtriangledown w|  d\Omega + \frac{\theta}{2} \int_{\Omega} (w - \bigtriangledown u + b) d\Omega \}$$
 			
@@ -186,7 +186,7 @@
 			ซึ่งเมื่อทำการแก้ปัญหาย่อยนี้แล้วจะได้ว่า
 			$$ \frac{1}{\theta}\lambda u - \bigtriangleup u = \frac{1}{\theta} \lambda z - \bigtriangledown \cdot (w-b) $$
 			
-			เราจะประมาณคำตอบนี้โดยการใช้ หนึ่งรอบ Gauss-seidel ต่อหนึ่งรอบการทำซ้ำของ Bergman ซึ่ง subproblem จะถูกแก้หนึ่งครั้ง ต่อหนึ่งรอบ bergman iteration แต่ทั้งนี้การทำซ้ำ Gauss-seidel หลายครั้ง จะทำให้การแก้ปัญหาย่อยมีความแม่นยำขึ้น
+			เราจะประมาณคำตอบนี้โดยการใช้ หนึ่งรอบ Gauss-Seidel ต่อหนึ่งรอบการทำซ้ำของ Bergman ซึ่งปัญหาย่อยจะถูกแก้หนึ่งครั้ง ต่อหนึ่งรอบ bergman iteration แต่ทั้งนี้การทำซ้ำ Gauss-Seidel หลายครั้ง จะทำให้การแก้ปัญหาย่อยมีความแม่นยำขึ้น
 			ส่วนตัวแปรช่วย $b$ มีค่าเริ่มต้นเป็น 0 จากนั้นทำการปรับค่าโดย
 			
 			$$ b^{k+1} = b^k  + \bigtriangledown u - w $$
@@ -329,196 +329,48 @@
 				\begin{subfigure}{0.4\linewidth}
 					\centering
 					\includegraphics[width=0.4\linewidth]{images/color_inpaint/result_splitbergman.png}
-					\caption{ภาพจากวิธี Explicit Time Marching ใช้เวลา 6.72 วินาที PSNR 37.2374}
+					\caption{ภาพจากวิธี Split Bergman ใช้เวลา 6.72 วินาที PSNR 37.2374}
 				\end{subfigure}
 			\end{figure}
 			
 			\subsection{การประยุกต์ใช้สำหรับต่อเติมภาพวาดศิลปะไทย}
 			
-			เนื่องจากการต่อเติมภาพด้วยการแปรผันจะสนใจที่ความต่อเนื่องของโครงสร้างทางเรขาคณิต ซึ่งวิธีการต่อเติมภาพรูปภาพด้วยการแปรผันมักจะให้ผลลัพธ์ได้ดีกับรูปภาพที่ราบเรียบเป็นช่วง (piecewise smooth image) \cite{ref:defination-of-variation-inpaint}  ซึ่งภาพวาดศิลปะไทยนั้น เป็นภาพซึ่งมีลักษณะราบเรียบเป็นช่วงจึงเหมาะสำหรับใช้แม่แบบวิธี ROF สำหรับการต่อเติมภาพ เพื่อช่วยให้จิตรกรผู้มีหน้าที่ซ่อมแซมภาพ สามารถเห็นตัวอย่างภาพที่ผ่านการต่อเติม เพื่อให้จิตรกรสามารถวางแผนในการซ่อมแซมได้ หรือการเข้าชมพิพิธภัณฑ์ ก็อาจพัฒนาเป็นแอปพลิเคชันสำหรับโทรศัพท์มือถือ ที่สามารถใช้ส่องภาพงานศิลปะและแสดงศิลปะที่สมบูรณ์ขึ้นมาทางหน้าจอได้
-			
+			\hspace{0.85cm}เนื่องจากการต่อเติมภาพด้วยการแปรผันจะสนใจที่ความต่อเนื่องของโครงสร้างทางเรขาคณิต ซึ่งวิธีการต่อเติมภาพรูปภาพด้วยการแปรผันมักจะให้ผลลัพธ์ได้ดีกับรูปภาพที่ราบเรียบเป็นช่วง (piecewise smooth image) \cite{ref:defination-of-variation-inpaint}  ซึ่งภาพวาดศิลปะไทยนั้น เป็นภาพซึ่งมีลักษณะราบเรียบเป็นช่วงจึงเหมาะสำหรับใช้แม่แบบวิธี ROF สำหรับการต่อเติมภาพ เนื่องจากในปัจจุบันนี้ยังมีงานศิลปะไทยเก่าจำนวนมากที่ต้องการได้รับการซ่อมแซมจึงเป็นการช่วยให้จิตรกรผู้มีหน้าที่ซ่อมแซมภาพ สามารถเห็นตัวอย่างภาพที่ผ่านการต่อเติม เพื่อให้จิตรกรสามารถวางแผนในการซ่อมแซมได้ หรือการเข้าชมพิพิธภัณฑ์ ก็อาจพัฒนาเป็นแอปพลิเคชันสำหรับโทรศัพท์มือถือ ที่สามารถใช้ส่องภาพงานศิลปะและแสดงศิลปะที่สมบูรณ์ขึ้นมาทางหน้าจอได้
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.4\linewidth]{images/show_peicewise/thaiart_gray.png}
+					\caption{ภาพศิลปะไทยซึ่งเป็นเฉดสีเทา}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.4\linewidth]{images/show_peicewise/thaiart_is_piecewise.png}
+					\caption{ความเข้มของสีบริเวณคอลัมม์ที่ 200}
+				\end{subfigure}				
+			\end{figure}
+			โดยจากตัวอย่างจะเป็นภาพวาด จิตรกรรม อุโบสถวัดคงคาราม ขนาด 512x512 ซึ่งถูกปรับให้เป็นเฉดสีเทา เมื่อนำข้อมูลความเข้มของสีบริเวณคอลัมม์ที่ 200 มาเขียนกราฟจะเห็นว่าบริเวณจุดที่ 100 และจุดที่ 420 มีความแตกต่างของความเข็มอย่างชัดเจน โดยแบ่งเป็นช่วง (0,100), (100,420) และ (420,512) ซึ่งมีลักษณะราบเรียบเป็นช่วงนั่นเอง
+				
 			
 			\subsection{กาประยุกต์ใช้สำหรับการลบคำบรรยายบนอนิเมะ}
-			อนิเมะคือวิดีโอภาพวาดการ์ตูนสไตล์ญี่ปุ่น ซึ่งภาพวาดสไตล์ของอนิเมะเองก็
-			
-	SAVE POINT
-		
-		
-		ซึ่งการซ่อมแซมรูปภาพมีวิธีการทางคณิตศาสตร์ที่ใช้แตกต่างกันไปจำนวนมาก แต่การซ่อมแซมด้วยการแปรผันจะสนใจที่ความต่อเนื่องของโครงสร้างทางเรขาคณิต ซึ่งวิธีการซ่อมแซมรูปภาพด้วยการแปรผันมักจะให้ผลลัพธ์ได้ดีกับพื้นที่แคบและเล็ก ในรูปภาพที่ราบเรียบเป็นช่วง (piecewise smooth image) หรือที่เรียกกันว่าภาพการ์ตูน เนื่องจากวิธีการนี้ไม่สามารถทำการสร้างพื้นผิว (Texture) ขึ้นมาได้ \cite{ref:defination-of-variation-inpaint} โดยวิธีการแปรผันที่สนใจ จะใช้ตัวแบบ   Rudin-Osher-Fatemi (ROF) \cite{ref:ROF-template}ซึ่งถูกนำเสนอในรูปเชิงแปรผัน  (variational formulation) ไว้ดังนี้ 
-		
-		$$\min_{u} \{ \mathcal{J}(u)= \lambda \mathcal{D}(u,f)+  \mathcal{R}(u) \}$$
+			\hspace{0.85cm}อนิเมะคือวิดีโอภาพวาดการ์ตูนสไตล์ญี่ปุ่น ซึ่งภาพวาดสไตล์ของอนิเมะเองก็เป็นภาพแบบราบเรียบเป็นช่วงจึงเหมาะกับการใช้แม่แบบวิธี ROF สำหรับการต่อเติมภาพ	ซึ่งอนิเมะนั้นเนื่องจากผ่านการแปลภาษามาแล้ว ในบางครั้งจะมีคำบรรยายแบบแข็งติดมาด้วย ซึ่งบทบรรยายแบบแข็งนั้นไม่สามารถเปิดและปิดได้ เมื่อผ่านการให้เสียงใหม่แล้วก็จะมีบทบรรยายนั้นติดมาด้วย จึงเหมาะที่จะประยุกต์ใช้ในการลบทบรรยายออก
 
-		เมื่อ $\mathcal{D}$ คือ พจน์สำหรับวัดค่าความเหมาะสมข้อมูล (Data fitting Term) $\lambda$ คือ ตัวแปรจัดระเบียบ (Regularization parameter)  $\mathcal{R}$ พจน์จัดระเบียบ (Regularization Term) 
-		
-		ซึ่งตัวแบบ ROF พจน์สำหรับวัดค่าความเหมาะสมข้อมูลได้หลายวิธี ซึ่งผู้ศึกษาสนใจที่จะใช้วิธีแปรผันรวม (Total Variation) \cite{ref:splitbergman-denoise} ในการแก้ตัวแบบนี้	 โดยเป็นการแก้ปัญหาการแปรผันมีขอบเขต (bounded variation หรือ BV) ทั้งหมดโดยที่ภาพ $u$ อยู่ใน $BV(\Omega)$ เมื่อสามารถหาปริพันธ์ได้และจะมี Radon measure $Du$ ซึ่ง 
-		
-		$$\int_{\Omega}u(x) div \vec{g}(x) dx = \int_{\Omega} \left\langle\vec{g},Du(x) \right\rangle\hspace{1cm}\forall\vec{g} \in C_c^1(\Omega,\mathbb{R}^2)^2$$
-		
-		และจาก $Du$ เป็น distributional gradient ของ $u$ เมื่อ $u$ ราบเรียบแล้ว  $Du(x)= \bigtriangledown u(x)dx $
-		โดย total variation seminorm ของ $u$ คือ 
-		
-		$$ ||u||_{TV(\Omega)} := \int_{\Omega} | Du | := sup{ \left \{ \int_{\Omega}  u \ div  \ \vec{g} \ dx \  : \vec{g} \  \in C_c^1(\Omega,\mathbb{R}^2)^2 \ , \ \sqrt{g_1^2+g_2^2} \leq 1 \right \} }  $$
-		
-		จาก $u$ ราบเรียบแล้ว การแปรผันรวมสมมูลกับอินทิกรัลของขนาดเกรเดียนท์ 
-		
-		$$ ||u||_{TV(\Omega)} = \int_{\Omega} | \bigtriangledown u | dx$$
-		
-		จึงได้ว่าจะหาฟังก์ชันแปรผันมีขอบเขต $u$ หาได้จาก minimization problem
-		
-		$$ \underset{u \in BV(\Omega)}{arg \ min} ||u||_{TV(\Omega)} + \frac{\lambda}{2} \int_{\Omega \textbackslash D} (f(x) - u(x))^2 dx$$
-		
-		เมื่อ $\lambda$ มีค่าบวก ปัญหา minimalization นี้จะเหมือนกับปัญหาการลบสิ่งรบกวนของ Rudin, Osher และ Fatemi เพียงแต่ปริพันธ์ลำดับอยู่บน $\Omega-D$  แทนที่จะเป็น $\Omega$ ถ้าผลลัพธ์ที่แม่นตรงอยู่ใน $BV$ และมีค่าอยู่ในช่วง $[0,1]$ แล้วจะมี minimizer u แต่มักจะไม่มีเพียงหนึ่งเดียว 
-		
-		การซ่อมแซมรูปภาพอาจมองเป็นลักษณะการลบสิ่งรบกวนที่มี spatially-varying regularization strength เป็น $\lambda(x)$ ทำให้ได้ว่า
-		
-		$$\underset{u}{{arg \ min}} ||u||_{TV(\Omega)} + \frac{1}{2} \int_{\Omega} \lambda(x)(f(x) - u(x))^2 dx$$
-		
-		โดยที่ $\lambda(x)$ จะมีค่าเป็น $0$ เมื่ออยู่ใน $D$ และ $\lambda(x)>0$ เมื่ออยู่นอก $D$  ทำให้เมื่อ $x \in D$ ที่ $\lambda(x)=0$ ค่า $f(x)$ จะไม่ถูกใช้ ทำให้ $u(x)$ ได้รับผลจาก $||u||_{tv}$ เท่านั้น ส่วนที่ด้านนอก $D$ จะเป็น TV-regularize denoising พฤติกรรมลดสิ่งลบกวนนี้อาจเป็นที่น่าพอใจเมื่อยากที่จะระบุโดเมนที่ต้องซ่อมแซมได้อย่างถูกต้อง และเมื่อใช้ $λ$ ขนาดใหญ่จะทำให้การลดสิ่งรบกวนมีผลน้อยมากจนทำให้พื้นที่นอก $D$  แทบไม่เปลี่ยนแปลง
-		
-		จากโมเดลทางคณิตศาสตร์ที่ได้กล่าวมาข้างต้น จะสามารถใช้วิธีการทางเชิงตัวเลขสำหรับการซ่อมแซมรูปภาพโดยใช้ความแปรปรวนทั้งหมดได้หลายวิธีการ จึงขอยกตัวอย่างวิธีการไทม์มาร์ชชิ่ง (time marching method) \cite{ref:ExplicitTimeMarching}  ป็นวิธีการที่ง่ายและสะดวกในการแก้สมการเชิงอนุพันธ์ย่อยไม่เป็นเชิงเส้น
-		แนวคิดของวิธีการนี้คือการแนะนําตัวแปรเวลาสังเคราะห์ (time artificial variable) จากนั้นหาคําตอบแบบสภาวะคงตัว (steady-state solution) ของสมการเชิงอนุพันธ์ย่อยไม่เป็นเชิงเส้นที่ขึ้นอยู่กับเวลา และเพื่อจะแก้ความไม่เป็นเชิงเส้นของสมการเชิงอนุพันธ์ย่อย จะสามารถใช้รูปแบบที่ชัดแจ้งของออยเลอร์ (Euler's explicit scheme) ที่กำหนดโดย
-		$$
-		u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+\tau\left(\nabla\cdot\left(\frac{\nabla u ( \mathbf{x},t_k)}{\lvert \nabla u ( \mathbf{x},t_k) \rvert }\right) + \lambda(u ( \mathbf{x},t_k)-f(\mathbf{x})) \right)
-		$$
-		เมื่อ $\tau>0$ แทนขั้นเวลา (time step) ที่ได้จากการดิสครีตไทซ์โดเมนเวลา $[0,\infty)$
-		
-		หลังจากใช้การประมาณแบบไฟไนต์ดิฟเฟอเรนซ์ จะได้รูปแบบการทำซ้ำเป็น
-		
-		$$ (u^{[k+1]})_{i,j} = (u^{[k]})_{i,j}+\tau\left(  \mathcal{K}(u^{[k]})_{i,j}+\lambda((u^{[k]})_{i,j}+(f)_{i,j})\right) $$
-		
-		เห็นได้ว่าวิธีการเชิงตัวเลขดังกล่าวข้างต้นนั้นง่ายในการคํานวณ แต่การลู่เข้าสู่คําตอบที่เหมาะสมของปัญหา เชิงแปรผันค่อนข้างช้ามากเนื่องจากต้องใช้ $\tau$ ที่มีขนาดเล็กในการทำให้ลำดับของคำตอบลู่เข้า 
-	
-		เนื่องจากวิธีไทม์มาร์ชชิ่งการลู่เข้าของคำตอบค่อนข้างช้า จึงมีอีกวิธีที่สามารถลู่เข้าสู่คำตอบได้ไวขึ้น  นั่นคือวิธี Split Bergman \cite{ref:splitbergman-inpaint} ซึ่งคือการแยกส่วนการดำเนินการ (splitting) และการทำซ้ำ bergman (bergman iteration)
-		
-		จากความแปรปรวนทั้งหมดสามารถประมาณได้โดย $ |\bigtriangledown u_{i,j} | $ บนทุกพิกเซลนั่นคือ
-		
-		$$ ||u||_{TV(\Omega)} \approx \sum_{i=0}^{N-1} \sum_{j=0}^{N-1} |\bigtriangledown u_{i,j}| $$
-		
-		เมื่อ $\bigtriangledown u_{i,j}$  คือ discrete gradient วิธี split bergman  จะนำมาใช้เพื่อแก้ minimization problem 
-		$$
-		\left\{ \begin{array}{lc} 
-		\underset{d , u}{arg \ min}\sum_{i,j}|d_{i,j}|+\frac{1}{2}\sum_{i,j}\lambda_{i,j}(f_{i,j} - u_{i,j})^2 \\
-		subject \ to \ d = \bigtriangledown u 
-		\end{array} \right .
-		$$
-		
-		โดยตัวแปรช่วย $d$  คือเวคเตอร์ที่บีบบังคับ $ \bigtriangledown u$ และใช้วิธีการทำซ้ำ bergman เพื่อแก้ปัญหาค่าเหมาะสมแบบมีข้อจำกัด ซึ่งในแต่ละการทำซ้ำ bergman จะเป็นการแก้
-		
-		$$\underset{d , u}{arg \ min}\sum_{i,j}|d_{i,j}|+\frac{\lambda}{2}\sum_{i,j}\lambda_{i,j}(f_{i,j} - u_{i,j})^2 + \frac{\gamma}{2} \sum_{i,j} |d_{i,j} - \bigtriangledown u_{i,j}- b_{i,j}|^2 $$
-		
-		เมื่อ $b$  เป็นตัวแปรของวิธีการทำซ้ำ bergman และ $\gamma$ เป็นค่าคงที่บวกใดๆ โดยการ minimization  บน $d$ และ $u$  จะแก้โดย alternative direction method โดยแต่ละขั้นของการหาค่าต่ำสุด ตัวแปร $d$ และ $u$ จะให้ตัวแปรอื่นคงค่าไว้
-		
-		d subproblem เมื่อเราคงค่า u ไว้ จะได้ว่า d subproblem คือ
-		
-		$$ \underset{d}{arg \ min} \sum_{i,j} |d_{i,j}| + \frac{\gamma}{2} \sum_{i,j}|d_{i,j} - \bigtriangledown u_{i,j} - b_{i,j}|^2$$
-		
-		โดยปัญหานี้เมื่อทำการแก้แล้วจะได้ว่า 
-		
-		$$ d_{i,j} = \frac{\bigtriangledown u_{i,j}  + b_{i,j} }{ | \bigtriangledown u_{i,j}  + b_{i,j} | } max \{  | \bigtriangledown u_{i,j}  + b_{i,j} | - \frac{1}{\gamma} , 0\} $$
-		
-		u subproblem เมื่อเราคงค่า $d$ ไว้ จะได้ว่า u subproblem คือ
-		
-		$$ \underset{u}{arg \ min} \frac{1}{2} \sum_{i,j} \lambda_{i,j}  (f_{i,j} - u_{i,j})^2 + \frac{\gamma}{2} \sum_{i,j} |d_{i,j} - \bigtriangledown u_{i,j} - b_{i,j}|^2$$
-		
-		เมื่อแก้แล้วจะได้ว่า
-		
-		$$ \frac{1}{\gamma} - \bigtriangleup u = \frac{1}{\gamma} \lambda f - div (d-b)$$
-		
-		โดยที่ $div$ คือ discrete divergence และ $\bigtriangledown u$ คือ discrete lapacian เราจะประมาณคำตอบนี้โดยการใช้ หนึ่งรอบ Gauss-seidel ต่อหนึ่งรอบการทำซ้ำของ Bergman ซึ่ง subproblem จะถูกแก้หนึ่งครั้ง ต่อหนึ่งรอบ bergman iteration แต่ทั้งนี้การทำซ้ำ Gauss-seidel หลายครั้ง จะทำให้การแก้ subproblem มีความแม่นยำขึ้น
-		ส่วนตัวแปรช่วย $b$ มีค่าเริ่มต้นเป็น 0 จากนั้นทำการปรับค่าโดย
-		
-		$$ b^{k+1} = b^k  + \bigtriangledown u - d $$
-		
-		โดยที่ความเกี่ยวข้องกันของแต่ละพื้นที่จะแรงขึ้นเมื่อ $\gamma$ ใหญ่ขึ้น ดังนั้น $\gamma$ ไม่ควรเล็กหรือใหญ่จนเกินไป จะทำให้ทั้งสอง subproblem ลู่เข้าได้ดี
-		จึงได้ว่าวิธีการในภาพรวมเป็นดังนี้
-		
-		
-		
-		\begin{algorithm}[H]
-			\begin{framed}
-				initialization $u = 0, d = 0, b = 0$\\
-				\While{ $|| u_{cur} - u_{prev} ||_2 > Tol$}{
-					Solve the $d$ subproblem \\
-					Solve the $u$ subproblem \\
-					$ b = b + \bigtriangledown u - d$
-				}
-			\end{framed}
-		\end{algorithm}
-		
-		
-		
-		โดยการทำซ้ำนี้จะกระทำจนกระทั่ง นอร์ม L2 ระหว่างรอบปัจจุบันต่างกับรอบก่อนหน้าไม่เกินค่า Tol ที่กำหนดไว้หรือจำนวนรอบการทำซ้ำมากจนถึงจุดสิ้นสุดที่เพียงพอที่จะให้ลู่เข้าซึ่งไม่ควรใหญ่เกินไปเพื่อไม่ให้เสียเวลาประมวลผลจนนานเกินไป 
-	
-		
-		%	พูด formulation inpainting ในทางคณิตสาสตร์ review โมเดลภาพธรรมดา ภาพขาวดำ 1 section สี 1 section วิดีโอ 1 section 
-		
-		ซึ่งวิธีเชิงตัวเลขข้างต้นเป็นวิธีการสำหรับภาพเฉดเทา (Gray-scale) สำหรับการประยุกต์ใช้กับภาพสีนั้น ภาพสี จะประกอบขึ้นด้วยสี  3 สี คือ แดง เขียว น้ำเงิน ซึ่งเราสามารถใช้วิธีเชิงตัวเลขข้างต้น แยกสำหรับแต่ละสี เพื่อทำการซ่อมแซมภาพก่อนจะนำมารวมกลับเป็นภาพสีอีกครั้ง และสำหรับวิดีโอนั้นประกอบด้วยภาพจำนวนหลายภาพต่อหนึ่งหน่วยเวลา เราจะเรียกภาพหนึ่งภาพในวิดีโอว่า เฟรม (frame) ซึ่งเฟรมนี้เป็นภาพสี เราจึงสามารถแบ่งใช้โมเดลกับแต่ละสีและรวมกันกับมาเป็นวิดีโออีกครั้งได้ จึงสามารถซ่อมแซมวิดีโอได้ด้วย
-	
-		%บอก contribution จะทำอะไร พัฒนาวิธีการ สำหรับอะไร 
-		
-		ผู้พัฒนาจึงสนใจที่จะพัฒนาวิธีการเชิงตัวเลขเพื่อให้สามารถซ่อมแซมได้รวดเร็วยิ่งขึ้น เนื่องจากหากต้องการซ่อมแซมวิดีโอแบบเรียลไทม์ จะเป็นจะต้องสามารถซ่อมแซมได้เร็วถึง 25 ภาพต่อวินาที ซึ่งแต่ละภาพเป็นภาพสี ซึ่งวิธีการ Split Bergman หากทำให้ได้คุณภาพดีจะใช้เวลาที่นานขึ้น และหากทำให้เวลาทันสำหรับ 25 ภาพต่อวินาที ในแต่ละภาพจะยังไม่ถูกซ่อมแซม
-		
-		%	ม่ีเรื่องราวของ art conversation การประยุกต์ อนุรักษ์ศิลปะ ถูกทำมาแล้วโดยใคร ยกตัวอย่างในไทย (*ยังหาไม่ได้)
-		
-		 %มีศิลปะไทยที่สามารถนำตรงนี้ไปประยุกต์ใช้ได้
-		
-		ซึ่งวิธีการซ่อมแซมภาพด้วยการแปรผันรวมนั้น ใช้ในการซ่อมแซมภาพที่ราบเรียบเป็นช่วง โดยภาพจิตรกรรมฝาผนังนั้น เป็นหนึ่งในภาพที่ราบเรียบเป็นช่วง จึงเหมาะสมที่จะใช้วิธีการนี้ในการซ่อมแซม และเมื่อพัฒนาให้สามารถซ่อมแซมวิดีโอแบบเรียลไทม์ได้ อาจพัฒนาต่อยอดเป็นเทคโนโลยี augmented reality ที่สามารถยกโทรศัพท์มือถือขึ้นมาส่องยังภาพวาดฝาผนังที่ได้รับความเสียหายและแสดงภาพที่ถูกซ่อมแซมแล้วบนหน้าจอได้อย่างทันที
-		
-		%	ยกปัญหาเรื่องอนิเมะชั่น ยกเว็บที่เขาเคยทำมาแล้ว
-		
-		%		บอกผู้ใช้ต้อง detect โดเมนเอง แต่บอกว่าอนิเมะเรา design สำหรับอนิเมะ
-		%	ความท้าทาย 
-		%	-แม่นยำ
-		%	-เร็ว
-		การจะซ่อมแซมภาพได้นั้น จำเป็นจะต้องมีการหาโดเมนซ่อมแซม (Inpaint Domain) ซึ่งสำหรับในการศึกษาครั้งนี้ ซึ่งโดยทั่วไป มักจะต้องให้ผู้ที่ใช้งานหาโดเมนซ่อมแซมเอง แต่โครงการวิจัยชิ้นนี้นอกจากจะสร้างวิธิการเชิงตัวเลขในการซ่อมแซมภาพแล้ว ยังได้เสนอวิธีการหาวิธีการหาบทบรรยายในวิดีโอแบบอนิเมะไว้อีกด้วย เพื่อทำให้การค้นหาโดเมนซ่อมแซมสำหรับไฟล์วิดีโอแบบอนิเมะเป็นไปได้อย่างอัตโนมัติ
-		
-		โดยบทบรรยายของอนิเมะนั้น มักจะขึ้นบริเวณด้านล่างของหน้าจอ และนอกจากนี้ บทบรรยายอนิเมะมักจะใช้ขอบของตัวอักษรเป็นสีดำอีกด้วย ด้วยสมบัตินี้เองทำให้เราสามารถหาบริเวณบนเฟรมที่เป็นบทบรรยายได้โดยจะมีวิธีหาพื้นที่ซึ่งเป็นบทบรรยายดังนี้
-		
-		\begin{figure}[H]
-			\begin{subfigure}{0.4\linewidth}
+			สำหรับการต่อเติมภาพนั้น โดยปกติจะเป็นต้องหาโดเมนต่อเติมด้วยตัวเองซึ่งสามารถทำได้สำหรับภาพ  1 ภาพ แต่สำหรับไฟล์วิดีโออนิเมะนั้น ส่วนใหญ่จะมีภาพจำนวน 24 ภาพต่อวินาที ซึ่งนั่นหมายความว่าการจะหาโดเมนต่อเติมด้วยตัวเองสำหรับ 24 ภาพต่อวินาทีเป็นเรื่องยาก การที่จะหาโดเมนต่อเติมซึ่งเป็นในส่วนคำบรรยายนั้นจึงเป็นเรื่องยาก จึงเป็นอีกความท้าทายที่จะต้องหาโดเมนต่อเติมแบบอัตโนมัติให้ได้
+			
+			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.4\linewidth]{images/detection-original.png}
-				\caption{ภาพเฟรมอนิเมะที่มีบทบรรยาย}
-			\end{subfigure}
-			\begin{subfigure}{0.4\linewidth}
-				\centering
-				\includegraphics[width=0.4\linewidth]{images/detection-threshold.png}
-				\caption{ภาพหลังทำการตัดส่วนล่างและ thresholding}
-			\end{subfigure}
-		\end{figure}
-		
-		ตัดเฟรมมาเฉพาะส่วนล่างของเฟรมที่น่าจะมีบทบรรยายปรากฏอยู่ จากนั้นทำการ thresholding เพื่อหาบริเวณที่เป็นสีดำเนื่องจากบทบรรยายจะถูกล้อมรอบด้วยสีดำเสมอ
-		
-		\begin{figure}[H]
-			\begin{subfigure}{0.4\linewidth}
-				\centering
-				\includegraphics[width=0.4\linewidth]{images/detection-inverse.png}
-				\caption{ภาพหลังทำการสลับสีี}
-			\end{subfigure}
-			\begin{subfigure}{0.4\linewidth}
-				\centering
-				\includegraphics[width=0.4\linewidth]{images/detection-blackfill.png}
-				\caption{ภาพหลังทำการเปลี่ยนพื้นที่สีขาว}
-			\end{subfigure}
-		\end{figure}
-		
-		ทำการสลับสีระหว่างสีดำกับสีขาวของภาพที่ทำการ thresholding หลังจากนั้นทำการเปลี่ยนพื้นที่สีขาวซึ่งติดกับขอบของเฟรมทั้งหมดให้เป็นสีดำ เพราะว่า บทบรรยายไม่อยู่ติดกับหน้าจอ เราจะถือว่าสิ่งที่อยู่ติดกับหน้าจอไม่ใช่บทบรรยาย
-		
-		\begin{figure}[H]
-			\begin{subfigure}{0.4\linewidth}
-				\centering
-				\includegraphics[width=0.4\linewidth]{images/detection-erode-opening.png}
-				\caption{ภาพหลังการ erode และ opening}
-			\end{subfigure}
-			\begin{subfigure}{0.4\linewidth}
-				\centering
-				\includegraphics[width=0.4\linewidth]{images/detection-stoke.png}
-				\caption{ภาพหลังการ dilate}
-			\end{subfigure}
-		\end{figure}
-		
-		จากนั้นนำวัตถุที่มีขนาดเล็กเกินไป หรือใหญ่เกินไปออกจากภาพด้วยวิธีการ erode และ opening
-		จะได้ว่าส่วนที่เหลือเป็นสีขาวในภาพคือบทบรรยาย แต่ว่าขอบของบทบรรยายก็ต้องถูกลบออกไปด้วย จึงทำการ dilate เพื่อขยายขอบของบทบรรยายให้เท่ากับบทบรรยายที่อยู่ในเฟรมวิดีโอ และสิ่งที่เหลืออยู่คือโดเมนซ่อมแซม ที่จะนำไปใช้ในการซ่อมแซมภาพต่อไป
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.4\linewidth]{images/show_peicewise/anime_gray.png}
+					\caption{ภาพอนิเมะซึ่งเป็นเฉดสีเทา}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.4\linewidth]{images/show_peicewise/anime_is_piecewise.png}
+					\caption{ความเข้มของสีบริเวณคอลัมม์ที่ 256}
+				\end{subfigure}				
+			\end{figure}
+			โดยจากตัวอย่างจะเป็นภาพอนิเมะ ขนาด 512x512 ซึ่งถูกปรับให้เป็นเฉดสีเทา เมื่อนำข้อมูลความเข้มของสีบริเวณคอลัมม์ที่ 256 มาเขียนกราฟจะเห็นว่าบริเวณจุดที่ 100,250,350,400,420,480 มีความแตกต่างของความเข็มอย่างชัดเจน โดยแบ่งเป็นช่วง (0,100), (100,250), (250,350), (400,420)  และ (480,512) ซึ่งมีลักษณะราบเรียบเป็นช่วงนั่นเอง
 		
 		% ====================================
 \section{Objective}
@@ -526,7 +378,7 @@
 \begin{description}
 	\item[(1)]	 ศึกษาวิธีการแปรผันและวิธีการเชิงตัวเลขที่มีประสิทธิภาพเพื่อเติมข้อมูลที่ขาดหายในภาพหรือวิดีโอ
 	\item[(2)] สร้างวิธีการเชิงตัวเลขใหม่สำหรับซ่อมแซมภาพศิลปะไทยและลบบทบรรยายออกจากอนิเมะ
-	\item[(3)] นำวิธีการที่สร้างขึ้นเพื่อซ่อมแซมภาพไทย และลบบทบรรยายอนิเมะ	 
+	\item[(3)] นำวิธีการที่สร้างขึ้นเพื่อซ่อมแซมภาพไทย และลบบทบรรยายในอนิเมะ
 \end{description}
 
 \section{Scope of Study}
@@ -559,7 +411,8 @@
 		\hline
 		ศึกษาการคณิตศาสตร์ต่อเติมข้อมูลที่ขาดหายบนรูปภาพ&x&x& & & & & & & & & &\\
 		พัฒนาวิธีการเชิงตัวเลขสำหรับการซ่อมแซมรูปภาพ& & &x&x& & & & & & & &\\
-		ทดสอบวิธีการเชิงตัวเลขที่พัฒนาขึ้นโดยโปรแกรมคอมพิวเตอร์บนภาพสังเคราะห์& & & & &x&x& & & & & &\\
+		ทดสอบวิธีการเชิงตัวเลขที่พัฒนาขึ้นโดยโปรแกรม- & & & & &x&x& & & & & &\\
+		คอมพิวเตอร์บนภาพสังเคราะห์ & & & & & & & & & & & &\\
 		อภิปรายผลที่ได้จากการทดลองเชิงตัวเลข & & & & & & &x&x& & & &\\
 		สรุปผลการดำเนินงานวิจัยและจัดทำรูปเล่มฉบับสมบูรณ์& & & & & & & & &x&x&x&x\\
 		\hline
@@ -574,29 +427,28 @@
 \renewcommand{\section}[2]{} % addition mod: remove reference text
 \begin{thebibliography}{}
 	% ให้ใส่แบบหลังเปเปอร์
-	\bibitem{ref:rof-inpaint-chan-shen} 
-	T.F. Chan, J. Shen, “Mathematical models of local non-texture inpaintings”, SIAM Journal on Applied Mathematics, vol. 62, no. 3, pp. 1019–1043, 2001. http://www.jstor.org/stable/ 3061798
-	
 	\bibitem{ref:defination-of-inpaint} 
-	Furht B., อ้างอิง 2561: Encyclopedia of Multimedia [จาก \url{https://doi.org/10.1007/0-387-30038-4_98}] สืบค้นเมื่อ 5 สิงหาคม 2561
+	Furht B., "Image Inpainting", Encyclopedia of Multimedia, pp. 315-316, 2006. .\url{https://doi.org/10.1007/0-387-30038-4_98}
 	
-	\bibitem{ref:defination-of-variation-inpaint}
-	Işık Barış Fidaner, อ้างอิง 2561: A Survey on Variational Image Inpainting , Texture Synthesis and Image Completion [จาก \url{https://www.semanticscholar.org/paper/_/36f4d32ce45f72091510ab4d4d1cc3bf81ffe879}] สืบค้นเมื่อ 5 สิงหาคม 2561
+	\bibitem{ref:rof-inpaint-chan-shen} 
+	T.F. Chan, J. Shen, “Mathematical models of local non-texture inpaintings”, SIAM Journal on Applied Mathematics, vol. 62, no. 3, pp. 1019–1043, 2001. \url{http://www.jstor.org/stable/3061798}
 	
 	\bibitem{ref:ROF-template} 
 	Leonid I. Rudin, Stanley Osher, Emad Fatemi, "Nonlinear total variation based noise removal algorithms", Physica D: Nonlinear Phenomena, Volume 60, Issues 1–4, pp. 259-268, 1992. \url{https://doi.org/10.1016/0167-2789(92)90242-F}
 	
 	\bibitem{ref:ExplicitTimeMarching} 
-	A. Marquina และ S. Osher, อ้างอิง 2561: Explicit algorithms for a new time dependent model based on level set motion for nonlinear deblurring and noise removal [จาก \url{https://doi.org/10.1137/S1064827599351751}] สืบค้นเมื่อ 10 กันยายน 2561
+	A. Marquina, S. Osher, "Explicit algorithms for a new time dependent model based on level set motion for nonlinear deblurring and noise removal",  
+	SIAM Journal on Scientific Computing, vol. 22 issue 2, 387–405. 2006.  \url{https://doi.org/10.1137/S1064827599351751}
 	
 	\bibitem{ref:FixpointSolver}
-	C.R. Vogel and M.E. Oman,"Iterative methods for total variation denoising", SIAM J. Sci. Comput. 17, pp. 227-238, 1996.
-	
-	\bibitem{ref:splitbergman-denoise}
-	Pascal Getreuer, อ้างอิง 2561:  Rudin-Osher-Fatemi Total Variation Denoising using Split Bregman , [จาก \url{https://doi.org/10.5201/ipol.2012.g-tvd}] สืบค้นเมื่อ 5 สิงหาคม 2561
+	C.R. Vogel and M.E. Oman,"Iterative methods for total variation denoising", SIAM Journal on Scientific Computing. vol. 17, pp. 227-238, 1996.
 	
 	\bibitem{ref:splitbergman-inpaint}
 	Pascal Getreuer, อ้างอิง 2561:  Total Variation Inpainting using Split Bregman [จาก \url{https://doi.org/10.5201/ipol.2012.g-tvi}] สืบค้นเมื่อ 5 สิงหาคม 2561
+	
+	
+	\bibitem{ref:defination-of-variation-inpaint}
+	Fidaner, Işık Barış. “A Survey on Variational Image Inpainting , Texture Synthesis and Image Completion.” (2007). \url{https://www.semanticscholar.org/paper/_/36f4d32ce45f72091510ab4d4d1cc3bf81ffe879}
 	
 \end{thebibliography}
 
