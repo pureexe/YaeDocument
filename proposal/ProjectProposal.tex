@@ -166,7 +166,7 @@
 
 \subsection{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม}
 
-\hspace{1cm} ในการต่อเติมภาพเฉดสีเทา Chan และ Shen \cite{ref:rof-inpaint-chan-shen} ได้นำเสนอตัวแบบเชิงการแปรผัน (variational model) ที่ใช้เร็กกิวลาร์ไรซ์เซชันแบบการแปรผันรวม (Total variation based regularization) ซึ่งกำหนดโดย
+\hspace{1cm} ในการต่อเติมภาพเฉดสีเทา Chan และ Shen \cite{ref:rof-inpaint-chan-shen} ได้นำเสนอตัวแบบเชิงการแปรผัน (variational model) ที่ใช้เร็กกิวลาร์ไรซ์เซชันแบบการแปรผันรวม (Total variation based regularization) โดยพัฒนาต่อจากตัวแบบ ROF สำหรับการกำจัดสัญญาณรบกวน \cite{ref:ROF-template} ซึ่งตัวแบบเชิงการแปรผันนี้กำหนดโดย
 \begin{align}
 \min_{u} \{ \mathcal{J}(u) = \frac{1}{2} \int_{\Omega}\lambda (u-z)^2 d\Omega +  \int_{\Omega}  |\nabla u|  d\Omega \}
 \label{e1}
@@ -185,10 +185,12 @@
 \end{align}
 เมื่อ $\boldsymbol{n}$ แทนเวกเตอร์หน่วยที่ตั้งฉากกับของของภาพ
 
-\hspace{1cm} ต่อไปจะกล่าวทบทวนวิธีการเชิงตัวเลขพื้นฐานสำหรับแก้สมการเชิงอนุพันธ์ย่อยใน (\ref{e3}) 
+\hspace{1cm} ต่อไปจะกล่าวทบทวนวิธีการเชิงตัวเลขสำหรับแก้สมการเชิงอนุพันธ์ย่อยใน (\ref{e3}) 
 
 \begin{itemize}
 	\item [(1)] วิธีการเดินเวลาแบบชัดแจ้ง (explicit time marching method) 
+	
+	คณะวิจัย \cite{ref:ExplicitTimeMarching} ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนโดยใช้วิธีการเดินเวลาแบบชัดแจ้ง ซึ่งสามารถประยุกต์เป็นวิธีเชิงตัวเลขสำหรับการต่อเติมภาพได้ดังนี้
 	
 	เริ่มจากการแนะนําตัวแปรเวลาสังเคราะห์ (time artificial variable) จากนั้นหาคําตอบแบบสภาวะคงตัว (steady-state solution) ในขณะที่ $t\rightarrow \infty$ ของสมการเชิงอนุพันธ์ย่อยไม่เป็นเชิงเส้นที่ขึ้นอยู่กับเวลา 
 	\begin{align}
@@ -198,6 +200,8 @@
 	เมื่อ $t_k=t_0+k\tau\ (\tau>0)$  แทนขั้นเวลาที่ $k$ และ $t_0=0$ แทนขั้นเวลาเริ่มต้น
 	
 	\item [(2)] วิธีการทำซ้ำแบบจุดตรึง (fixed-point iteration method)
+	 
+	 คณะวิจัย \cite{ref:FixpointSolver} ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนโดยใช้วิธีการทำซ้ำแบบจุดตรึง ซึ่งสามารถประยุกต์เป็นวิธีเชิงตัวเลขสำหรับการต่อเติมภาพได้ดังนี้
 	 
 	เริ่มจากการแนะนำดัชนีการทำซ้ำแบบจุดตรึง $\nu=0,1,2,\cdots$ และนิยามรูปแบบการทำซ้ำโดย
 	\begin{align}
@@ -332,6 +336,18 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 	\bibitem{ref:rof-inpaint-chan-shen} 
  	Tony F. Chan and Jianhong Shen , “Mathematical models of local non-texture inpaintings”, SIAM Journal on Applied Mathematics, vol. 62, no. 3, pp. 1019–1043, 2001. 
 	%\url{http://www.jstor.org/stable/3061798}
+	
+	\bibitem{ref:ROF-template} 
+	Leonid I. Rudin, Stanley Osher, Emad Fatemi, "Nonlinear total variation based noise removal algorithms", Physica D: Nonlinear Phenomena, Volume 60, Issues 1–4, pp. 259-268, 1992. 
+	%\url{https://doi.org/10.1016/0167-2789(92)90242-F}
+	
+	\bibitem{ref:ExplicitTimeMarching} 
+	Antonio Marquina and Stanley Osher, "Explicit algorithms for a new time dependent model based on level set motion for nonlinear deblurring and noise removal",  
+	SIAM Journal on Scientific Computing, vol. 22 issue 2, 387–405. 2006. 
+	% \url{https://doi.org/10.1137/S1064827599351751}
+	
+	\bibitem{ref:FixpointSolver}
+	Curtis R. Vogel and M.E. Oman,"Iterative methods for total variation denoising", SIAM Journal on Scientific Computing. vol. 17, pp. 227-238, 1996.
 	
 	\bibitem{ref:splitbergman-inpaint}
 	Pascal Getreuer, Total Variation Inpainting using Split Bregman, Image Processing On Line, 2 (2012), pp. 147–157. 
