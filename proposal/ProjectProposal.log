@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  21 SEP 2018 17:51
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  23 SEP 2018 13:15
 entering extended mode
 **./ProjectProposal.tex
 (ProjectProposal.tex
@@ -720,26 +720,26 @@ LaTeX Info: Redefining \LaTeXe on input line 219.
 . fontspec info: "defining-font"
 . 
 . Font family 'THSarabunPSK(0)' created for font 'TH SarabunPSK' with options
-. [Scale=1.23,Ligatures=TeX,Scale=1.23].
+. [Scale=1.23,Ligatures=TeX,Scale=1.5].
 .  
 .  This font family consists of the following NFSS series/shapes:
 .  
-. - 'normal' (m/n) with NFSS spec.: <->s*[1.23]"TH
+. - 'normal' (m/n) with NFSS spec.: <->s*[1.5]"TH
 . SarabunPSK/OT:script=latn;language=DFLT;mapping=tex-text;"
 . - 'small caps'  (m/sc) with NFSS spec.: 
-. - 'bold' (bx/n) with NFSS spec.: <->s*[1.23]"TH
+. - 'bold' (bx/n) with NFSS spec.: <->s*[1.5]"TH
 . SarabunPSK/B/OT:script=latn;language=DFLT;mapping=tex-text;"
 . - 'bold small caps'  (bx/sc) with NFSS spec.: 
-. - 'italic' (m/it) with NFSS spec.: <->s*[1.23]"TH
+. - 'italic' (m/it) with NFSS spec.: <->s*[1.5]"TH
 . SarabunPSK/I/OT:script=latn;language=DFLT;mapping=tex-text;"
 . - 'italic small caps'  (m/itsc) with NFSS spec.: 
-. - 'bold italic' (bx/it) with NFSS spec.: <->s*[1.23]"TH
+. - 'bold italic' (bx/it) with NFSS spec.: <->s*[1.5]"TH
 . SarabunPSK/BI/OT:script=latn;language=DFLT;mapping=tex-text;"
 . - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
 .................................................
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 12.29996pt on input line 19.
+(Font)              scaled to size 15.0pt on input line 19.
 \c@theorem=\count273
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty"
@@ -839,39 +839,35 @@ Package: relsize 2013/03/29 ver 4.1
 \algocf@algoframe=\box56
 \algocf@algobox=\box57
 )
-
-LaTeX Warning: Unused global option(s):
-    [14pt].
-
 (ProjectProposal.aux)
 \openout1 = `ProjectProposal.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 41.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 41.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 46.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 46.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\tipa\t3cmr.fd"
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    ... okay on input line 46.
 \AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring OFF on input line 41.
+Package hyperref Info: Link coloring OFF on input line 46.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -881,9 +877,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count283
 )
-LaTeX Info: Redefining \ref on input line 41.
-LaTeX Info: Redefining \pageref on input line 41.
-LaTeX Info: Redefining \nameref on input line 41.
+LaTeX Info: Redefining \ref on input line 46.
+LaTeX Info: Redefining \pageref on input line 46.
+LaTeX Info: Redefining \nameref on input line 46.
 
 (ProjectProposal.out) (ProjectProposal.out)
 \@outlinefile=\write3
@@ -896,197 +892,164 @@ LaTeX Info: Redefining \nameref on input line 41.
 .................................................
 \symlegacymaths=\mathgroup8
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 41.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 41.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 41.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 41.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 41.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 41.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 41.
-LaTeX Font Info:    Redeclaring math accent \check on input line 41.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 41.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 41.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 41.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 41.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 41.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 46.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 46.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 46.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 46.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 46.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 46.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 46.
+LaTeX Font Info:    Redeclaring math accent \check on input line 46.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 46.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 46.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 46.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 46.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 41.
+(Font)              `operators' in the math version `normal' on input line 46.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/THSarabunPSK(0)/m/n on input line 41
+(Font)                  OT1/cmr/m/n --> TU/THSarabunPSK(0)/m/n on input line 46
 .
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 41.
+(Font)              `operators' in the math version `bold' on input line 46.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/THSarabunPSK(0)/m/n on input line 4
-1.
+6.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/THSarabunPSK(0)/m/n --> TU/THSarabunPSK(0)/m/n on in
-put line 41.
+put line 46.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/THSarabunPSK(0)/m/it on input line 
-41.
+46.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> TU/THSarabunPSK(0)/bx/n on input line 
-41.
+46.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 41.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 46.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 41.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 46.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/THSarabunPSK(0)/m/n --> TU/THSarabunPSK(0)/bx/n on i
-nput line 41.
+nput line 46.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/THSarabunPSK(0)/bx/it on input lin
-e 41.
+e 46.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 41.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 46.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 41.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 46.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
-(Font)              scaled to size 12.29996pt on input line 43.
+(Font)              scaled to size 15.0pt on input line 48.
 LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 17.71193pt on input line 65.
+(Font)              scaled to size 21.59999pt on input line 70.
 LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
-(Font)              scaled to size 17.71193pt on input line 65.
+(Font)              scaled to size 21.59999pt on input line 70.
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\se-ascii-print.def"
 File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 
 )
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 14.75995pt on input line 71.
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
-(Font)              scaled to size 14.75995pt on input line 71.
-File: images/show_peicewise/thaiart_gray.png Graphic file (type bmp)
-<images/show_peicewise/thaiart_gray.png>
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 11.06996pt on input line 79.
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 8.60997pt on input line 80.
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 6.14998pt on input line 80.
-LaTeX Font Info:    Try loading font information for U+msa on input line 80.
+[1
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+]
+File: images/grayscale_inpaint/toinapint.png Graphic file (type bmp)
+<images/grayscale_inpaint/toinapint.png>
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 13.5pt on input line 86.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 10.5pt on input line 87.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 7.5pt on input line 87.
+LaTeX Font Info:    Try loading font information for U+msa on input line 87.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 80.
+LaTeX Font Info:    Try loading font information for U+msb on input line 87.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 80.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 87.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 80.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 87.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-File: images/show_peicewise/thaiart_is_piecewise.png Graphic file (type bmp)
-<images/show_peicewise/thaiart_is_piecewise.png>
- [1
-
-]
-File: images/show_peicewise/anime_gray.png Graphic file (type bmp)
-<images/show_peicewise/anime_gray.png>
-File: images/show_peicewise/anime_is_piecewise.png Graphic file (type bmp)
-<images/show_peicewise/anime_is_piecewise.png>
- [2]
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
-(Font)              scaled to size 8.60997pt on input line 135.
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
-(Font)              scaled to size 6.14998pt on input line 135.
-File: images/sample-domain.png Graphic file (type bmp)
-<images/sample-domain.png>
- [3]
-
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 151.
-
-
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 156.
-
-[4]
-
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 187.
-
-
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 200.
-
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/it' will be
-(Font)              scaled to size 12.29996pt on input line 221.
-File: images/grayscale_inpaint/original.png Graphic file (type bmp)
-<images/grayscale_inpaint/original.png>
-File: images/grayscale_inpaint/toinapint.png Graphic file (type bmp)
-<images/grayscale_inpaint/toinapint.png>
 File: images/grayscale_inpaint/inpaintdomain.png Graphic file (type bmp)
 <images/grayscale_inpaint/inpaintdomain.png>
-File: images/grayscale_inpaint/result_timemarch.png Graphic file (type bmp)
-<images/grayscale_inpaint/result_timemarch.png>
-File: images/grayscale_inpaint/result_fixpoint.png Graphic file (type bmp)
-<images/grayscale_inpaint/result_fixpoint.png>
 File: images/grayscale_inpaint/result_splitbergman.png Graphic file (type bmp)
 <images/grayscale_inpaint/result_splitbergman.png>
-[5]
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 18.0pt on input line 104.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
+(Font)              scaled to size 18.0pt on input line 104.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 112.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 9.0pt on input line 112.
+ [2]
+File: images/show_peicewise/fig2a.jpg Graphic file (type bmp)
+<images/show_peicewise/fig2a.jpg>
+ [3]
+File: images/show_peicewise/fig3.png Graphic file (type bmp)
+<images/show_peicewise/fig3.png>
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
+(Font)              scaled to size 10.5pt on input line 157.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
+(Font)              scaled to size 7.5pt on input line 157.
+File: images/sample-domain.png Graphic file (type bmp)
+<images/sample-domain.png>
+ [4]
 
-LaTeX Warning: Command \u invalid in math mode on input line 277.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 178.
 
 
-LaTeX Warning: Command \textbrevemacron invalid in math mode on input line 277.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 178.
 
-
-Missing character: There is no ̄ in font cmmi10!
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 285.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 185.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 285.
-[6]
-File: images/color_inpaint/original.png Graphic file (type bmp)
-<images/color_inpaint/original.png>
-File: images/color_inpaint/toinpaint.png Graphic file (type bmp)
-<images/color_inpaint/toinpaint.png>
-File: images/color_inpaint/inpaintdomain.png Graphic file (type bmp)
-<images/color_inpaint/inpaintdomain.png>
-File: images/color_inpaint/result_splitbergman.png Graphic file (type bmp)
-<images/color_inpaint/result_splitbergman.png>
- [7] [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 457.
- [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 457.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 185.
+[5] [6] [7]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 343.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 343.
  (ProjectProposal.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 457.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 457.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 343.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 343.
 Package rerunfilecheck Info: File `ProjectProposal.out' has not changed.
-(rerunfilecheck)             Checksum: 7AC07048DE678A8F1830508861B2B12E.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 457.
+(rerunfilecheck)             Checksum: A788D97E8FCF1E5C650344A77A226B85.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 343.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 49 ({)
+### simple group (level 1) entered at line 54 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25137 strings out of 427798
- 450369 string characters out of 3151797
- 540006 words of memory out of 3000000
- 28944 multiletter control sequences out of 15000+200000
- 538257 words of font info for 72 fonts, out of 3000000 for 9000
+ 25130 strings out of 427798
+ 449055 string characters out of 3151797
+ 540403 words of memory out of 3000000
+ 28935 multiletter control sequences out of 15000+200000
+ 541898 words of font info for 88 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 42i,13n,65p,826b,567s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,20n,65p,685b,566s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on ProjectProposal.pdf (9 pages).
+Output written on ProjectProposal.pdf (8 pages).
