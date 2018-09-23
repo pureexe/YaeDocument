@@ -222,7 +222,7 @@
 \begin{itemize}
 	\item [(3)] วิธีการสปริทเบรกแมน (Split Bregman method)
 	
-	เริ่มจากการแนะนำเวกเตอร์เสริม $\boldsymbol{b}$ และพารามิเตอร์เบรกแมน (Bregman parameter) $\theta>0$ และเขียน (\ref{e1}) ใหม่ ดังนี้
+	เริ่มจากการแนะนำเวกเตอร์เสริม $\boldsymbol{w}$ พารามิเตอร์เบรกแมน (Bregman parameter) $\boldsymbol{b}$ และพารามิเตอร์เพนัลที (panalty parameter) $\theta>0$ และเขียน (\ref{e1}) ใหม่ ดังนี้
 	\begin{align}
 	\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,w) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
 	\label{e6}
