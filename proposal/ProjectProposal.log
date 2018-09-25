@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  23 SEP 2018 18:40
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  25 SEP 2018 20:06
 entering extended mode
 **./ProjectProposal.tex
 (ProjectProposal.tex
@@ -1001,55 +1001,64 @@ LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
 (Font)              scaled to size 18.0pt on input line 104.
 LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
 (Font)              scaled to size 18.0pt on input line 104.
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 112.
-LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 112.
  [2]
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 114.
+LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/m/n' will be
+(Font)              scaled to size 9.0pt on input line 114.
+
+Underfull \hbox (badness 7133) in paragraph at lines 114--114
+[][][]\TU/THSarabunPSK(0)/m/n/8 ภาพถ่ายที่วัดภูมินทร์ อำเภอเมือง จังหวัดน่าน; ภ
+าพจาก http://topicstock.pantip.com/camera/topicstock/
+ []
+
 File: images/show_peicewise/fig2a.jpg Graphic file (type bmp)
 <images/show_peicewise/fig2a.jpg>
- [3]
 File: images/show_peicewise/fig3.png Graphic file (type bmp)
 <images/show_peicewise/fig3.png>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3]
 LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
-(Font)              scaled to size 10.5pt on input line 157.
+(Font)              scaled to size 10.5pt on input line 159.
 LaTeX Font Info:    Font shape `TU/THSarabunPSK(0)/bx/n' will be
-(Font)              scaled to size 7.5pt on input line 157.
+(Font)              scaled to size 7.5pt on input line 159.
 File: images/sample-domain.png Graphic file (type bmp)
 <images/sample-domain.png>
  [4]
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 178.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 180.
 
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 178.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 180.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 185.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 187.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 185.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 187.
 [5] [6] [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 359.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 355.
  [8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 359.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 355.
  (ProjectProposal.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 359.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 359.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 355.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 355.
 Package rerunfilecheck Info: File `ProjectProposal.out' has not changed.
-(rerunfilecheck)             Checksum: A788D97E8FCF1E5C650344A77A226B85.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 359.
+(rerunfilecheck)             Checksum: 01ED4A9CD680EA4788E672B24439A883.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 355.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 54 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25133 strings out of 427798
- 449119 string characters out of 3151797
- 540527 words of memory out of 3000000
- 28938 multiletter control sequences out of 15000+200000
+ 25132 strings out of 427798
+ 449093 string characters out of 3151797
+ 540476 words of memory out of 3000000
+ 28937 multiletter control sequences out of 15000+200000
  541898 words of font info for 88 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 42i,20n,65p,685b,566s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,20n,65p,699b,566s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on ProjectProposal.pdf (8 pages).
