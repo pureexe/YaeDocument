@@ -167,56 +167,63 @@
 			\begin{align*}
 			\lambda=\lambda(\mathbf{x}) = \left \{ \begin{array}{ll}  \lambda_0, & x \in \Omega \textbackslash D \\ 0, & x \in D  \end{array} \right . 
 			\end{align*}
+			%note{ในการต่อเติมภาพเฉดสีเทาคุณ Chan และ Shen  ได้นำเสนอตัวแบบเชิงการแปรผัน (variational model) ที่ใช้เร็กกิวลาร์ไรซ์เซชันแบบการแปรผันรวม โดยพัฒนาต่อจากตัวแบบ ROF ซึ่งใช้สำหรับการกำจัดสัญญาณรบกวน ซึ่งตัวแบบเชิงการแปรผันนี้กำหนดดังสมการนี้ และ lambda แทนพารามิเตอร์เร็กกิวลาร์ไรซ์เซชัน (regularization parameter) และ $\lambda_0 >0$}
 		\end{frame} 
 		\begin{frame}
 			\frametitle{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม (ต่อ)}
 			\begin{align*}
 			\left \{ \begin{array}{ll}  - \nabla \cdot  \Big( \dfrac{\nabla u}{|\nabla u|} \Big) + \lambda (u-z) = 0,  & \hspace{1cm} \mathbf{x} \in (1,n)^2 \\ \dfrac{\partial u}{\partial \boldsymbol{n}} = 0, & \hspace{1cm} x \in \partial \Omega \end{array} \right .
 			\end{align*}			
+			%\note{โดยแคลคูลัสของการแปรผัน (Calculus of variations) จะได้สมการออยเลอร์ลากรางจ์ที่เกี่ยวข้องกัน ได้ดังนี้}
 		\end{frame} 
 		\begin{frame}
 			\frametitle{การเดินเวลาแบบชัดแจ้ง (explicit time marching)}
-			$$
+			\begin{align*}
 			u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+\tau\left(\nabla \cdot\left(\dfrac{\nabla u (\mathbf{x},t_k)}{| \nabla u (\mathbf{x},t_k) | }\right) + \lambda(\mathbf{x})(u (\mathbf{x},t_k)-z(\mathbf{x})) \right)
-			$$
+			\end{align*}
 			\vspace{1cm}
-			$$
+			\begin{align*}
 			u(\mathbf{x},t_0)=z \hspace{1cm} t_k=t_0+k\tau\ (\tau>0)  \hspace{1cm}  t_0=0
-			$$			
+			\end{align*}			
+			%\note{ต่อไปจะกล่าวทบทวนวิธีการเชิงตัวเลขสำหรับแก้สมการเชิงอนุพันธ์ย่อย ซึ่งมีด้วยกันหลายวิธี  Rudin, Osher และ Fatemi ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนด้วยวิธีการเดินเวลาแบบชัดแจ้ง ซึ่งสามารถนำมาประยุกต์เพื่อใช้กับการต่อเติมภาพได้ เริ่มจากการแนะนําตัวแปรเวลาสังเคราะห์ จากนั้นหาคําตอบแบบสภาวะคงตัว เมื่อเวลาลู่เข้าสู่อนันต์}
 		\end{frame} 
 		\begin{frame}
 			\frametitle{การทำซ้ำแบบจุดตรึง (fixed-point iteration)}
-			$$
+			\begin{align*}
 				- \nabla\cdot\left(\dfrac{\nabla u^{[\nu+1]}}{{| \nabla u |}^{[v]} }\right) + \lambda(u^{[\nu+1]}-z)  = 0,\ u^{[0]}=z
-			$$
+			\end{align*}
+			%\note{นอกจากนี้ยังมีคณะวิจัยของ Vogel และ Oman ได้แนะนำวิธีการทำซ้ำแบบจุดตรึงสำหรับการกำจัดสัญญาณรบกวนไว้ ซึ่งสามารถนำมาประยุกต์กับวิธีการต่อเติมภาพ เริ่มจากการแนะนำดัชนีการทำซ้ำแบบจุดตรึง u=0,1,2,... และนิยามรูปแบบการทำซ้ำโดย }
 		\end{frame} 
 		\begin{frame}
 			\frametitle{ปัญหาเชิงตัวเลข}
-			$$
+			\begin{align*}
 			\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty
-			$$
+			\end{align*}
 			\vspace{1cm}
-			$$
+			\begin{align*}
 			|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
-			$$
+			\end{align*}
+			% \note{แต่ในบริเวณที่ u มีความเข้มสีเป็นเอกพันธ์ุ จะทำให้ (ชี้บรรทัดบน) 1ส่วนขนาดของแกรด u ลู่ออกสู่อนันต์ เพื่อหลีกเลี่ยงปัญหาเชิงตัวเลขจะเกิดขึ้นใน เราจะใช้ (ชี้บรรทัดล่าง) การประมาณขนาดของแกรดโดยเพิ่ม beta เข้าไป โดยค่า beta นี้ มีค่าน้อยลงมากขึ้นเท่าไหร่ ความแม่นยำของตัวแบบยิ่งมีมากขึ้นเท่านั้น แต่ เรายังพบอีกว่าการแก้สมการยิ่งมีความยุ่งยากมากขึ้นสำหรับ beta น้อยๆ }
 		\end{frame} 
 		\begin{frame}
 			\frametitle{วิธีการสปริทเบรกแมน (Split Bregman method)}
-			$$
+			\begin{align*}
 			\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
-			$$
+			\end{align*}
+			%\note{เพื่อเอาชนะความยากเชิงตัวเลขนี้ คณะวิจัยโดยคุณ Goldstein และ Osher ได้แนะนำวิธีการสปริทเบรกแมนซึ่งสามารถกล่าวถึงพอสังเขป โดยการใช้พารามิเตอร์เสริม w ในตัวแบบเชิงการแปรผัน และเพิ่ม b ซึ่งเป็นตัวแปร bergman}
 		\end{frame} 
 		\begin{frame}
 			\frametitle{วิธีการสปริทเบรกแมน (ต่อ)}
-			$$
+			\begin{align*}
 			u^{\text{New}}=\underset{u}{\arg\min} \{ \mathcal{J}_1(u) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w}^{\text{old}} - \nabla u + \boldsymbol{b}^{\text{old}}) d\Omega \}
-			$$
-			$$
+			\end{align*}
+			\begin{align*}
 			\boldsymbol{w}^{\text{New}}=\underset{\boldsymbol{w}}{\arg\min} \{ \mathcal{J}_2(\boldsymbol{w}) = \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega  + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u^{\text{New}} + \boldsymbol{b}^{\text{old}}) d\Omega \}
-			$$
-			$$
+			\end{align*}
+			\begin{align*}
 			\boldsymbol{b}^{\text{New}}=\boldsymbol{b}^{\text{old}}+\nabla u^{\text{New}}-\boldsymbol{w}^{\text{New}}
-			$$
+			\end{align*}
+			%\note{เราจะใช้วิธีการหาค่าต่ำที่สุดแบบสลับ โดยทำการตรึงค่า w จากนั้นเริ่มแก้ปัญหาย่อย แล้วนำ u ที่ได้มาตรึงค่า u เพื่อแก้ปัญหาย่อย w จากนั้นจึงทำการเปลี่ยนค่าตัวแปร b แล้วเริ่มทำซ้ำที่การหา u ใหม่อีกครั้ง จนกระทั่งค่านอร์มระหว่างรูป u ปัจจุบันและก่อนหน้าน้อยกว่าค่าที่กำหนด}
 		\end{frame} 
 		\begin{frame}
 			\frametitle{ภาพสี}

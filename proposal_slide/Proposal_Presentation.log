@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  27 SEP 2018 10:59
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  27 SEP 2018 14:45
 entering extended mode
 **./Proposal_Presentation.tex
 (Proposal_Presentation.tex
@@ -212,7 +212,10 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\dvipsnam.def"
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcore.code.tex"
 Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 
@@ -1575,20 +1578,20 @@ LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
 
 ]
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 170.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 171.
 
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 170.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 171.
 
 [10
 
 ]
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/it' will be
-(Font)              scaled to size 13.46844pt on input line 176.
+(Font)              scaled to size 13.46844pt on input line 178.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/it' will be
-(Font)              scaled to size 9.83997pt on input line 176.
+(Font)              scaled to size 9.83997pt on input line 178.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/it' will be
-(Font)              scaled to size 7.37997pt on input line 176.
+(Font)              scaled to size 7.37997pt on input line 178.
  [11
 
 ] [12
@@ -1605,13 +1608,13 @@ LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/it' will be
 File: images/rgb-space.png Graphic file (type bmp)
 <images/rgb-space.png>
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 11.06996pt on input line 229.
+(Font)              scaled to size 11.06996pt on input line 235.
  [17
 
 ] [18
 
 ]
-Overfull \hbox (5.70424pt too wide) detected at line 251
+Overfull \hbox (5.70424pt too wide) detected at line 257
 []
  []
 
@@ -1637,11 +1640,11 @@ Overfull \hbox (5.70424pt too wide) detected at line 251
 \tf@snm=\write8
 \openout8 = `Proposal_Presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 301.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 301.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 307.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 307.
  (Proposal_Presentation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 301.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 301.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 307.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 307.
 Package rerunfilecheck Info: File `Proposal_Presentation.out' has not changed.
 (rerunfilecheck)             Checksum: CC3E76BBBB7AEBE26F150AC99DAF45FB.
 
@@ -1650,10 +1653,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 36090 strings out of 427798
- 682306 string characters out of 3151797
- 765351 words of memory out of 3000000
- 39570 multiletter control sequences out of 15000+200000
+ 36168 strings out of 427798
+ 683618 string characters out of 3151797
+ 776501 words of memory out of 3000000
+ 39645 multiletter control sequences out of 15000+200000
  544810 words of font info for 110 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  48i,21n,65p,834b,773s stack positions out of 5000i,500n,10000p,200000b,50000s
