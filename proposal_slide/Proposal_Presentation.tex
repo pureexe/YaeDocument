@@ -49,11 +49,19 @@
  	\begin{document}
  		\begin{frame}
  			\titlepage 
+ 			 \note{แนะนำตัว, วันนี้จะมานำเสนอหัวข้อวิจัยเรื่อง (ชื่อเรื่อง)}
  		\end{frame}
  		%\begin{frame} \tableofcontents \end{frame}
  		\section{Introduction}
 		\begin{frame}
-			ภาพดิจิตัล และการถ่ายภาพดิจิตัล
+			\frametitle{ภาพดิจิตัล}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.4\linewidth]{images/camera-dslr.jpg}
+				\caption{กล้องถ่ายภาพดิจิตัล สำหรับนำเข้าภาพดิจิตัล\footnote{ \tiny{ภาพจาก \url{https://commons.wikimedia.org/wiki/File:Canon_EOS_60D_01.jpg} สืบค้นเมื่อวันที่ 25 กันยายน 2561}}}
+				\label{image:lightroom}
+				%\note{ในปัจจุบันการใช้ภาพดิจิตัล ในสังคมเครือข่ายได้รับความนิยมอย่างแพร่หลาย สามารถรับส่งได้อย่างสะดวกและรวดเร็ว โดยนอกจากจะสามารถสร้างภาพดิจิตัลได้จากโทรศัพท์เคลื่อนที่แล้ว กล้อง DSLR กล้องดูดาว หรือแม้กระทั่งอุปกรณ์ทางการแพทย์}
+			\end{figure}
 		\end{frame} 		
 		\begin{frame}
 			\frametitle{การประมวลผลภาพ}
@@ -66,13 +74,14 @@
 			%\note{ก่อนภาพจะถูกนำไปใช้ มักจะผ่านการประมวลผลภาพก่อนเสมอ ทั้งภาพตามสื่อสิ่งพิมพ์ต่างๆ ก่อนจะนำไปตีพิมพ์ก็จะนำมาประมวลผลเพื่อให้ได้ภาพที่สวยงาม คมชัดขึ้น หรือแม้กระทั่งภาพทางการแพทย์ก็จะมีการกำจัดสัญญาณรบกวนเพื่อให้สามารถหาสาเหตุของโรคได้ง่ายขึ้่น}
 		\end{frame} 		
 		\begin{frame}
-		\frametitle{การประมวลผลภาพ}
+		\frametitle{การต่อเติมภาพ}
 			\begin{figure}[H]
 				\centering
 				\begin{subfigure}{0.3\linewidth}
 					\centering
 					\includegraphics[width=0.8\linewidth]{images/grayscale_inpaint/toinpaint.png}
 					\caption{ภาพที่ต้องการซ่อมแซม}
+					%note{การต่อเติมภาพ เป็นวิธีการประมวลผลภาพชนิดหนึ่งมีเป้าหมายเพื่อซ่อมแซมภาพด้วยการต่อเติมข้อมูลของความเข้มของสีบนบริเวณที่กำหนด (ต่อไปจะเรียกบริเวณนี้ว่าโดเมนต่อเติม) โดยอาศัยข้อมูลของความเข้มของสีที่ปรากฏในภาพ จากภาพต้องการต่อเติมพื้นที่สีขาว ซึ่งเมื่อต่อเติมแล้วจะได้ภาพดังนี้}
 				\end{subfigure}
 				\begin{subfigure}{0.3\linewidth}
 					\centering
@@ -95,6 +104,7 @@
 				\includegraphics[width=0.6\linewidth]{images/self-beauty.jpg}
 				\caption{เปรียบเทียบภาพ ก่อน/หลัง การใช้แอปพลิเคชัน snapseed}
 				\label{image:self-beauty}
+				% \note{ เท่าที่ผู้วิจัยศึกษาและค้นคว้ามาจนถึงขณะนี้ ผู้วิจัยพบว่าการต่อเติมภาพมักนิยมนำไปใช้งานสำหรับการปรับแต่งความสวยงามของภาพบุคคลที่ถ่ายจากโทรศัพท์เคลื่อนที่ เช่น การลบร่องรอยของรอยตีนกา การลบร่องรอยแผลเป็นที่เกิดจากสิวเสี้ยน (ให้ดูรอยสิวที่หายไป)}
 			\end{figure}
 		\end{frame} 		
 		\begin{frame}
@@ -106,6 +116,7 @@
 				\caption{ภาพจิตรกรรมไทยที่วัดภูมินทร์ อำเภอเมือง จังหวัดน่าน\footnote{\tiny{ภาพถ่ายที่วัดภูมินทร์ อำเภอเมือง จังหวัดน่าน; ภาพจาก \url{http://topicstock.pantip.com/camera/topicstock/2009/02/O7514399/O7514399.html} สืบค้นเมื่อวันที่ 23 กันยายน 2561}}}
 				\label{image:thaiart}
 			\end{figure}
+			%note{ภาพเขียนที่มีเอกลักษณ์ความเป็นศิลปะไทยซึ่งโดดเด่นและแตกต่างจากภาพเขียนของชนชาติอื่น อย่างไรก็ตาม ภาพจิตรกรรมไทยจำนวนไม่น้อยที่เสื่อมสลายตามกาลเวลา แต่การซ่อมแซมในบางครั้งอาจทำให้รายละเอียดในตัวภาพเขียนได้เปลี่ยนไป ก่อให้เกิดความเสียหายที่ประเมินค่าไม่ได้ เนื่องจากเป็นการซ่อมแซมโดยการใช้ขั้นตอนวิธีเชิงตัวเลขบนภาพดิจิตัลซึ่งเป็นสำเนาของภาพเดิม ด้วยเหตุผลดังกล่าว ผู้วิจัยได้เล็งเห็นว่าการซ่อมแซมภาพจิตรกรรมไทยโบราณมีความจำเป็นเร่งด่วน เนื่องจากภาพที่ได้รับการซ่อมแซมด้วยการต่อเติมภาพสามารถนำไปใช้ประกอบการตัดสินใจเพื่อวางแผนก่อนการลงมือซ่อมแซมภาพเขียนจริงได้  นอกจากนี้ ขั้นตอนวิธีการต่อเติมภาพสามารถนำไปใช้สร้างแอปพลิเคชันบนโทรศัพท์เคลื่อนที่เพื่อในไปใช้เป็นข้อมูลในการเข้าชมภาพเขียนเดิมที่ยังไม่ได้รับการซ่อมแซมและภาพเขียนที่ได้รับการซ่อมแซมโดยวิธีการทางคณิตศาสตร์จากแอปพลิเคชันที่พัฒนาขึ้น}
 		\end{frame} 
 		\begin{frame}
 			\frametitle{การลบบทบรรยายบนอนิเมะ}
@@ -115,6 +126,7 @@
 				\]
 				\caption{เฟรมของอนิเมะที่มีบทบรรยายแบบแข็ง\footnote{\tiny{ภาพจาก \url{https://www.samehadaku.tv/2018/07/grand-blue-episode-1-subtitle-indonesia.html} สืบค้นเมื่อวันที่ 23 กันยายน 2561}}}
 				\label{image:anime-sub}
+				%\note{อนิเมะคือวิดีโอภาพวาดการ์ตูนสไตล์ญี่ปุ่นซึ่งเป็นที่นิยมของเยาวชนไทย ในการรับชมอนิเมะ แม้ว่าเยาวชนไทยสามารถรับชมด้วยบทพากย์เสียงภาษาไทย แต่ก็สูญเสียอรรถรสของการรับชมจากบทบรรยายแบบแข็งที่เป็นภาษาต่างประเทศในบริเวณด้านล่างของจอภาพ}
 			\end{figure}
 		\end{frame} 
 		\begin{frame}
@@ -125,14 +137,18 @@
 				\item [(3)] แต่ละเฟรมอาจมีหรืออาจไม่มีบทบรรยายเดียวกันก็ได้
 				\item [(4)] แต่ละเฟรมเป็นการแสดงผลภาพสีที่มีระดับความคมชัดสูง (high definition) ขนาดมากถึง $1920\times1080$ พิกเซล
 			\end{itemize}
+			%note{อนิเมะด้วยการลบบทบรรยายภาษาต่างประเทศจึงเป็นงานที่ยุ่งยากและท้าท้ายมาก เนื่องจาก (อ่านเลย lol)}
 		\end{frame} 
 		\begin{frame}
 			\frametitle{ภาพเฉดเทา}
 			\begin{itemize}
 				\item โดเมนภาพ (image domain) $\Omega \subset \mathbb{R}^2$ 
-				\item โดนเมนต่อเติม
+				\item โดเมนต่อเติม (inpainting domain)  $ D \subset \mathbb{R}^2$
+				\item พิกัดทางกายภาพ (physical position) $ \mathbf{x} = (x,y) \in \Omega $ 
+				\item ระดับความเข้มของภาพ (image intensity)  $V \subset [0,\infty)$ 
+				\item ภาพเฉดเทา (grayscale image) $ u: \Omega \rightarrow V,\ z: \Omega \rightarrow V$
+				\item โดยไม่เสียหลักการสำคัญ $ \Omega = [1,n]^2 $ และ $ V = [0,1] $ เมื่อ $n>0$ เป็นจำนวนเต็มบวก 
 			\end{itemize}
-			ให้ $\Omega \subset \mathbb{R}^2$ แทนโดเมนภาพ (image domain) $D \subset \mathbb{R}^2$ แทนโดนเมนต่อเติม (ดูรูปที่ \ref{fig4}) และ $V \subset [0,\infty)$ 
 			 \begin{figure}[h]
 				\[
 				\includegraphics[width=0.3\linewidth]{images/sample-domain.png}
@@ -140,49 +156,147 @@
 				\caption{$D$ แทนโดเมนต่อเติม}
 				\label{image:sample-domain}
 			\end{figure}
+			%note{ในการกล่าวถึงขั้นตอนวิธีการต่อเติมภาพ จะเริ่มต้นด้วยการกล่าวทบทวนเกี่ยวกับการต่อเติมภาพเฉดสีเทา โดยขอกำหนดตัวแปรต่างๆ ดังนี้}
 		\end{frame} 
 		\begin{frame}
-			ต่อเติมภาพเฉดเทา
+			\frametitle{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม}
+			\begin{align*}
+			\min_{u} \{ \mathcal{J}(u) = \frac{1}{2} \int_{\Omega}\lambda (u-z)^2 d\Omega +  \int_{\Omega}  |\nabla u|  d\Omega \}
+			\end{align*}
+			 \vspace{1cm}
+			\begin{align*}
+			\lambda=\lambda(\mathbf{x}) = \left \{ \begin{array}{ll}  \lambda_0, & x \in \Omega \textbackslash D \\ 0, & x \in D  \end{array} \right . 
+			\end{align*}
 		\end{frame} 
 		\begin{frame}
-			Explicit Time Marching
+			\frametitle{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม (ต่อ)}
+			\begin{align*}
+			\left \{ \begin{array}{ll}  - \nabla \cdot  \Big( \dfrac{\nabla u}{|\nabla u|} \Big) + \lambda (u-z) = 0,  & \hspace{1cm} \mathbf{x} \in (1,n)^2 \\ \dfrac{\partial u}{\partial \boldsymbol{n}} = 0, & \hspace{1cm} x \in \partial \Omega \end{array} \right .
+			\end{align*}			
 		\end{frame} 
 		\begin{frame}
-			Fix point
+			\frametitle{การเดินเวลาแบบชัดแจ้ง (explicit time marching)}
+			$$
+			u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+\tau\left(\nabla \cdot\left(\dfrac{\nabla u (\mathbf{x},t_k)}{| \nabla u (\mathbf{x},t_k) | }\right) + \lambda(\mathbf{x})(u (\mathbf{x},t_k)-z(\mathbf{x})) \right)
+			$$
+			\vspace{1cm}
+			$$
+			u(\mathbf{x},t_0)=z \hspace{1cm} t_k=t_0+k\tau\ (\tau>0)  \hspace{1cm}  t_0=0
+			$$			
 		\end{frame} 
 		\begin{frame}
-			ปัญหา beta
+			\frametitle{การทำซ้ำแบบจุดตรึง (fixed-point iteration)}
+			$$
+				- \nabla\cdot\left(\dfrac{\nabla u^{[\nu+1]}}{{| \nabla u |}^{[v]} }\right) + \lambda(u^{[\nu+1]}-z)  = 0,\ u^{[0]}=z
+			$$
 		\end{frame} 
 		\begin{frame}
-			Split bergman
+			\frametitle{ปัญหาเชิงตัวเลข}
+			$$
+			\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty
+			$$
+			\vspace{1cm}
+			$$
+			|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
+			$$
 		\end{frame} 
 		\begin{frame}
-			Split bergman (3 ขั้น)
+			\frametitle{วิธีการสปริทเบรกแมน (Split Bregman method)}
+			$$
+			\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
+			$$
 		\end{frame} 
 		\begin{frame}
-			ภาพสี RGB
+			\frametitle{วิธีการสปริทเบรกแมน (ต่อ)}
+			$$
+			u^{\text{New}}=\underset{u}{\arg\min} \{ \mathcal{J}_1(u) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w}^{\text{old}} - \nabla u + \boldsymbol{b}^{\text{old}}) d\Omega \}
+			$$
+			$$
+			\boldsymbol{w}^{\text{New}}=\underset{\boldsymbol{w}}{\arg\min} \{ \mathcal{J}_2(\boldsymbol{w}) = \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega  + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u^{\text{New}} + \boldsymbol{b}^{\text{old}}) d\Omega \}
+			$$
+			$$
+			\boldsymbol{b}^{\text{New}}=\boldsymbol{b}^{\text{old}}+\nabla u^{\text{New}}-\boldsymbol{w}^{\text{New}}
+			$$
 		\end{frame} 
 		\begin{frame}
-			แทนเวคเตอร์ในภาพสี
+			\frametitle{ภาพสี}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.4\linewidth]{images/rgb-space.png}
+				\caption{ภาพสีเกิดจากการผสมกันระหว่างสี แดง เขียว และน้ำเงิน\footnote{\tiny{ภาพจาก \url{https://commons.wikimedia.org/wiki/File:Additive_RGB_Circles-48bpp.png}  สืบค้นเมื่อวันที่ 25 กันยายน 2561}}}
+				\label{image:rgb-space}
+			\end{figure}
 		\end{frame}
 		\begin{frame}
-			แทนสมการในภาพสี
+			\frametitle{วิธีการสปริทเบรกแมนสำหรับภาพสี}
+			$$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top} : \Omega  \rightarrow V^3 $$
+			
+			\noindent เมื่อ $u_1,u_2,u_3: \Omega  \rightarrow V$ และ $z_1,z_2,z_3: \Omega  \rightarrow V$ แทนภาพในเฉดสีแดง สีเขียว และสีน้ำเงินของ $\boldsymbol{u},\boldsymbol{z}$ ตามลำดับ 
 		\end{frame}
 		\begin{frame}
-			วัตถุประสงค์
+			\frametitle{วิธีการสปริทเบรกแมนสำหรับภาพสี (ต่อ)}
+			\begin{align*}
+			\min_{\boldsymbol{u}} \{ \bar{\mathcal{J}}(\boldsymbol{u})= \mathcal{\bar{D}}(\boldsymbol{u},\boldsymbol{z})+  \mathcal{\bar{R}}(\boldsymbol{u}) \}
+			\label{e10}
+			\end{align*}
+			
+			\begin{align*}
+			\mathcal{\bar{D}}(\boldsymbol{u},\boldsymbol{z}) 
+			&= \frac{1}{2}\int_{\Omega}^{}\lambda(u_1 - z_1)^2 d\Omega + \frac{1}{2}\int_{\Omega}^{}\lambda(u_2 - z_2)^2 d\Omega + \frac{1}{2}\int_{\Omega}^{}\lambda(u_3 - z_3)^2 d\Omega
+			\end{align*}
+			
+			\begin{align*}
+			\mathcal{\bar{R}}(\boldsymbol{u})= \int_{\Omega}^{}\lvert\nabla u_1 \rvert d\Omega + \int_{\Omega}^{}\lvert\nabla u_2 \rvert d\Omega + \int_{\Omega}^{}\lvert\nabla u_3 \rvert d\Omega
+			\end{align*}
 		\end{frame}
 		\begin{frame}
-			ขอบเขต
+			\frametitle{วิธีการสปริทเบรกแมนสำหรับภาพสี (ต่อ)}
+			\begin{align*}
+			\min_{\boldsymbol{u},\boldsymbol{w}_1,\boldsymbol{w}_2,\boldsymbol{w}_3} \{\bar{\mathcal{J}}(\boldsymbol{u},\boldsymbol{w}_1,\boldsymbol{w}_2,\boldsymbol{w}_3)&= \mathcal{\bar{D}}(\boldsymbol{u},\boldsymbol{z}) +  \underset{l=1}{\overset{3}{\sum}} \int_{\Omega}^{}|\boldsymbol{w}_l|d\Omega
+			\nonumber\\
+			&\quad+ \frac{\theta_l}{2} \underset{l=1}{\overset{3}{\sum}}\int_{\Omega}^{}(\boldsymbol{w}_l - \nabla u_l - \boldsymbol{b_l})^{2}d\Omega\}, \hspace{1cm} \theta_l > 0
+			\end{align*}
 		\end{frame}
 		\begin{frame}
-			วิธีการดำเนินงาน
+			\frametitle{วัตถุประสงค์โครงการวิจัย}
+			\begin{itemize}
+				\item ศึกษาวิธีการแปรผันและขั้นตอนวิธีการเชิงตัวเลขสำหรับปัญหาการต่อเติมภาพเฉดสีเทา\\และภาพสีในระบบ RGB
+				\item พัฒนาขั้นตอนวิธีการต่อเติมภาพชนิดใหม่สำหรับซ่อมแซมภาพจิตรกรรมไทย\\และลบบทบรรยายออกจากอนิเมะ
+				\item นำขั้นตอนวิธีที่พัฒนาขึ้นไปใช้ในการซ่อมแซมภาพจิตรกรรมไทย\\และลบบทบรรยายในอนิเมะ
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
+			\frametitle{ขอบเขตการศึกษา}
+			\begin{itemize}
+				\item ภาพจิตรกรรมไทยที่ใช้นำมาศึกษาและทดลองเป็นภาพจิตรกรรมไทยที่ได้มาอย่างถูกต้อง
+				\item วิดีโอที่ใช้ศึกษาเป็นวิดีโอประเภทอนิเมะที่ได้มาอย่างถูกต้อง โดยศึกษากับไฟล์อนิเมะที่ใช้ปริภูมิสีแบบ RGB เท่านั้น
+				\item บทบรรยายที่ใช้ทดสอบ จะถูกล้อมรอบไว้ด้วยสีดำ ขนาดความหนาขนาดไม่น้อยกว่า 5 พิกเซล
+				\item วิดีโอที่ใช้ศึกษาขนาดไม่เกิน $1920\times1080$ พิกเซล
+				\item คอมพิวเตอร์ที่ใช้ทดลองใช้หน่วยประมวลผล I7-6700HQ ใช้การ์ดจอ Nvidia GTX 960M แรม 16GB ฮาร์ดดิกส์แบบ SSD หรือดีกว่า
+				\item คุณภาพของการซ่อมแซมภาพภาพและวิดีโอจะตรวจวัดโดยค่า PSNR SSIM RMSE 
+				\item พารามิเตอร์เร็กกิวลาร์ไรซ์เซชัน $\lambda$ จะใช้แบบตรึงค่า การพัฒนาขั้นตอนวิธีเชิงอัตโนมัติเพื่อหาค่าที่เหมาะสมของ $\lambda$ ไม่อยู่ในขอบเขตการศึกษา
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
+			\frametitle{วิธีการดำเนินงาน}
+			\scalebox{0.7}{\begin{tabular}[ht]{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					&\multicolumn{12}{c|}{เดือนที่}\\
+					\cline{2-13}
+					แผนการดำเนินงาน&1&2&3&4&5&6&7&8&9&10&11&12\\
+					\hline
+					ศึกษาตัวแบบและขั้นตอนวิธีการต่อเติมภาพที่ใช้การแปรผันรวมในเชิงลึก&x&x& & & & & & & & & &\\
+					พัฒนาขั้นตอนวิธีสำหรับการต่อเติมภาพที่ใช้การแปรผันรวมชนิดใหม่& & &x&x&x&x& & & & & &\\
+					ทดสอบขั้นตอนวิธีการต่อเติมภาพที่พัฒนาขึ้นโดยโปรแกรม- & & & &x &x&x& & & & & &\\
+					คอมพิวเตอร์บนภาพสังเคราะห์และภาพจริง & & & & & & & & & & & &\\
+					อภิปรายผลที่ได้จากการทดลองเชิงตัวเลข & & & & & &x&x&x& & & &\\
+					สรุปผลการดำเนินงานวิจัยและจัดทำรูปเล่มฉบับสมบูรณ์& & & & & & & & &x&x&x&x\\
+					\hline
+			\end{tabular}}
 		\end{frame}
 		\begin{frame}
 			\centering
-			ขอบคุณ
-		\end{frame}
-		\begin{frame}
-		reference (ถ้ามี)
+			\Large{ขอขอบคุณ}
 		\end{frame}
 	\end{document}
 
