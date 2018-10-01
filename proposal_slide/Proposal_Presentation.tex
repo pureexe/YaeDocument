@@ -30,7 +30,7 @@
 
 \mode<presentation>{
 	\usetheme{Madrid}
-	\usecolortheme[named=black]{structure}}
+	\usecolortheme[named=PineGreen]{structure}}
  \title[วิธีเชิงตัวเลขสำหรับต่อเติมภาพ]{\normalsize{ขั้นตอนวิธีเชิงตัวเลขชนิดใหม่สำหรับการต่อเติมภาพที่ใช้การแปรผันรวมกับการประยุกต์สำหรับซ่อมแซมภาพจิตรกรรมไทยโบราณและการลบบทบรรยายจากอนิเมะ\\A new numerical algorithm for TV-based image inpainting with its applications for restoring ancient Thai painting images and removing subtitles from animes}}
  \author[ภัคพล]{ภัคพล พงษ์ทวี}
  \institute[SU]{
@@ -74,7 +74,7 @@
 			%\note{ก่อนภาพจะถูกนำไปใช้ มักจะผ่านการประมวลผลภาพก่อนเสมอ ทั้งภาพตามสื่อสิ่งพิมพ์ต่างๆ ก่อนจะนำไปตีพิมพ์ก็จะนำมาประมวลผลเพื่อให้ได้ภาพที่สวยงาม คมชัดขึ้น หรือแม้กระทั่งภาพทางการแพทย์ก็จะมีการกำจัดสัญญาณรบกวนเพื่อให้สามารถหาสาเหตุของโรคได้ง่ายขึ้่น}
 		\end{frame} 		
 		\begin{frame}
-		\frametitle{การต่อเติมภาพ}
+		\frametitle{การต่อเติมภาพ (Image Inpainting)} 
 			\begin{figure}[H]
 				\centering
 				\begin{subfigure}{0.3\linewidth}
@@ -119,6 +119,13 @@
 			%note{ภาพเขียนที่มีเอกลักษณ์ความเป็นศิลปะไทยซึ่งโดดเด่นและแตกต่างจากภาพเขียนของชนชาติอื่น อย่างไรก็ตาม ภาพจิตรกรรมไทยจำนวนไม่น้อยที่เสื่อมสลายตามกาลเวลา แต่การซ่อมแซมในบางครั้งอาจทำให้รายละเอียดในตัวภาพเขียนได้เปลี่ยนไป ก่อให้เกิดความเสียหายที่ประเมินค่าไม่ได้ เนื่องจากเป็นการซ่อมแซมโดยการใช้ขั้นตอนวิธีเชิงตัวเลขบนภาพดิจิตัลซึ่งเป็นสำเนาของภาพเดิม ด้วยเหตุผลดังกล่าว ผู้วิจัยได้เล็งเห็นว่าการซ่อมแซมภาพจิตรกรรมไทยโบราณมีความจำเป็นเร่งด่วน เนื่องจากภาพที่ได้รับการซ่อมแซมด้วยการต่อเติมภาพสามารถนำไปใช้ประกอบการตัดสินใจเพื่อวางแผนก่อนการลงมือซ่อมแซมภาพเขียนจริงได้  นอกจากนี้ ขั้นตอนวิธีการต่อเติมภาพสามารถนำไปใช้สร้างแอปพลิเคชันบนโทรศัพท์เคลื่อนที่เพื่อในไปใช้เป็นข้อมูลในการเข้าชมภาพเขียนเดิมที่ยังไม่ได้รับการซ่อมแซมและภาพเขียนที่ได้รับการซ่อมแซมโดยวิธีการทางคณิตศาสตร์จากแอปพลิเคชันที่พัฒนาขึ้น}
 		\end{frame} 
 		\begin{frame}
+			\frametitle{ความท้าทายในการซ่อมแซมภาพจิตรกรรมไทยโบราณ}
+			\begin{itemize}
+				\item [(1)] ความสามารถของช่างฝีมือที่เปลี่ยนไปตามยุคสมัย
+				\item [(2)] ไม่มีภาพต้นฉบับสำหรับเปรียบเทียบผลลัพธ์เพื่อใช้ซ่อมแซม			
+			\end{itemize}		
+		\end{frame} 
+		\begin{frame}
 			\frametitle{การลบบทบรรยายบนอนิเมะ}
 			 \begin{figure}[h]
 				\[
@@ -139,6 +146,13 @@
 			\end{itemize}
 			%note{อนิเมะด้วยการลบบทบรรยายภาษาต่างประเทศจึงเป็นงานที่ยุ่งยากและท้าท้ายมาก เนื่องจาก (อ่านเลย lol)}
 		\end{frame} 
+		\begin{frame}
+			\frametitle{การสร้างตัวแบบทางคณิตศาสตร์}
+			\begin{itemize}
+				\item การต่อเติมสำหรับภาพเฉดเทา
+				\item การต่อเติมสำหรับภาพสี
+			\end{itemize}
+		\end{frame}
 		\begin{frame}
 			\frametitle{ภาพเฉดเทา}
 			\begin{itemize}
@@ -167,10 +181,15 @@
 			\begin{align*}
 			\lambda=\lambda(\mathbf{x}) = \left \{ \begin{array}{ll}  \lambda_0, & x \in \Omega \textbackslash D \\ 0, & x \in D  \end{array} \right . 
 			\end{align*}
+			\let\thefootnote\relax\footnotetext{\tiny{T.F. Chan and J. Shen , “Mathematical models of local non-texture inpaintings”, SIAM Journal on Applied Mathematics, vol. 62, no. 3, pp. 1019–1043, 2001.}}	
 			%note{ในการต่อเติมภาพเฉดสีเทาคุณ Chan และ Shen  ได้นำเสนอตัวแบบเชิงการแปรผัน (variational model) ที่ใช้เร็กกิวลาร์ไรซ์เซชันแบบการแปรผันรวม โดยพัฒนาต่อจากตัวแบบ ROF ซึ่งใช้สำหรับการกำจัดสัญญาณรบกวน ซึ่งตัวแบบเชิงการแปรผันนี้กำหนดดังสมการนี้ และ lambda แทนพารามิเตอร์เร็กกิวลาร์ไรซ์เซชัน (regularization parameter) และ $\lambda_0 >0$}
 		\end{frame} 
 		\begin{frame}
 			\frametitle{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม (ต่อ)}
+			\begin{align*}
+			\min_{u} \{ \mathcal{J}(u) = \frac{1}{2} \int_{\Omega}\lambda (u-z)^2 d\Omega +  \int_{\Omega}  |\nabla u|  d\Omega \}
+			\end{align*}
+			$$ \Big \downarrow$$
 			\begin{align*}
 			\left \{ \begin{array}{ll}  - \nabla \cdot  \Big( \dfrac{\nabla u}{|\nabla u|} \Big) + \lambda (u-z) = 0,  & \hspace{1cm} \mathbf{x} \in (1,n)^2 \\ \dfrac{\partial u}{\partial \boldsymbol{n}} = 0, & \hspace{1cm} x \in \partial \Omega \end{array} \right .
 			\end{align*}			
@@ -184,7 +203,8 @@
 			\vspace{1cm}
 			\begin{align*}
 			u(\mathbf{x},t_0)=z \hspace{1cm} t_k=t_0+k\tau\ (\tau>0)  \hspace{1cm}  t_0=0
-			\end{align*}			
+			\end{align*}
+			\let\thefootnote\relax\footnotetext{\tiny{L. I. Rudin, S. Osher, E. Fatemi, “Nonlinear total variation based noise removal algorithms", Physica D: Nonlinear Phenomena, vol 60, issues 1–4, pp. 259-268, 1992.}}			
 			%\note{ต่อไปจะกล่าวทบทวนวิธีการเชิงตัวเลขสำหรับแก้สมการเชิงอนุพันธ์ย่อย ซึ่งมีด้วยกันหลายวิธี  Rudin, Osher และ Fatemi ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนด้วยวิธีการเดินเวลาแบบชัดแจ้ง ซึ่งสามารถนำมาประยุกต์เพื่อใช้กับการต่อเติมภาพได้ เริ่มจากการแนะนําตัวแปรเวลาสังเคราะห์ จากนั้นหาคําตอบแบบสภาวะคงตัว เมื่อเวลาลู่เข้าสู่อนันต์}
 		\end{frame} 
 		\begin{frame}
@@ -192,28 +212,23 @@
 			\begin{align*}
 				- \nabla\cdot\left(\dfrac{\nabla u^{[\nu+1]}}{{| \nabla u |}^{[v]} }\right) + \lambda(u^{[\nu+1]}-z)  = 0,\ u^{[0]}=z
 			\end{align*}
+			\let\thefootnote\relax\footnotetext{\tiny{C.R. Vogel and M.E. Oman,“Iterative methods for total variation denoising", SIAM Journal on Scientific Computing. vol. 17, pp. 227-238, 1996.}}
 			%\note{นอกจากนี้ยังมีคณะวิจัยของ Vogel และ Oman ได้แนะนำวิธีการทำซ้ำแบบจุดตรึงสำหรับการกำจัดสัญญาณรบกวนไว้ ซึ่งสามารถนำมาประยุกต์กับวิธีการต่อเติมภาพ เริ่มจากการแนะนำดัชนีการทำซ้ำแบบจุดตรึง u=0,1,2,... และนิยามรูปแบบการทำซ้ำโดย }
-		\end{frame} 
-		\begin{frame}
-			\frametitle{ปัญหาเชิงตัวเลข}
-			\begin{align*}
-			\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty
-			\end{align*}
-			\vspace{1cm}
-			\begin{align*}
-			|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
-			\end{align*}
-			% \note{แต่ในบริเวณที่ u มีความเข้มสีเป็นเอกพันธ์ุ จะทำให้ (ชี้บรรทัดบน) 1ส่วนขนาดของแกรด u ลู่ออกสู่อนันต์ เพื่อหลีกเลี่ยงปัญหาเชิงตัวเลขจะเกิดขึ้นใน เราจะใช้ (ชี้บรรทัดล่าง) การประมาณขนาดของแกรดโดยเพิ่ม beta เข้าไป โดยค่า beta นี้ มีค่าน้อยลงมากขึ้นเท่าไหร่ ความแม่นยำของตัวแบบยิ่งมีมากขึ้นเท่านั้น แต่ เรายังพบอีกว่าการแก้สมการยิ่งมีความยุ่งยากมากขึ้นสำหรับ beta น้อยๆ }
 		\end{frame} 
 		\begin{frame}
 			\frametitle{วิธีการสปริทเบรกแมน (Split Bregman method)}
 			\begin{align*}
 			\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
 			\end{align*}
+			\let\thefootnote\relax\footnotetext{\tiny{T. Goldstein and S. Osher,“The Split Bregman Method for L1-Regularized Problems", SIAM Journal on Imaging Sciences. vol. 2, issue 2, pp. 323-343, 2009.}}
 			%\note{เพื่อเอาชนะความยากเชิงตัวเลขนี้ คณะวิจัยโดยคุณ Goldstein และ Osher ได้แนะนำวิธีการสปริทเบรกแมนซึ่งสามารถกล่าวถึงพอสังเขป โดยการใช้พารามิเตอร์เสริม w ในตัวแบบเชิงการแปรผัน และเพิ่ม b ซึ่งเป็นตัวแปร bergman}
 		\end{frame} 
 		\begin{frame}
 			\frametitle{วิธีการสปริทเบรกแมน (ต่อ)}
+				\begin{align*}
+			\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
+			\end{align*}
+			$$ \Big \downarrow$$
 			\begin{align*}
 			u^{\text{New}}=\underset{u}{\arg\min} \{ \mathcal{J}_1(u) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w}^{\text{old}} - \nabla u + \boldsymbol{b}^{\text{old}}) d\Omega \}
 			\end{align*}
@@ -226,6 +241,22 @@
 			%\note{เราจะใช้วิธีการหาค่าต่ำที่สุดแบบสลับ โดยทำการตรึงค่า w จากนั้นเริ่มแก้ปัญหาย่อย แล้วนำ u ที่ได้มาตรึงค่า u เพื่อแก้ปัญหาย่อย w จากนั้นจึงทำการเปลี่ยนค่าตัวแปร b แล้วเริ่มทำซ้ำที่การหา u ใหม่อีกครั้ง จนกระทั่งค่านอร์มระหว่างรูป u ปัจจุบันและก่อนหน้าน้อยกว่าค่าที่กำหนด}
 		\end{frame} 
 		\begin{frame}
+			\frametitle{ปัญหาเชิงตัวเลข}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.2\linewidth]{images/grayscale_inpaint/result_splitbergman.png}
+				\caption{ตัวอย่างภาพที่เกิดปัญหาเชิงตัวเลข}
+				\label{image:rgb-space}
+			\end{figure}
+			\begin{align*}
+			\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty
+			\end{align*}
+			\begin{align*}
+			|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
+			\end{align*}
+			% \note{แต่ในบริเวณที่ u มีความเข้มสีเป็นเอกพันธ์ุ จะทำให้ (ชี้บรรทัดบน) 1ส่วนขนาดของแกรด u ลู่ออกสู่อนันต์ เพื่อหลีกเลี่ยงปัญหาเชิงตัวเลขจะเกิดขึ้นใน เราจะใช้ (ชี้บรรทัดล่าง) การประมาณขนาดของแกรดโดยเพิ่ม beta เข้าไป โดยค่า beta นี้ มีค่าน้อยลงมากขึ้นเท่าไหร่ ความแม่นยำของตัวแบบยิ่งมีมากขึ้นเท่านั้น แต่ เรายังพบอีกว่าการแก้สมการยิ่งมีความยุ่งยากมากขึ้นสำหรับ beta น้อยๆ }
+		\end{frame} 
+		\begin{frame}
 			\frametitle{ภาพสี}
 			\begin{figure}[H]
 				\centering
@@ -236,9 +267,15 @@
 		\end{frame}
 		\begin{frame}
 			\frametitle{วิธีการสปริทเบรกแมนสำหรับภาพสี}
-			$$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top} : \Omega  \rightarrow V^3 $$
-			
-			\noindent เมื่อ $u_1,u_2,u_3: \Omega  \rightarrow V$ และ $z_1,z_2,z_3: \Omega  \rightarrow V$ แทนภาพในเฉดสีแดง สีเขียว และสีน้ำเงินของ $\boldsymbol{u},\boldsymbol{z}$ ตามลำดับ 
+			\begin{align*}
+				 \boldsymbol{u},\ \boldsymbol{z} : \Omega  \rightarrow V
+			\end{align*}
+			\begin{align*}
+				\Big \downarrow
+			\end{align*}
+			\begin{align*}
+				 \boldsymbol{u} = \begin{bmatrix} \textcolor{red}{u_1} \\ \textcolor{OliveGreen}{u_2} \\ \textcolor{blue}{u_3}   \end{bmatrix}, \ \boldsymbol{z} =\begin{bmatrix} \textcolor{red}{z_1} \\ \textcolor{OliveGreen}{z_2} \\ \textcolor{blue}{z_3} \end{bmatrix} : \Omega  \rightarrow V^3
+			\end{align*} 
 		\end{frame}
 		\begin{frame}
 			\frametitle{วิธีการสปริทเบรกแมนสำหรับภาพสี (ต่อ)}
