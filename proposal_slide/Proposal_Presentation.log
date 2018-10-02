@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  2 OCT 2018 00:38
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  2 OCT 2018 19:47
 entering extended mode
 **./Proposal_Presentation.tex
 (Proposal_Presentation.tex
@@ -1607,14 +1607,14 @@ LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/it' will be
 
 ] [15
 
-] [16
-
-] [17
-
 ]
 File: images/grayscale_inpaint/result_splitbergman.png Graphic file (type bmp)
 <images/grayscale_inpaint/result_splitbergman.png>
- [18
+ [16
+
+] [17
+
+] [18
 
 ]
 File: images/rgb-space.png Graphic file (type bmp)
@@ -1661,7 +1661,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  36173 strings out of 427798
  683670 string characters out of 3151797
- 777828 words of memory out of 3000000
+ 777830 words of memory out of 3000000
  39650 multiletter control sequences out of 15000+200000
  544810 words of font info for 110 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191

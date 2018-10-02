@@ -216,6 +216,22 @@
 			%\note{นอกจากนี้ยังมีคณะวิจัยของ Vogel และ Oman ได้แนะนำวิธีการทำซ้ำแบบจุดตรึงสำหรับการกำจัดสัญญาณรบกวนไว้ ซึ่งสามารถนำมาประยุกต์กับวิธีการต่อเติมภาพ เริ่มจากการแนะนำดัชนีการทำซ้ำแบบจุดตรึง u=0,1,2,... และนิยามรูปแบบการทำซ้ำโดย }
 		\end{frame} 
 		\begin{frame}
+	\frametitle{ปัญหาเชิงตัวเลข}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.2\linewidth]{images/grayscale_inpaint/result_splitbergman.png}
+		\caption{ตัวอย่างภาพที่เกิดปัญหาเชิงตัวเลข}
+		\label{image:rgb-space}
+		\end{figure}
+		\begin{align*}
+			\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty
+			\end{align*}
+			\begin{align*}
+			|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
+			\end{align*}
+			% \note{แต่ในบริเวณที่ u มีความเข้มสีเป็นเอกพันธ์ุ จะทำให้ (ชี้บรรทัดบน) 1ส่วนขนาดของแกรด u ลู่ออกสู่อนันต์ เพื่อหลีกเลี่ยงปัญหาเชิงตัวเลขจะเกิดขึ้นใน เราจะใช้ (ชี้บรรทัดล่าง) การประมาณขนาดของแกรดโดยเพิ่ม beta เข้าไป โดยค่า beta นี้ มีค่าน้อยลงมากขึ้นเท่าไหร่ ความแม่นยำของตัวแบบยิ่งมีมากขึ้นเท่านั้น แต่ เรายังพบอีกว่าการแก้สมการยิ่งมีความยุ่งยากมากขึ้นสำหรับ beta น้อยๆ }
+		\end{frame}
+		\begin{frame}
 			\frametitle{วิธีการสปริทเบรกแมน (Split Bregman method)}
 			\begin{align*}
 			\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
@@ -239,23 +255,7 @@
 			\boldsymbol{b}^{\text{New}}=\boldsymbol{b}^{\text{old}}+\nabla u^{\text{New}}-\boldsymbol{w}^{\text{New}}
 			\end{align*}
 			%\note{เราจะใช้วิธีการหาค่าต่ำที่สุดแบบสลับ โดยทำการตรึงค่า w จากนั้นเริ่มแก้ปัญหาย่อย แล้วนำ u ที่ได้มาตรึงค่า u เพื่อแก้ปัญหาย่อย w จากนั้นจึงทำการเปลี่ยนค่าตัวแปร b แล้วเริ่มทำซ้ำที่การหา u ใหม่อีกครั้ง จนกระทั่งค่านอร์มระหว่างรูป u ปัจจุบันและก่อนหน้าน้อยกว่าค่าที่กำหนด}
-		\end{frame} 
-		\begin{frame}
-			\frametitle{ปัญหาเชิงตัวเลข}
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.2\linewidth]{images/grayscale_inpaint/result_splitbergman.png}
-				\caption{ตัวอย่างภาพที่เกิดปัญหาเชิงตัวเลข}
-				\label{image:rgb-space}
-			\end{figure}
-			\begin{align*}
-			\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty
-			\end{align*}
-			\begin{align*}
-			|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
-			\end{align*}
-			% \note{แต่ในบริเวณที่ u มีความเข้มสีเป็นเอกพันธ์ุ จะทำให้ (ชี้บรรทัดบน) 1ส่วนขนาดของแกรด u ลู่ออกสู่อนันต์ เพื่อหลีกเลี่ยงปัญหาเชิงตัวเลขจะเกิดขึ้นใน เราจะใช้ (ชี้บรรทัดล่าง) การประมาณขนาดของแกรดโดยเพิ่ม beta เข้าไป โดยค่า beta นี้ มีค่าน้อยลงมากขึ้นเท่าไหร่ ความแม่นยำของตัวแบบยิ่งมีมากขึ้นเท่านั้น แต่ เรายังพบอีกว่าการแก้สมการยิ่งมีความยุ่งยากมากขึ้นสำหรับ beta น้อยๆ }
-		\end{frame} 
+		\end{frame}  
 		\begin{frame}
 			\frametitle{ภาพสี}
 			\begin{figure}[H]
