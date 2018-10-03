@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  2 OCT 2018 19:47
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  3 OCT 2018 11:14
 entering extended mode
 **./Proposal_Presentation.tex
 (Proposal_Presentation.tex
@@ -1633,7 +1633,10 @@ File: images/rgb-space.png Graphic file (type bmp)
 
 ] [25
 
-] [26
+]
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
+(Font)              scaled to size 30.6023pt on input line 349.
+ [26
 
 ]
 \tf@nav=\write6
@@ -1659,11 +1662,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 36173 strings out of 427798
- 683670 string characters out of 3151797
+ 36175 strings out of 427798
+ 683759 string characters out of 3151797
  777830 words of memory out of 3000000
- 39650 multiletter control sequences out of 15000+200000
- 544810 words of font info for 110 fonts, out of 3000000 for 9000
+ 39651 multiletter control sequences out of 15000+200000
+ 544818 words of font info for 111 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  48i,21n,65p,834b,775s stack positions out of 5000i,500n,10000p,200000b,50000s
 
