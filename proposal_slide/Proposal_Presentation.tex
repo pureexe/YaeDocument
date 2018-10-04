@@ -122,7 +122,8 @@
 			\frametitle{ความท้าทายในการซ่อมแซมภาพจิตรกรรมไทยโบราณ}
 			\begin{itemize}
 				\item [(1)] ความสามารถของช่างฝีมือที่เปลี่ยนไปตามยุคสมัย
-				\item [(2)] ไม่มีภาพต้นฉบับสำหรับเปรียบเทียบผลลัพธ์เพื่อใช้ซ่อมแซม			
+				\item [(2)] ไม่มีภาพต้นฉบับสำหรับเปรียบเทียบผลลัพธ์เพื่อใช้ซ่อมแซม	
+				\item[(3)] สีที่ใช้งานในปัจจุบันไม่เหมือนกับในอดีต	
 			\end{itemize}		
 		\end{frame} 
 		\begin{frame}
@@ -200,9 +201,12 @@
 			\begin{align*}
 			u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+\tau\left(\nabla \cdot\left(\dfrac{\nabla u (\mathbf{x},t_k)}{| \nabla u (\mathbf{x},t_k) | }\right) + \lambda(\mathbf{x})(u (\mathbf{x},t_k)-z(\mathbf{x})) \right)
 			\end{align*}
-			\vspace{1cm}
 			\begin{align*}
 			u(\mathbf{x},t_0)=z \hspace{1cm} t_k=t_0+k\tau\ (\tau>0)  \hspace{1cm}  t_0=0
+			\end{align*}
+			\vspace{1cm}
+			\begin{align*}
+				u(\mathbf{x},t_0), u(\mathbf{x},t_1), u(\mathbf{x},t_2), u(\mathbf{x},t_3), ... ,  \textcolor{red}{u(\mathbf{x},t^{*})}
 			\end{align*}
 			\let\thefootnote\relax\footnotetext{\tiny{L. I. Rudin, S. Osher, E. Fatemi, “Nonlinear total variation based noise removal algorithms", Physica D: Nonlinear Phenomena, vol 60, issues 1–4, pp. 259-268, 1992.}}			
 			%\note{ต่อไปจะกล่าวทบทวนวิธีการเชิงตัวเลขสำหรับแก้สมการเชิงอนุพันธ์ย่อย ซึ่งมีด้วยกันหลายวิธี  Rudin, Osher และ Fatemi ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนด้วยวิธีการเดินเวลาแบบชัดแจ้ง ซึ่งสามารถนำมาประยุกต์เพื่อใช้กับการต่อเติมภาพได้ เริ่มจากการแนะนําตัวแปรเวลาสังเคราะห์ จากนั้นหาคําตอบแบบสภาวะคงตัว เมื่อเวลาลู่เข้าสู่อนันต์}
@@ -211,6 +215,10 @@
 			\frametitle{การทำซ้ำแบบจุดตรึง (fixed-point iteration)}
 			\begin{align*}
 				- \nabla\cdot\left(\dfrac{\nabla u^{[\nu+1]}}{{| \nabla u |}^{[v]} }\right) + \lambda(u^{[\nu+1]}-z)  = 0,\ u^{[0]}=z
+			\end{align*}
+			\vspace{1cm}
+			\begin{align*}
+			u^{[0]}, u^{[1]}, u^{[2]}, u^{[3]}, ..., \textcolor{red}{u^{*}}    
 			\end{align*}
 			\let\thefootnote\relax\footnotetext{\tiny{C.R. Vogel and M.E. Oman,“Iterative methods for total variation denoising", SIAM Journal on Scientific Computing. vol. 17, pp. 227-238, 1996.}}
 			%\note{นอกจากนี้ยังมีคณะวิจัยของ Vogel และ Oman ได้แนะนำวิธีการทำซ้ำแบบจุดตรึงสำหรับการกำจัดสัญญาณรบกวนไว้ ซึ่งสามารถนำมาประยุกต์กับวิธีการต่อเติมภาพ เริ่มจากการแนะนำดัชนีการทำซ้ำแบบจุดตรึง u=0,1,2,... และนิยามรูปแบบการทำซ้ำโดย }
@@ -266,7 +274,7 @@
 			\end{figure}
 		\end{frame}
 		\begin{frame}
-			\frametitle{วิธีการสปริทเบรกแมนสำหรับภาพสี}
+			\frametitle{ภาพสี (ต่อ)}
 			\begin{align*}
 				 \boldsymbol{u},\ \boldsymbol{z} : \Omega  \rightarrow V
 			\end{align*}
@@ -278,7 +286,7 @@
 			\end{align*} 
 		\end{frame}
 		\begin{frame}
-			\frametitle{วิธีการสปริทเบรกแมนสำหรับภาพสี (ต่อ)}
+			\frametitle{ตัวแบบการต่อเติมภาพสีที่ใช้การแปรผันรวม}
 			\begin{align*}
 			\min_{u} \{ \mathcal{J}(u) = \frac{1}{2} \int_{\Omega}\lambda (u-z)^2 d\Omega +  \int_{\Omega}  |\nabla u|  d\Omega \}
 			\end{align*}
@@ -291,7 +299,7 @@
 			\end{align*}
 		\end{frame}
 		\begin{frame}
-		\frametitle{วิธีการสปริทเบรกแมนสำหรับภาพสี (ต่อ)}
+		\frametitle{วิธีการสปริทเบรกแมนสำหรับภาพสี}
 			\begin{align*}
 			\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
 			\end{align*}
@@ -299,7 +307,7 @@
 			\Big \downarrow
 			\end{align*}
 			\begin{align*}
-			\min_{u,\boldsymbol{w_1},\boldsymbol{w_2},\boldsymbol{w_3}} \{ \mathcal{J}(u,\boldsymbol{w_1},\boldsymbol{w_2},\boldsymbol{w_3}) &= \underset{l=1}{\overset{3}{\sum}} (  \dfrac{1}{2} \int_{\Omega} \lambda(u_l-z_l)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w_l}|  d\Omega \\ &+ \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w_l} - \nabla u_l+ \boldsymbol{b_l}) d\Omega ) \}
+			\min_{\boldsymbol{u},\boldsymbol{w_1},\boldsymbol{w_2},\boldsymbol{w_3}} \{ \mathcal{J}(u,\boldsymbol{w_1},\boldsymbol{w_2},\boldsymbol{w_3}) &= \underset{l=1}{\overset{3}{\sum}} (  \dfrac{1}{2} \int_{\Omega} \lambda(u_l-z_l)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w_l}|  d\Omega \\ &+ \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w_l} - \nabla u_l+ \boldsymbol{b_l}) d\Omega ) \}
 			\end{align*}
 		\end{frame}		
 		\begin{frame}
