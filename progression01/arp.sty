@@ -1,0 +1,71 @@
+\newcommand{\spacing}{1.0}
+\renewcommand{\baselinestretch}{1.0}
+
+\newcommand{\posterrule}{{\color[rgb]{0.501961,0.501961,0.501961}\rule{1.00\textwidth}{1mm}}\\}
+\newcommand{\prule}{{\color[rgb]{0.501961,0.501961,0.501961}\rule{1.00\textwidth}{0.45mm}}}
+\newcommand{\qrule}{{\color[rgb]{0.501961,0.501961,0.501961}\rule{1.00\textwidth}{0.1mm}}}
+%==============================================
+\newcommand{\arptitle}[4]{%
+	\thispagestyle{empty}
+	\begin{center}
+		
+		\renewcommand{\baselinestretch}{\spacing}%
+		\textbf{Record Progress}\\
+		\vspace{0.5cm}
+		\textbf{Division of Applied Mathematics, Department of Mathematics}\\
+		\vspace{0.5cm}
+		\textbf{Faculty of Science, Silpakorn University}
+	\end{center}
+	\renewcommand{\baselinestretch}{\spacing}%
+	
+	\vspace{0.5cm}
+	%\flushright{No. : {#2}}
+	\flushleft{Date : { #1} \hfill No. : {#2}}
+	\flushleft{Advisor : { #3}}\\
+	\flushleft{Student(s) : { #4}}\\
+	
+	\qrule\\
+	\vspace{-0.45cm}
+	\prule
+}
+
+\vspace{0.5cm}
+
+% Here the project title
+
+\newcommand{\ptitle}[1]{%
+	\thispagestyle{empty}
+	\begin{flushleft}Project Title :
+	\end{flushleft}
+	{#1}
+	\\
+	\vspace{0.5 cm}}
+
+% Here the percent of progression
+\newcommand{\pprogress}[2]{%
+	Percentage of Progression : {#1} \% \hfill Submitting date  {#2}}
+
+\newcommand{\pwork}[1]{%
+	\thispagestyle{empty}
+	\begin{flushleft}Previous work / future works :
+	\end{flushleft}
+	{#1}}
+
+
+\newcommand{\acomment}[1]{%
+	\thispagestyle{empty}
+	\begin{flushleft}Advisor comments :
+	\end{flushleft}
+	{#1} \\
+	\vspace{1 cm}}
+
+
+\newcommand{\bottom}{%
+	\thispagestyle{empty}
+	Advisor \rule{0.3\textwidth}{0.1mm}\hfill Students(s) \rule{0.3\textwidth}{0.1mm}\\
+	\begin{flushright}
+		\rule{0.3\textwidth}{0.1mm}\\
+
+	\end{flushright}
+}
+%==============================================
