@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {1}ที่มาและความสำคัญ}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}การซ่อมแซมภาพจิตรกรรมไทยโบราณ}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}การลบบทบรรยายบนอนิเมะ}{4}{subsection.1.2}
+\contentsline {section}{\numberline {2}วรรณกรรมและทฤษฎีบทที่เกี่ยวข้อง}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}ตัวแบบการต่อเติมภาพสีที่ใช้การแปรผันรวม}{8}{subsection.2.2}
+\contentsline {section}{\numberline {3}Preliminary Results}{9}{section.3}
+\contentsline {subsection}{\numberline {3.1}การซ่อมแซมภาพจิตรกรรมไทยโบราณ}{9}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}การเปรียบเทียบประสิทธิภาพขั้นตอนวิธีเชิงตัวเลขที่มีอยู่สำหรับตัวแบบต่อเติมภาพสีที่ใช้การแปรผันรวม}{9}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}ขั้นตอนวิธีการสำหรับต่อเติมภาพชนิดใหม่}{9}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}การทดสอบประสิทธิภาพในการซ่อมแซมภาพจิตรกรรมไทยโบราณ}{11}{subsubsection.3.1.3}
+\contentsline {subsection}{\numberline {3.2}การลบบทบรรยายบนอนิเมะ}{11}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}การหาบทบรรยายบนอนิเมะ}{11}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}การลบคำบรรยายจากบทอนิเมะ}{12}{subsubsection.3.2.2}
+\contentsline {section}{\numberline {4}Planning}{12}{section.4}
+\contentsline {section}{\numberline {5}บรรณานุกรม}{12}{section.5}

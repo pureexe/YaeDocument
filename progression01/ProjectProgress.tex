@@ -156,7 +156,7 @@
 	\label{fig4}
 \end{figure}
 
-\subsection{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม}
+\subsection{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม}\label{inpaint-model-grayscale}
 
 \hspace{1cm} ในการต่อเติมภาพเฉดสีเทา Chan และ Shen \cite{ref:rof-inpaint-chan-shen} ได้นำเสนอตัวแบบเชิงการแปรผัน (variational model) ที่ใช้เร็กกิวลาร์ไรซ์เซชันแบบการแปรผันรวม (Total variation based regularization) โดยพัฒนาต่อจากตัวแบบ ROF สำหรับการกำจัดสัญญาณรบกวน \cite{ref:ROF-template} ซึ่งตัวแบบเชิงการแปรผันนี้กำหนดโดย
 \begin{align}
@@ -237,7 +237,7 @@
 	ดำเนินการเช่นนี้จนกระทั่ง $||u^{\text{new}}-u^{\text{old}}||< \epsilon_1$ หรือ $\text{New}>\epsilon_2$ เมื่อ $\epsilon_1,\epsilon_2>0$ 
 \end{itemize}
 
-\subsection{ตัวแบบการต่อเติมภาพสีที่ใช้การแปรผันรวม}
+\subsection{ตัวแบบการต่อเติมภาพสีที่ใช้การแปรผันรวม}\label{inpaint-model-color}
 
 \hspace{1cm} ต่อไปเราจะพิจารณาภาพสีในระบบ RGB นั่นคือ เราสมมติว่า
 
@@ -270,15 +270,239 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 ด้วยวิธีการหาต่ำที่สุดแบบสลับดังเช่น (\ref{e6}) - (\ref{e9})
 
 \section{Preliminary Results}
-จากการศึกษาการพับเครื่องบินกระดาษ กระทงและรูปทรงแปดเหลี่ยม ผู้ศึกษาได้ออกแบบกิจกรรมที่บูรณาการทั้งด้านวิทยาศาสตร์ เทคโนโลยี วิศวกรรมศาสตร์ และคณิตศาสตร์ ซึ่งประกอบไปด้วยกิจกรรม
-\begin{description}
+	\subsection{การซ่อมแซมภาพจิตรกรรมไทยโบราณ}
+	\hspace{1cm} สำหรับการซ่อมแซมจิตรกรรมไทยโบราณ ก่อนอื่นจะทำการปรับปุรงขั้นตอนวิธีเชิงตัวเลขที่มีอยู่แต่เดิมก่อน โดยระหว่างการปรับปรุงวิธีเชิงตัวเลข จะใช้ภาพที่ได้สร้างขึ้น 5 ภาพ ซึ่งแต่ละภาพมีขนาด 256 x 256 พิกเซล ซึ่งมีดังนี้
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case01-original.png}
+		\end{subfigure}
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case02-original.png}
+		\end{subfigure}
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case03-original.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case04-original.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case05-original.png}			
+		\end{subfigure}
+		\caption{ภาพต้นฉบับ}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case01-toinpaint.png}
+		\end{subfigure}
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case02-toinpaint.png}
+		\end{subfigure}
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case03-toinpaint.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case04-toinpaint.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.15\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case05-toinpaint.png}			
+		\end{subfigure}
+		\caption{ภาพที่จะทำการซ่อมแซม}
+	\end{figure}
+	\subsubsection{การเปรียบเทียบประสิทธิภาพขั้นตอนวิธีเชิงตัวเลขที่มีอยู่สำหรับตัวแบบต่อเติมภาพสีที่ใช้การแปรผันรวม}
 	
-\item[(4.1)] ....
-\item[(4.2)] ....
-\item[(4.3)] .... 
-\end{description}
-จากรูปที่ ... 
-และเมื่อนำกิจกรรมดังกล่าวข้างต้นไปใช้ทดลองกับนักเรียนมัธยมศึกษาปีที่ 2 ของโรงเรียน กากา จำนวน 35 คน ผลปรากฎว่านักเรียนมีความพึงพอใจต่อกิจกรรมดังกล่าวเป็นอย่างมาก โดยมีค่าเฉลัี่ยอยู่ที่ 4.58 และ
+	\hspace{1cm} โดยจะทำการเปรียบเทียบความเร็วของวิธีการแก้การแปรผันรวมที่มีอยู่เดิม ดังที่ได้กล่าวไว้ในหัวข้อ \ref{inpaint-model-grayscale} และหัวข้อ \ref{inpaint-model-color} ซึ่งได้ผลลัพธ์เฉลี่ยของรูปภาพที่ใช้ทดสอบดังนี้
+	
+	
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|}
+			\hline
+			วิธีการ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+			\hline
+			การเดินเวลา & 146.2108 & 16.19756 & 0.9954786\\
+			การทำซ้ำจุดตรึง & 72.32298 & 40.12234 & 0.999905\\
+			การสปริทเบิร์กแมน & 11.438246 & 39.39536 & 0.999894 \\
+			\hline
+		\end{tabular}
+		\caption{แสดงผลลัพธ์เฉลี่ยของวิธีการเชิงตัวเลขสำหรับการต่อเติมภาพ}
+	\end{table}	
+	\hspace{1cm} จะเห็นว่าจากตาราง พบว่าแม้วิธีการทำซ้ำจุดตรึง และวิธีการสปริทเบรกแมน จะมีคุณภาพใกล้เคียงกัน แต่ว่าวิธีการสปริทเบรกแมน ใช้เวลาในการประมวลผลน้อยกว่ามาก ผู้วิจัย จึงนำวิธีการสปริทเบรกเมนไปใช้พัฒนาวิธีการต่อเติมภาพชนิดใหม่ลำดับถัดไป
+	
+	\subsubsection{ขั้นตอนวิธีการสำหรับต่อเติมภาพชนิดใหม่}
+	\hspace{1cm} จากวิธีการสปริทเบรกแมนนั้นจะใช้วิธีการหาคำตอบโดยวิธีการทำซ้ำจนกระทั่งลู่เข้า ทางผู้ศึกษาจึงสนใจที่หาคำตอบเริ่มต้นสำหรับการทำซ้ำที่ดีขึ้น เพื่อทำให้การทำซ้ำลู่เข้าสู่คำตอบได้เร็วขึ้น โดยการทำงานกับรูปภาพที่เล็กกว่า จากนั้นจึงทำการขยายลัพธ์ที่ได้ขึ้นมาทำกับภาพใหญ่ ซึ่งวิธีนี้เรียกว่าวิธีพีระมิดรูปภาพ ( pyramid methods) \cite{ref:image-pyramid}  โดยผู้วิจัยจะทำการย่อขนาดรูปลงครึ่งนึงโดยใช้วิธี Bilinear Interpolation ทั้งสิ้น 4 ครั้ง จากนั้นเริ่มทำการต่อเติมภาพขนาดเล็ก จากนั้นนำผลลัพธ์ที่ได้จากภาพขนาดเล็ก ทำการขยายภาพขึ้นสองเท่า ก่อนจะนำเฉพาะส่วนที่อยู่ในโดเมนต่อเติมของภาพที่ถูกขยายมาทำการต่อเติมเพื่อให้ส่วนที่ถูกขยายขึ้นมาเป็นคำตอบเริ่มต้นสำหรับการต่อเติมภาพในขั้นที่สูงขึ้น
+	
+	\hspace{1cm} โดยจะทำการเปรียบเทียบจำนวนครั้งในชั้นที่รูปภาพมีขนาดเล็ก จนไปถึงชั้นที่มีขนาดใหญ่ เป็นดังตารางนี้
+	
+		\begin{table}[H]
+		\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|}
+			\hline
+			รูปแบบการทำซ้ำ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+			\hline
+			ไม่ใช้พีระมิดรูปภาพ & 13.690378 & 30.72924 & 0.9997676 \\
+			10/1/1/10000 & 8.719006 & 30.5632 & 0.9997186 \\
+			10/3/3/10000 & 5.8064316 & 30.62492 & 0.9997298 \\
+			10/10/10/10000 & 2.6100824 & 30.64522 & 0.9997388 \\
+			100/1/1/10000 & 5.839534 & 30.68802 & 0.9997514 \\
+			100/3/3/10000 & 4.4923898 & 30.68914 & 0.9997498 \\
+			100/10/10/10000 & 2.4151272 & 30.67366 & 0.9997476 \\
+			\hline
+		\end{tabular}
+		\caption{แสดงผลลัพธ์เฉลี่ยของการใช้พีระมิดภาพในการต่อเติมในชั้นที่ต่างกัน}
+	\end{table}	
+	
+	จากตารางจะสังเกตว่า ยิ่งจำนวนการทำซ้ำในชั้นที่รูปภาพมีขนาดเล็กจำนวนมาก ยิ่งประมวลผลได้เร็วขึ้น 
+	
+	นอกจากนี้แล้ว ผู้วิจัยยังได้สังเกตอีกว่า การทำซ้ำนั้น จะลู่เข้าเร็วในช่วงแรก จากนั้นความเร็วในการลู่เข้าจะลดลง ซึ่งทำให้การทำซ้ำเพียงไม่กี่ครั้งในรูปภาพขนาดใหญ่สุด มีผลลัพธ์ใกล้เคียงกับภาพต้นฉบับได้ โดยผู้วิจัยจึงกำหนดให้การทำซ้ำในรูปภาพขนาดใหญ่สุดมีการทำซ้ำเพียง 10 ครั้ง และพบว่าได้ผลลัพธ์ดังนี้
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|}
+			\hline
+			รูปแบบการทำซ้ำ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+			\hline
+			ไม่ใช้พีระมิดรูปภาพ & 0.394235 & 25.22906 & 0.9989972 \\
+			10/1/1/10000 & 0.3839476 & 31.31306 & 0.9997732 \\
+			10/3/3/10000 & 0.3672704 & 30.95474 & 0.9997682 \\
+			10/10/10/10000 & 0.4077878 & 30.78114 & 0.9997406 \\
+			100/1/1/10000 & 0.3789076 & 31.25708 & 0.9997518 \\
+			100/3/3/10000 & 0.3939378 & 30.8896 & 0.999746 \\
+			100/10/10/10000 & 0.4507862 & 30.81302 & 0.9997504 \\
+			\hline
+		\end{tabular}
+		\caption{แสดงผลลัพธ์เฉลี่ยของการใช้พีระมิดภาพในการต่อเติมโดยกำหนดให้ชั้นรูปภาพขนาดใหญ่สุดทำซ้ำเพียง 10 ครั้ง}
+	\end{table}	
+
+	จากตารางจะเห็นว่า การทำซ้ำในชั้นที่รูปภาพมีขนาดเล็กมากจำนวนมาก ไม่ช่วยให้การประมวลผลได้เร็วขึ้น ผู้วิจัยจึงเลือกใช้การทำซ้ำแบบ 10/3/3/10 ในการต่อเติมภาพ
+	
+	\subsubsection{การทดสอบประสิทธิภาพในการซ่อมแซมภาพจิตรกรรมไทยโบราณ}
+	\hspace{1cm}ซึ่งภาพจิตรกรรมทีี่ใช้ทดสอบ มีทั้งสิ้น 5  ภาพได้แก่ ภาพที่ 1 และภาพที่ 2 คือ จิตรกรรมฝาผนังวัดแก้วไพฑูรย์ ภาพที่ 3 คือ จิตรกรรมฝาผนังวัดพระยืนพุทธบาทยุคล ภาพที่ 4 คือ จิตรกรรมฝาผนังวัดคงคาราม และภาพที่ 5 คือ จิตรกรรมฝาผนังวัดท่าถนน
+	โดยจะทำให้ข้อมูลข้องทั้ง 5 ภาพเกิดความเสียหาย โดยใช้รอยความเสียหายจากภาพพระเจ้าสร้างอดัม จากนั้นทำการทดสอบการต่อเติมภาพทั้ง 5 โดยใช้วิธีการสปริทเบรกแมนพร้อมทั้งการใช้พีระมิดรูปภาพที่มีการทำซ้ำแต่ละชั้นเป็น 10/3/3/10 ได้ผลลัพธ์ออกเป็นดังตารางนี้
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|}
+			\hline
+			วิธีการ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+			\hline
+			วิธีการที่พัฒนาขึ้น & 0.2826256 & 36.79616 & 0.999988 \\
+			OpenCV - Fast Marching Method & 0.0198226 & 35.56518 & 0.9968536 \\
+			\hline
+		\end{tabular}
+		\caption{แสดงผลลัพธ์เฉลี่ยของการซ่อมแซมภาพศิลปะไทย}
+	\end{table}	
+	\subsection{การลบบทบรรยายบนอนิเมะ}
+	\hspace{1cm} สำหรับการลบบทบรรยายอนิเมะ จะใช้วิดีโอ Anime Festival Asia Special Video - feat. Inori Aizawa ซึ่งผลิตโดย Collateral Damage Studios โดยจะตัดวิดีโอ 1 นาทีแรกสำหรับการทดลอง โดยวิดีโอดังกล่าวขนาด 1280 x 720 พิกเซล แต่เนื่องจากโดยปกติแล้ว อนิเมะมักมีบรรทัดเพียง 1 ถึง 2 บรรทัด จึงทำการแบ่งวิดีโอออกอีกเป็น 5 ส่วนได้ขนาดเป็น 1280 x 144 พิกเซลก่อนนำไปทดสอบในลำดับถัดไป
+	\hspace{1cm} และสำหรับบทบรรยายที่จะใช้ทดสอบนั้น เนื่องจากวิดีโอ Anime Festival Asia Special Video - feat. Inori Aizawa ไม่มีคำพูดใดๆ จึงใช้บทความ lorem ipsum เป็นบทบรรยาย โดยจะทำการแสดงบทบรรยาย 1 บรรทัด ความยาว 3 วินาที ทุก 2 วินาที นั่นคือในวิดีโอดังกล่าวจะมีบทบรรยายทั้งสิ้น 20 บรรทัด	
+	
+	\subsubsection{การหาบทบรรยายบนอนิเมะ}	
+	\hspace{1cm}ก่อนจะลบบทบรรยายนั้น จะเป็นต้องหาบทบรรยายในภาพให้ได้เสียก่อน โดยบทบรรยายของอนิเมะนั้น มักจะขึ้นบริเวณด้านล่างของหน้าจอ และนอกจากนี้ บทบรรยายอนิเมะมักจะใช้ขอบของตัวอักษรเป็นสีดำอีกด้วย ด้วยสมบัตินี้เองทำให้เราสามารถหาบริเวณบนเฟรมที่เป็นบทบรรยายได้โดยจะมีวิธีหาพื้นที่ซึ่งเป็นบทบรรยายดังนี้
+	
+	\begin{figure}[H]
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.4\linewidth]{images/subtitle_detection/detection-original.png}
+			\caption{ภาพเฟรมอนิเมะที่มีบทบรรยาย}
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.4\linewidth]{images/subtitle_detection/detection-threshold.png}
+			\caption{ภาพหลังทำการตัดส่วนล่างและ thresholding}
+		\end{subfigure}
+	\end{figure}
+	
+	ตัดเฟรมมาเฉพาะส่วนล่างของเฟรมที่น่าจะมีบทบรรยายปรากฏอยู่ จากนั้นทำการ thresholding เพื่อหาบริเวณที่เป็นสีดำเนื่องจากบทบรรยายจะถูกล้อมรอบด้วยสีดำเสมอ
+	
+	\begin{figure}[H]
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.4\linewidth]{images/subtitle_detection/detection-inverse.png}
+			\caption{ภาพหลังทำการสลับสีี}
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.4\linewidth]{images/subtitle_detection/detection-blackfill.png}
+			\caption{ภาพหลังทำการเปลี่ยนพื้นที่สีขาว}
+		\end{subfigure}
+	\end{figure}
+	
+	ทำการสลับสีระหว่างสีดำกับสีขาวของภาพที่ทำการ thresholding หลังจากนั้นทำการเปลี่ยนพื้นที่สีขาวซึ่งติดกับขอบของเฟรมทั้งหมดให้เป็นสีดำ เพราะว่า บทบรรยายไม่อยู่ติดกับหน้าจอ เราจะถือว่าสิ่งที่อยู่ติดกับหน้าจอไม่ใช่บทบรรยาย
+	
+	\begin{figure}[H]
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.4\linewidth]{images/subtitle_detection/detection-erode-opening.png}
+			\caption{ภาพหลังการ erode และ opening}
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.4\linewidth]{images/subtitle_detection/detection-stoke.png}
+			\caption{ภาพหลังการ dilate}
+		\end{subfigure}
+	\end{figure}
+	
+	จากนั้นนำวัตถุที่มีขนาดเล็กเกินไป หรือใหญ่เกินไปออกจากภาพด้วยวิธีการ erode และ opening
+	จะได้ว่าส่วนที่เหลือเป็นสีขาวในภาพคือบทบรรยาย แต่ว่าขอบของบทบรรยายก็ต้องถูกลบออกไปด้วย จึงทำการ dilate เพื่อขยายขอบของบทบรรยายให้เท่ากับบทบรรยายที่อยู่ในเฟรมวิดีโอ และสิ่งที่เหลืออยู่คือโดเมนต่อเติมที่จะนำไปใช้ในการซ่อมแซมภาพต่อไป
+	
+	ซึ่งวิธีการหาบทบรรยายที่กล่าวไปข้างต้น มีความสามารถในการหาโดเมนต่อเติมใบบทบรรยายภาษาต่างๆ เฉลี่ยดังนี้
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|}
+			\hline
+			ภาษา  & จำนวนพิกเซลในโดเมน & จำนวนพิกเซลที่ตรวจพบ & จำนวนพิกเซลที่ผิดพลาด & ร้อยละการผิดพลาด \\
+			\hline
+			ไทย & 23222219.8 & 24083124.8 & 2141201 & 9.220398882 \\
+			อังกฤษ & 27278744.8 & 28598424.2 & 3714320.8 & 13.61613769 \\
+			ญี่ปุ่น & 28544173 & 30103466.2 & 3740970.6 & 13.10584872 \\
+			\hline
+		\end{tabular}
+		\caption{แสดงความคาดเคลื่อนเฉลี่ยของการหาโดเมนต่อเติม ในบทบรรยายภาษาต่างๆ}
+	\end{table}	
+	
+	\subsubsection{การลบคำบรรยายจากบทอนิเมะ}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|}
+			\hline
+			วิธีการ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+			\hline
+			ไม่ใช้ & 141.2850811 & 31.6037548 & 0.952397 \\
+			ยืมเฟรม & 132.7787761 & 32.6481538 & 0.9658446 \\
+			ข้ามเฟรม & 89.29141836 & 29.2396524 & 0.942108 \\
+			ไม่ใช้ & 75.75894242 & 29.4711168 & 0.947267 \\
+			\hline
+		\end{tabular}
+		\caption{แสดงผลลัพธ์เฉลี่ยของการยืมเฟรมและข้ามเฟรม}
+	\end{table}	
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}[ht]{|l|c|c|c|c|}
+		\hline
+		วิธีการ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+		\hline
+		ที่คิดค้นขึ้น & 75.75894242 & 29.4711168 & 0.947267 \\
+		OpenCV - Fast Marching Method & 48.64641114 & 33.0566406 & 0.9621476 \\
+		\hline
+	\end{tabular}
+	\caption{แสดงผลลัพธ์เฉลี่ยของการซ่อมแซมภาพศิลปะไทย}
+\end{table}	
+	
+	
 \section{Planning}
 \hspace{1cm} แผนการดำเนินงานตลอดทั้งโครงการสามารถสรุปได้โดยย่อจากตารางต่อไปนี้
 \begin{center}
@@ -319,6 +543,13 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 	
 	\bibitem{ref:splitbergman-inpaint}
 	T. Goldstein and S. Osher,“The Split Bregman Method for L1-Regularized Problems", SIAM Journal on Imaging Sciences. vol. 2, issue 2, pp. 323-343, 2009.
+	
+	\bibitem{ref:image-pyramid}
+	E.H. Andelson and C.H. Anderson and J.R. Bergen and P.J. Burt and J.M. Ogden. "Pyramid methods in image processing". 1984
+	% วิกิ บอกว่าให้ ref ของคุณ Andelson
+	% doi 10.1.1.56.8646
+	%\url{https://en.wikipedia.org/wiki/Pyramid_(image_processing)#cite_ref-1}
+	%\url{https://en.wikipedia.org/wiki/Multiresolution_analysis}
 	
 	
 \end{thebibliography}
