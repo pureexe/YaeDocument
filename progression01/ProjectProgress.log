@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  19 NOV 2018 22:17
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  21 NOV 2018 01:38
 entering extended mode
 **./ProjectProgress.tex
 (ProjectProgress.tex
@@ -859,32 +859,32 @@ Package: relsize 2013/03/29 ver 4.1
 (ProjectProgress.aux)
 \openout1 = `ProjectProgress.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 44.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 45.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 45.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\tipa\t3cmr.fd"
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    ... okay on input line 45.
 \AtBeginShipoutBox=\box59
-Package hyperref Info: Link coloring OFF on input line 44.
+Package hyperref Info: Link coloring OFF on input line 45.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -894,9 +894,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count284
 )
-LaTeX Info: Redefining \ref on input line 44.
-LaTeX Info: Redefining \pageref on input line 44.
-LaTeX Info: Redefining \nameref on input line 44.
+LaTeX Info: Redefining \ref on input line 45.
+LaTeX Info: Redefining \pageref on input line 45.
+LaTeX Info: Redefining \nameref on input line 45.
 
 (ProjectProgress.out) (ProjectProgress.out)
 \@outlinefile=\write3
@@ -909,72 +909,72 @@ LaTeX Info: Redefining \nameref on input line 44.
 .................................................
 \symlegacymaths=\mathgroup8
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 44.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 44.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 44.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 44.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 44.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 44.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 44.
-LaTeX Font Info:    Redeclaring math accent \check on input line 44.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 44.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 44.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 44.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 44.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 45.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 45.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 45.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 45.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 45.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 45.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 45.
+LaTeX Font Info:    Redeclaring math accent \check on input line 45.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 45.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 45.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 45.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 45.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 44.
+(Font)              `operators' in the math version `normal' on input line 45.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/THSarabunNew(0)/m/n on input line 44
+(Font)                  OT1/cmr/m/n --> TU/THSarabunNew(0)/m/n on input line 45
 .
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 44.
+(Font)              `operators' in the math version `bold' on input line 45.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/THSarabunNew(0)/m/n on input line 4
-4.
+5.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/THSarabunNew(0)/m/n --> TU/THSarabunNew(0)/m/n on in
-put line 44.
+put line 45.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/THSarabunNew(0)/m/it on input line 
-44.
+45.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> TU/THSarabunNew(0)/bx/n on input line 
-44.
+45.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 44.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 45.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 44.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 45.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/THSarabunNew(0)/m/n --> TU/THSarabunNew(0)/bx/n on i
-nput line 44.
+nput line 45.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/THSarabunNew(0)/bx/it on input lin
-e 44.
+e 45.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 44.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 45.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 44.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 45.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 14.75995pt on input line 46.
+(Font)              scaled to size 14.75995pt on input line 47.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 21.25432pt on input line 67.
+(Font)              scaled to size 21.25432pt on input line 68.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 21.25432pt on input line 67.
+(Font)              scaled to size 21.25432pt on input line 68.
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\se-ascii-print.def"
 File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
@@ -986,26 +986,26 @@ File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 File: images/grayscale_inpaint/toinpaint.png Graphic file (type bmp)
 <images/grayscale_inpaint/toinpaint.png>
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 13.46844pt on input line 82.
+(Font)              scaled to size 13.46844pt on input line 83.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 9.83997pt on input line 83.
+(Font)              scaled to size 9.83997pt on input line 84.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 7.37997pt on input line 83.
-LaTeX Font Info:    Try loading font information for U+msa on input line 83.
+(Font)              scaled to size 7.37997pt on input line 84.
+LaTeX Font Info:    Try loading font information for U+msa on input line 84.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 83.
+LaTeX Font Info:    Try loading font information for U+msb on input line 84.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 83.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 84.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 83.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 84.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -1015,44 +1015,57 @@ File: images/grayscale_inpaint/inpaintdomain.png Graphic file (type bmp)
 File: images/grayscale_inpaint/result_splitbergman.png Graphic file (type bmp)
 <images/grayscale_inpaint/result_splitbergman.png>
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 17.71193pt on input line 100.
+(Font)              scaled to size 17.71193pt on input line 101.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 17.71193pt on input line 100.
+(Font)              scaled to size 17.71193pt on input line 101.
  [2]
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 12.29996pt on input line 108.
+(Font)              scaled to size 12.29996pt on input line 109.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 8.60997pt on input line 108.
+(Font)              scaled to size 8.60997pt on input line 109.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 6.14998pt on input line 108.
+(Font)              scaled to size 6.14998pt on input line 109.
 File: images/show_peicewise/fig2a.jpg Graphic file (type bmp)
 <images/show_peicewise/fig2a.jpg>
  [3]
 File: images/show_peicewise/fig3.png Graphic file (type bmp)
 <images/show_peicewise/fig3.png>
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 9.83997pt on input line 149.
+(Font)              scaled to size 9.83997pt on input line 150.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 7.37997pt on input line 149.
+(Font)              scaled to size 7.37997pt on input line 150.
 File: images/sample-domain.png Graphic file (type bmp)
 <images/sample-domain.png>
  [4]
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 170.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 171.
 
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 170.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 171.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 177.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 178.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 177.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 178.
 
-Overfull \hbox (27.33064pt too wide) detected at line 191
+Overfull \hbox (27.33064pt too wide) detected at line 192
 []
  []
 
-[5] [6]
+[5]
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/it' will be
+(Font)              scaled to size 14.75995pt on input line 225.
+
+Overfull \hbox (30.0pt too wide) in paragraph at lines 198--225
+$[]$  
+ []
+
+[6] [7]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 318--381
+[]$[]$  
+ []
+
+[8] [9] [10] [11] [12]
 File: images/image_inpaint_synthetic/case01-original.png Graphic file (type bmp
 )
 <images/image_inpaint_synthetic/case01-original.png>
@@ -1068,7 +1081,6 @@ File: images/image_inpaint_synthetic/case04-original.png Graphic file (type bmp
 File: images/image_inpaint_synthetic/case05-original.png Graphic file (type bmp
 )
 <images/image_inpaint_synthetic/case05-original.png>
- [7]
 File: images/image_inpaint_synthetic/case01-toinpaint.png Graphic file (type bm
 p)
 <images/image_inpaint_synthetic/case01-toinpaint.png>
@@ -1084,13 +1096,56 @@ p)
 File: images/image_inpaint_synthetic/case05-toinpaint.png Graphic file (type bm
 p)
 <images/image_inpaint_synthetic/case05-toinpaint.png>
- [8]
+ [13] [14]
+File: images/result_ex1/timemarch01.png Graphic file (type bmp)
+<images/result_ex1/timemarch01.png>
+File: images/result_ex1/timemarch02.png Graphic file (type bmp)
+<images/result_ex1/timemarch02.png>
+File: images/result_ex1/timemarch03.png Graphic file (type bmp)
+<images/result_ex1/timemarch03.png>
+File: images/result_ex1/timemarch04.png Graphic file (type bmp)
+<images/result_ex1/timemarch04.png>
+File: images/result_ex1/timemarch05.png Graphic file (type bmp)
+<images/result_ex1/timemarch05.png>
+File: images/result_ex1/fixpoint01.png Graphic file (type bmp)
+<images/result_ex1/fixpoint01.png>
+File: images/result_ex1/fixpoint02.png Graphic file (type bmp)
+<images/result_ex1/fixpoint02.png>
+File: images/result_ex1/fixpoint03.png Graphic file (type bmp)
+<images/result_ex1/fixpoint03.png>
+File: images/result_ex1/fixpoint04.png Graphic file (type bmp)
+<images/result_ex1/fixpoint04.png>
+File: images/result_ex1/fixpoint05.png Graphic file (type bmp)
+<images/result_ex1/fixpoint05.png>
+ [15]
+File: images/result_ex1/splitbergman01.png Graphic file (type bmp)
+<images/result_ex1/splitbergman01.png>
+File: images/result_ex1/splitbergman02.png Graphic file (type bmp)
+<images/result_ex1/splitbergman02.png>
+File: images/result_ex1/splitbergman03.png Graphic file (type bmp)
+<images/result_ex1/splitbergman03.png>
+File: images/result_ex1/splitbergman04.png Graphic file (type bmp)
+<images/result_ex1/splitbergman04.png>
+File: images/result_ex1/splitbergman05.png Graphic file (type bmp)
+<images/result_ex1/splitbergman05.png>
+ [16] [17] [18]
 File: images/image_inpaint_synthetic/image_pyramid.png Graphic file (type bmp)
 <images/image_inpaint_synthetic/image_pyramid.png>
+ [19]
 File: images/image_inpaint_synthetic/image_inital_solution.png Graphic file (ty
 pe bmp)
 <images/image_inpaint_synthetic/image_inital_solution.png>
- [9]
+ [20]
+Overfull \hbox (0.96135pt too wide) in paragraph at lines 734--734
+\OML/cmm/m/it/12 MultiSplitBergmanColorInpaint\OT1/cmr/m/n/12 (\OML/cmm/m/it/12
+ x; y; ^^U; ^^R; g; N[]; N[]; N[]; "; c \OT1/cmr/m/n/12 + 
+ []
+
+[21]
+Overfull \vbox (65.5424pt too high) has occurred while \output is active []
+
+
+[22] [23] [24]
 File: images/just10enough/only10time.png Graphic file (type bmp)
 <images/just10enough/only10time.png>
 File: images/just10enough/only100time.png Graphic file (type bmp)
@@ -1099,7 +1154,25 @@ File: images/just10enough/only1000time.png Graphic file (type bmp)
 <images/just10enough/only1000time.png>
 File: images/just10enough/only10000time.png Graphic file (type bmp)
 <images/just10enough/only10000time.png>
- [10]
+
+Underfull \hbox (badness 4492) in paragraph at lines 914--914
+[]\TU/THSarabunNew(0)/m/n/12 ตารางที่ 5: |แสดงผลลัพธ์ของการใช้พีระมิดภาพในการต่
+อเติมโดยกำหนดให้ชั้นรูปภาพขนาดใหญ่สุดทำซ้ำ
+ []
+
+[25] [26]
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
+(Font)              scaled to size 12.29996pt on input line 937.
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
+(Font)              scaled to size 8.60997pt on input line 937.
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
+(Font)              scaled to size 6.14998pt on input line 937.
+
+Underfull \hbox (badness 10000) in paragraph at lines 937--937
+[][][]\TU/THSarabunNew(0)/m/n/10 ภาพถ่ายที่วัดพระยืนพุทธบาทยุคล; ภาพจาก https:/
+/commons.wikimedia.org/wiki/
+ []
+
 File: images/thaiart/case01-original.png Graphic file (type bmp)
 <images/thaiart/case01-original.png>
 File: images/thaiart/case02-original.png Graphic file (type bmp)
@@ -1110,20 +1183,48 @@ File: images/thaiart/case04-original.png Graphic file (type bmp)
 <images/thaiart/case04-original.png>
 File: images/thaiart/case05-original.png Graphic file (type bmp)
 <images/thaiart/case05-original.png>
-File: images/thaiart/Restoration_of_the_Sistine_Chapel_frescoes.png Graphic fil
-e (type bmp)
-<images/thaiart/Restoration_of_the_Sistine_Chapel_frescoes.png>
 File: images/thaiart/inpaint-domain.png Graphic file (type bmp)
 <images/thaiart/inpaint-domain.png>
- [11]
+File: images/thaiart/case01-toinpaint.png Graphic file (type bmp)
+<images/thaiart/case01-toinpaint.png>
+File: images/thaiart/case02-toinpaint.png Graphic file (type bmp)
+<images/thaiart/case02-toinpaint.png>
+File: images/thaiart/case03-toinpaint.png Graphic file (type bmp)
+<images/thaiart/case03-toinpaint.png>
+File: images/thaiart/case04-toinpaint.png Graphic file (type bmp)
+<images/thaiart/case04-toinpaint.png>
+File: images/thaiart/case05-toinpaint.png Graphic file (type bmp)
+<images/thaiart/case05-toinpaint.png>
+[27] [28]
+File: images/result_ex4/splitbergman_case01.png Graphic file (type bmp)
+<images/result_ex4/splitbergman_case01.png>
+File: images/result_ex4/splitbergman_case02.png Graphic file (type bmp)
+<images/result_ex4/splitbergman_case02.png>
+File: images/result_ex4/splitbergman_case03.png Graphic file (type bmp)
+<images/result_ex4/splitbergman_case03.png>
+File: images/result_ex4/splitbergman_case04.png Graphic file (type bmp)
+<images/result_ex4/splitbergman_case04.png>
+File: images/result_ex4/splitbergman_case05.png Graphic file (type bmp)
+<images/result_ex4/splitbergman_case05.png>
+File: images/result_ex4/multisplitbergman_case01.png Graphic file (type bmp)
+<images/result_ex4/multisplitbergman_case01.png>
+File: images/result_ex4/multisplitbergman_case02.png Graphic file (type bmp)
+<images/result_ex4/multisplitbergman_case02.png>
+File: images/result_ex4/multisplitbergman_case03.png Graphic file (type bmp)
+<images/result_ex4/multisplitbergman_case03.png>
+File: images/result_ex4/multisplitbergman_case04.png Graphic file (type bmp)
+<images/result_ex4/multisplitbergman_case04.png>
+File: images/result_ex4/multisplitbergman_case05.png Graphic file (type bmp)
+<images/result_ex4/multisplitbergman_case05.png>
+ [29] [30] [31]
 File: images/inori-subbed-preview.png Graphic file (type bmp)
 <images/inori-subbed-preview.png>
+ [32]
 File: images/subtitle_detection/detection-original.png Graphic file (type bmp)
 <images/subtitle_detection/detection-original.png>
 File: images/subtitle_detection/detection-threshold.png Graphic file (type bmp)
 
 <images/subtitle_detection/detection-threshold.png>
- [12]
 File: images/subtitle_detection/detection-inverse.png Graphic file (type bmp)
 <images/subtitle_detection/detection-inverse.png>
 File: images/subtitle_detection/detection-blackfill.png Graphic file (type bmp)
@@ -1134,12 +1235,11 @@ bmp)
 <images/subtitle_detection/detection-erode-opening.png>
 File: images/subtitle_detection/detection-stoke.png Graphic file (type bmp)
 <images/subtitle_detection/detection-stoke.png>
-
-Overfull \hbox (24.2274pt too wide) in paragraph at lines 567--576
+ [33]
+Overfull \hbox (24.2274pt too wide) in paragraph at lines 1167--1176
  [][] 
  []
 
-[13]
 File: images/skipborrow/prevframe.png Graphic file (type bmp)
 <images/skipborrow/prevframe.png>
 File: images/skipborrow/currentframe.png Graphic file (type bmp)
@@ -1148,28 +1248,29 @@ File: images/skipborrow/prevframeinverse.png Graphic file (type bmp)
 <images/skipborrow/prevframeinverse.png>
 File: images/skipborrow/currentframeinverse.png Graphic file (type bmp)
 <images/skipborrow/currentframeinverse.png>
- [14] [15]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 703.
- [16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 703.
+[34] [35]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1309.
+ [36]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1309.
  (ProjectProgress.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 703.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 703.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1309.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1309.
+
 Package rerunfilecheck Info: File `ProjectProgress.out' has not changed.
-(rerunfilecheck)             Checksum: 5ABCAEF9743E3E37F99EF2BAA50250DB.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 703.
+(rerunfilecheck)             Checksum: 7FF7BA285D24A11B8E6069A8E309D3BE.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1309.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 52 ({)
+### simple group (level 1) entered at line 53 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25600 strings out of 427798
- 460336 string characters out of 3151797
- 550964 words of memory out of 3000000
- 29362 multiletter control sequences out of 15000+200000
- 543734 words of font info for 97 fonts, out of 3000000 for 9000
+ 25752 strings out of 427798
+ 465378 string characters out of 3151797
+ 556829 words of memory out of 3000000
+ 29482 multiletter control sequences out of 15000+200000
+ 543774 words of font info for 102 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 42i,20n,65p,840b,568s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,21n,65p,1255b,641s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on ProjectProgress.pdf (16 pages).
+Output written on ProjectProgress.pdf (36 pages).

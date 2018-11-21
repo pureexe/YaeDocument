@@ -38,7 +38,8 @@
 \numberwithin{equation}{section}		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % addition mod
-\usepackage{subcaption,float,framed,algorithm2e,hyperref}
+\usepackage{subcaption,float,framed,hyperref}
+\usepackage[ruled]{algorithm2e}
 % =============
 
 \begin{document}
@@ -191,6 +192,38 @@
 	\end{align}
 	เมื่อ $t_k=t_0+k\tau\ (\tau>0)$  แทนขั้นเวลาที่ $k$ และ $t_0=0$ แทนขั้นเวลาเริ่มต้น
 	
+	จะสามารถเขียน วิธีเดินเวลาแบบชัดแจ้งสำหรับภาพเฉดเทาเป็นขั้นตอนวิธีได้ดังนี้ 
+	\vspace{0.5cm}
+	
+	\begin{algorithm}[H]
+		\caption{Explicit time marching gray-scale solver}
+		\KwIn{
+			\\
+			\hspace{1cm} $u$ is image which is damaged image \\
+			\hspace{1cm} $D$ is image which is image of inpaint domain \\
+			\hspace{1cm} $\lambda$ is positive rational number which is regularization parameter \\
+			\hspace{1cm} $\beta$ is positive rational number which is use to avoid devide by zero \\
+			\hspace{1cm} $\tau$ is positive rational number which is marching parameter \\
+			\hspace{1cm} $N$ is positive interger  which is number of maximum loop \\
+			\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
+		}
+		\KwOut{inpainted image}    
+		  \SetKwFunction{FMain}{ExplictTimeMarchingInpaint}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$u, D, \lambda, \tau, \beta, N, \varepsilon$}}{
+			\textbf{initialize}
+			$\varLambda =  \lambda \cdot D$,
+			$z = u$,
+			$i = 0$ \\
+			\While{$ i < N $ and $err > \varepsilon$}{
+				$u = u + \tau\left(\nabla \cdot\left(\dfrac{\nabla u}{\sqrt{u_x^2 + u_y^2+ \beta}}\right) + \varLambda(u-z) \right)$ \\ 		
+				$err = \frac{||u-z||}{||u||}$
+				$ i = i + 1 $
+			}
+			\textbf{return} $ u $ 
+		}
+	\end{algorithm}
+	
 	\item [(2)] วิธีการทำซ้ำแบบจุดตรึง (fixed-point iteration method)
 	
 	คณะวิจัย \cite{ref:FixpointSolver} ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนโดยใช้วิธีการทำซ้ำแบบจุดตรึง ซึ่งสามารถประยุกต์เป็นวิธีเชิงตัวเลขสำหรับการต่อเติมภาพได้ดังนี้
@@ -200,12 +233,61 @@
 	- \nabla\cdot\left(\dfrac{\nabla u^{[\nu+1]}}{{| \nabla u |}^{[v]} }\right) + \lambda(u^{[\nu+1]}-z)  = 0,\ u^{[0]}=z
 	\label{e5}
 	\end{align}
+	\vspace{0.5cm}
+	
 \end{itemize}
 
 \hspace{1cm} เนื่องจาก $\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty$ ในบริเวณที่ $u$ มีความเข้มสีเป็นเอกพันธ์ุ ($u(\mathbf{x})=$ ค่าคงตัว) เพื่อหลีกเลี่ยงปัญหาเชิงตัวเลขจะเกิดขึ้นใน (\ref{e4}) และ (\ref{e5}) เราจะใช้ 
 \[
 |\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
 \] 
+
+จะสามารถเขียน ขั้นตอนวิธีจุดตรึงสำหรับภาพเฉดเทาเป็นขั้นตอนวิธีได้ดังนี้ 
+\begin{algorithm}[H]
+	\caption{Fixed point gray-scale solver}
+	\KwIn{
+		\\
+		\hspace{1cm} $u$ is image which is damaged image \\
+		\hspace{1cm} $D$ is image which is image of inpaint domain \\
+		\hspace{1cm} $\lambda$ is positive rational number which is regularization parameter \\
+		\hspace{1cm} $\beta$ is positive rational number which is use to avoid devide by zero \\
+		\hspace{1cm} $g$ is positive integer which is number of gauss seidel iteration \\
+		\hspace{1cm} $N$ is positive interger  which is number of maximum loop \\
+		\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
+	}
+	\KwOut{inpainted image}    
+	\SetKwFunction{FMain}{FixedPointInpaint}
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\FMain{$u, D, \lambda, \beta, g,  N, \varepsilon$}}{		
+		\While{$ i < N $ and $err > \varepsilon$}{
+			$u = InnerFixedPointInpaint(u, D, \lambda, \beta, g)$\\
+			$u = \left(\nabla \cdot\left(\dfrac{\nabla u}{\sqrt{u_x^2 + u_y^2+ \beta} }\right) + (z-u) \right) $\\
+			$err = \frac{||u-z||}{||u||}$		
+			$ i = i + 1 $
+		}
+		\textbf{return} $ u $ 
+	}
+	\SetKwFunction{FMain}{InnerFixedPointInpaint}
+	\Fn{\FMain{$u, D, \lambda, \beta, g,  N, \varepsilon$}}{
+		\textbf{initialize}
+		$\varLambda =  \lambda \cdot D$, 
+		$height =$ height of $u$,
+		$width =$  width of $u$,
+		$ z = u $,
+		$k = 0$,
+		$ d = \frac{1}{\sqrt{u_x^2 + u_y^2+ \beta} }$,
+		$ h = 1 $ \\
+		\For{k = 0; k < g; k = k + 1}{
+			\For{i = 0; i < $height$; i++}{
+				\For{j=0; j < $width$; j++}{
+					$u(i,j) = \frac{\varLambda_{i,j}z_{i,j}+\frac{1}{h^2}                (d_{i,j}(u_{i+1,j}+u_{i,j+1})+d_{i-1,j}u_{i-1,j}+d_{i,j-1}u_{i,j-1})}{
+						\varLambda_{i,j}+\frac{1}{h^2}(2d_{i,j}+d_{i-1,j}+d_{i,j-1})}$
+				}
+			}		
+		}
+		\textbf{return} $ u $ 
+	}
+\end{algorithm}
 
 \hspace{1cm} จาก (\ref{e4}) และ (\ref{e5}) เราพบว่ายิ่ง $\beta$ มีค่าน้อยลงมากขึ้นเท่าไหร่ ความแม่นยำของตัวแบบ (\ref{e1}) ยิ่งมีมากขึ้นเท่านั้น นอกจากนี้ เรายังพบอีกว่า การแก้สมการ (\ref{e4}) และ (\ref{e5}) ยิ่งมีความยุ่งยากมากขึ้นสำหรับ $\beta$ ที่มีค่าน้อยๆ 
 
@@ -235,6 +317,68 @@
 	\label{e9}
 	\end{align}
 	ดำเนินการเช่นนี้จนกระทั่ง $||u^{\text{new}}-u^{\text{old}}||< \epsilon_1$ หรือ $\text{New}>\epsilon_2$ เมื่อ $\epsilon_1,\epsilon_2>0$ 
+	จะสามารถเขียน ขั้นตอนวิธีสปริทเบรกแมนสำหรับภาพเฉดเทาเป็นขั้นตอนวิธีได้ดังนี้ 
+	\begin{algorithm}[H]
+		\caption{Split-bergman gray-scale solver}
+		\KwIn{
+			\\
+			\hspace{1cm} $u$ is image which is damaged image \\
+			\hspace{1cm} $D$ is image which is image of inpaint domain \\
+			\hspace{1cm} $\lambda$ is positive rational number which is regularization parameter \\
+			\hspace{1cm} $\theta$ is positive rational number which is panelty parameter that shouldn't too big or too small \\
+			\hspace{1cm} $N$ is positive interger  which is number of maximum loop \\
+			\hspace{1cm} $g$ is positive integer which is number of gauss seidel iteration \\
+			\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
+		}
+		\KwOut{inpainted image}    
+		\SetKwFunction{FMain}{SplitBergmanInpaint}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$u, D, \lambda, \theta, g, N, \varepsilon$}}{
+			\textbf{initialize}
+			$i = 0$,
+			$b = \vec{0}$,
+			$w = \vec{0}$,
+			$z = u$ \\
+			\While{$ i < N $ and $err > \varepsilon$}{
+				$v = u$ \\
+				$w = wSubproblemSolver(u, b, \theta)$ \\
+				$u = uSubproblemSolber(u, w, v, b, D, \lambda, \theta, g) $ \\
+				$ b = b + - w $ \\
+				$err = \frac{||u-v||}{||u||}$ \\
+				$ i = i + 1 $ \\
+			}
+			\textbf{return} $ u $ 
+		}
+	\SetKwFunction{FMain}{uSubproblemSolver}
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\FMain{$(u, w, z, b, D, \lambda, \theta, gn$}}{
+		\textbf{initialize}
+		$b = \vec{0}$, $w = \vec{0}$,
+		$v = u$,
+		$width = $ width of u,
+		$height = $ height of u,
+		$ d = \left(\nabla \cdot\left(\dfrac{\nabla u}{|\nabla u|}\right) + \varLambda(u-z) \right)$
+		$\varLambda = \lambda \cdot D $,
+		$h = 1$
+		 \\
+		\For{k = 0; k < g; i++}{
+			\For{i = 0; i < height; i++}{
+				\For{j = 0; j < width; j++}{
+					$L = \frac{u_{i,j-1} + u_{i,j+1} + u_{i-1,j} + u_{i+1,j}}{h^2}$ \\
+					$B = \varLambda_{i,j} z_{i,j} - \theta d_{i,j} + \theta L_{i,j}$\\
+					$u_{i,j}= \frac{h^2}{\varLambda_{i,j} * h^2 + 4 * \theta} B$\\
+				}
+			}
+		}
+		\textbf{return} $ u $ 
+	}
+	\SetKwFunction{FMain}{wSubproblemSolver}
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\FMain{$u, b, \theta$}}{
+		$w = max( | \nabla b |  - \frac{1}{\theta}, 0)$\\
+		\textbf{return} $ w $ 
+	}
+	\end{algorithm}
 \end{itemize}
 
 \subsection{ตัวแบบการต่อเติมภาพสีที่ใช้การแปรผันรวม}\label{inpaint-model-color}
@@ -260,37 +404,127 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 \mathcal{\bar{R}}(\boldsymbol{u})= \int_{\Omega}^{}\lvert\nabla u_1 \rvert d\Omega + \int_{\Omega}^{}\lvert\nabla u_2 \rvert d\Omega + \int_{\Omega}^{}\lvert\nabla u_3 \rvert d\Omega
 \end{align*}
 
-\hspace{1cm} เพื่อหลีกเลี่ยงปัญหาที่มาจากเทอม $\tfrac{1}{|\nabla u_l|}\ (l=1,2,3)$ โครงงานวิจัยนี้จะพัฒนาขั้นตอนวิธีเชิงตัวเลขสำหรับต่อเติมภาพจากวิธีการสปริทเบรกแมน
-โดยแก้ปัญหาการหาค่าต่ำที่สุดต่อไปนี้
+\hspace{1cm}  ดังนั้นเพื่อต่อเติมภาพสี จะเป็นการแก้ปัญหาการหาค่าต่ำที่สุดต่อไปนี้ 
 \begin{align}
 \min_{\boldsymbol{u},\boldsymbol{w}_1,\boldsymbol{w}_2,\boldsymbol{w}_3} \{\bar{\mathcal{J}}(\boldsymbol{u},\boldsymbol{w}_1,\boldsymbol{w}_2,\boldsymbol{w}_3)&= \mathcal{\bar{D}}(\boldsymbol{u},\boldsymbol{z}) +  \underset{l=1}{\overset{3}{\sum}} \int_{\Omega}^{}|\boldsymbol{w}_l|d\Omega
 \nonumber\\
 &\quad+ \frac{\theta_l}{2} \underset{l=1}{\overset{3}{\sum}}\int_{\Omega}^{}(\boldsymbol{w}_l - \nabla u_l - \boldsymbol{b_l})^{2}d\Omega\}, \hspace{1cm} \theta_l > 0
 \end{align}
-ด้วยวิธีการหาต่ำที่สุดแบบสลับดังเช่น (\ref{e6}) - (\ref{e9})
+
+ซึ่งสามารถประยุกต์ใช้วิธีภาพเฉดเทา มาใช้งานกับภาพสีได้ดังต่อไปนี้
+
+สำหรับวิธีการเดินเวลา สามารถประยุกต์จากขั้นตอนสำหรับภาพเฉดเทาเป็นขั้นตอนสำหรับภาพสีได้ดังนี้
+
+\begin{algorithm}[H]
+\caption{Explicit time marching color image solver}
+\KwIn{
+	\\
+	\hspace{1cm} $u$ is image which is damaged image \\
+	\hspace{1cm} $D$ is image which is image of inpaint domain \\
+	\hspace{1cm} $\lambda$ is positive rational number which is regularization parameter \\
+	\hspace{1cm} $\beta$ is positive rational number which is use to avoid devide by zero \\
+	\hspace{1cm} $\tau$ is positive rational number which is marching parameter \\
+	\hspace{1cm} $N$ is positive interger  which is number of maximum loop \\
+	\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
+}
+\KwOut{inpainted image}    
+\SetKwFunction{FMain}{ExplictTimeMarchingColorInpaint}
+\SetKwProg{Fn}{Function}{:}{}
+\Fn{\FMain{$u, D, \lambda, \tau, \beta, N, \varepsilon$}}{
+	\ForEach{$l, l \in \{1,2,3\}$}{
+		$u_l =ExplictTimeMarchingColorInpaint(u_l, D, \lambda, \tau, \beta, N, \varepsilon) $
+	}
+	\textbf{return} $ u $ 
+}
+\end{algorithm}
+
+ในทำนองเดียวกัน จะได้ว่าขั้นตอนการต่อเติมภาพสำหรับวิธีการตรึงจุด คือ
+
+\begin{algorithm}[H]
+	\caption{Fixed point color solver}
+	\KwIn{
+		\\
+		\hspace{1cm} $u$ is image which is damaged image \\
+		\hspace{1cm} $D$ is image which is image of inpaint domain \\
+		\hspace{1cm} $\lambda$ is positive rational number which is regularization parameter \\
+		\hspace{1cm} $\beta$ is positive rational number which is use to avoid devide by zero \\
+		\hspace{1cm} $g$ is positive integer which is number of gauss seidel iteration \\
+		\hspace{1cm} $N$ is positive interger  which is number of maximum loop \\
+		\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
+	}
+	\KwOut{inpainted image}    
+	\SetKwFunction{FMain}{FixedPointColorInpaint}
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\FMain{$u, D, \lambda, \beta, g,  N, \varepsilon$}}{		
+		\ForEach{$l, l \in \{1,2,3\}$}{
+			$u_l =FixedPointInpaint(u_l, D, \lambda, \tau, \beta, N, \varepsilon) $
+		}
+		\textbf{return} $ u $ 
+	}
+\end{algorithm}
+
+และขั้นตอนวิธีสปริทเบรกแมน สำหรับภาพสี
+\begin{algorithm}[H]
+	\caption{Split-bergman Color solver}
+	\KwIn{
+		\\
+		\hspace{1cm} $u$ is image which is damaged image \\
+		\hspace{1cm} $D$ is image which is image of inpaint domain \\
+		\hspace{1cm} $\lambda$ is positive rational number which is regularization parameter \\
+		\hspace{1cm} $\theta$ is positive rational number which is panelty parameter that shouldn't too big or too small \\
+		\hspace{1cm} $N$ is positive interger  which is number of maximum loop \\
+		\hspace{1cm} $g$ is positive integer which is number of gauss seidel iteration \\
+		\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
+	}
+	\KwOut{inpainted image}    
+	\SetKwFunction{FMain}{SplitBergmanColorInpaint}
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\FMain{$u, D, \lambda, \theta, g, N, \varepsilon$}}{
+		\ForEach{$l, l \in \{1,2,3\}$}{
+		$u_l =SplitBergmanInpaint(u_l, D, \lambda, \tau, \beta, N, \varepsilon) $
+	}
+	\textbf{return} $ u $ 
+	}
+\end{algorithm}
+
+\subsection{การวัดประสิทธิภาพของภาพที่ผ่านกระบวนการต่อเติม}
+\hspace{1cm} หลังจากการต่อเติมภาพแล้วจำเป็นต้องพิจารณาว่าการวัดคุณภาพของภาพที่ผ่านการต่อเติมดีมากน้อยเพียงใด โดยในวิจัยนี้จะสนใจคุณภาพของค่าในแต่ละพิกเซลที่ใกล้เคียงกับภาพต้นฉบับ และโครงสร้างโดยรวมที่ใกล้เคียงกับภาพต้นฉบับ โดยการวัดค่าดังต่อไปนี้
+
+\subsubsection{Peak Signal Noise Ration: PSNR}
+\hspace{1cm}  Peak signal-to-noise ratio (PSNR) \cite{ref:PSNR} ใช้สำหรับวัดคุณภาพของภาพโดยเปรียบเทียบจากพิกเซลแต่ละพิกเซล โดยภาพที่มีความคล้ายต้นฉบับจะมีค่า PSNR เข้าใกล้อนันต์ หรือก็คือยิ่งมีค่ามากยิ่งคุณภาพดี ซึ่งสามารถคำนวณได้โดย
+$$ PSNR = 10 \cdot log_{10} ( \frac{{peak}^2}{\sqrt{MSE}} )$$
+
+เมื่อ $MSE$ คือ mean square error และ $peak$ คือค่าสูงสุดโดยประเภทของภาพ ซึ่งสำหรับงานที่จะพูดถึงต่อไปนี้ จะพิจารณาภาพเป็นฟังก์ชันที่มีความเข้มของภาพอยู่ในช่วง $ [0,1] $ จึงได้ว่า $peak$ มีค่าเป็น $1$
+\subsubsection{Structural Similarity: SSIM}
+\hspace{1cm} Structural similarity (SSIM)  \cite{ref:SSIM} ใช้สำหรับว่าวัดคุณภาพของภาพจากโครงสร้างของภาพ โดยพิจารณาว่าภาพนั้นมีโครงสร้างแตกต่างหรือคล้ายคลึงกับภาพต้นฉบับมากน้อยเพียงใด โดยมีค่าอยู่ระหว่าง 0 ถึง 1 หากทั้งสองภาพมีความคล้ายคลึงกันมากค่า SSIM  จะเข้าใกล้กับค่า 1 ซึ่ง SSIM นั้นสามารถคำนวณได้โดย
+$$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c_1)(\sigma_x^2+\sigma_y^2+c_2)}$$
+เมื่อ $x,y$ คือภาพที่ต้องการเปรียบเทียบ $\mu$ คือค่าเฉลี่ยของภาพ $\sigma^2$ คือค่าความแปรปรวนของภาพ $\sigma_{xy}$ คือความแปรปรวนร่วม $c_1 =  (0.01L)^2, c_2 = (0.03L)^2$ และ $L$ คือค่าสูงสุดโดยประเภทของภาพ ซึ่งสำหรับงานที่จะพูดถึงต่อไปนี้ จะพิจารณาภาพเป็นฟังก์ชันที่มีความเข้มของภาพอยู่ในช่วง $ [0,1] $ จึงได้ว่า $L$ มีค่าเป็น 1
+
 
 \section{ผลการดำเนินงานเบื้องต้น}
 	\subsection{การซ่อมแซมภาพจิตรกรรมไทยโบราณ}
 	\hspace{1cm} สำหรับการซ่อมแซมจิตรกรรมไทยโบราณ ก่อนอื่นจะทำการปรับปุรงขั้นตอนวิธีเชิงตัวเลขที่มีอยู่แต่เดิมก่อน โดยระหว่างการปรับปรุงวิธีเชิงตัวเลข จะใช้ภาพที่ได้สร้างขึ้น 5 ภาพ แต่ละภาพมีขนาด 256 x 256 พิกเซล ซึ่งมีดังนี้
 	\begin{figure}[H]
 		\centering
-		\begin{subfigure}{0.15\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case01-original.png}
 		\end{subfigure}
-		\begin{subfigure}{0.15\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case02-original.png}
 		\end{subfigure}
-		\begin{subfigure}{0.15\linewidth}
+		\bigskip
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case03-original.png}			
 		\end{subfigure}
-		\begin{subfigure}{0.15\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case04-original.png}			
 		\end{subfigure}
-		\begin{subfigure}{0.15\linewidth}
+		\bigskip
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case05-original.png}			
 		\end{subfigure}
@@ -298,23 +532,24 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
-		\begin{subfigure}{0.15\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case01-toinpaint.png}
 		\end{subfigure}
-		\begin{subfigure}{0.15\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case02-toinpaint.png}
 		\end{subfigure}
-		\begin{subfigure}{0.15\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case03-toinpaint.png}			
 		\end{subfigure}
-		\begin{subfigure}{0.15\linewidth}
+		\bigskip
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case04-toinpaint.png}			
 		\end{subfigure}
-		\begin{subfigure}{0.15\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case05-toinpaint.png}			
 		\end{subfigure}
@@ -324,20 +559,122 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 	
 	\hspace{1cm} โดยจะทำการเปรียบเทียบความเร็วของวิธีการแก้การแปรผันรวมที่มีอยู่เดิม ดังที่ได้กล่าวไว้ในหัวข้อ \ref{inpaint-model-grayscale} และหัวข้อ \ref{inpaint-model-color} โดยวิธีการทั้ง 3 วิธี จะทำการทำซ้ำจนกระทั่งภาพในการทำซ้ำรอบปัจจุบัน กับภาพการทำซ้ำในครั้งก่อนหน้า มีค่าความคลาดเคลื่อนสัมพัทธ์ (relative error) ต่างกันไม่เกิน 0.0001 หรือ ทำซ้ำเกิน 10,000 รอบ ซึ่งได้ผลลัพธ์เฉลี่ยของรูปภาพที่ใช้ทดสอบดังนี้
 
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch01.png}
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch02.png}
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch03.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch04.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch05.png}			
+		\end{subfigure}
+		\caption{ผลลัพธ์จากวิธีการเดินเวลา}
+	\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint01.png}
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint02.png}
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint03.png}			
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint04.png}			
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint05.png}			
+	\end{subfigure}
+	\caption{ผลลัพธ์จากวิธีการจุดตรึง}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman01.png}
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman02.png}
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman03.png}			
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman04.png}			
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman05.png}			
+	\end{subfigure}
+	\caption{ผลลัพธ์จากวิธีการสปริทเบรกแมน}
+\end{figure}
+และได้ผลลัพธ์ดังตารางนี้ 
+\begin{table}[H]
+	\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|c|}
+			\hline
+			วิธีการ  & รูปภาพ &เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+			\hline
+			การเดินเวลา & 1 &  &  & \\ 
+			& 2 &  &  & \\
+			& 3 &  &  & \\
+			& 4 &  &  & \\
+			& 5 &  &  & \\
+			\hline
+			การทำซ้ำจุดตรึง & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			การสปริทเบรกแมน  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+		\end{tabular}
+		\caption{แสดงผลลัพธ์ของวิธีการเชิงตัวเลขสำหรับการต่อเติมภาพ}
+	\end{table}	
 	\begin{table}[H]
 		\centering
 		\begin{tabular}[ht]{|l|c|c|c|c|}
 			\hline
 			วิธีการ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
 			\hline
-			การเดินเวลา & 146.2108 & 16.19756 & 0.9954786\\
-			การทำซ้ำจุดตรึง & 72.32298 & 40.12234 & 0.999905\\
-			การสปริทเบิร์กแมน & 11.438246 & 39.39536 & 0.999894 \\
+			การเดินเวลา &  & & \\
+			การทำซ้ำจุดตรึง & & & \\
+			การสปริทเบรกแมน & & &  \\
 			\hline
 		\end{tabular}
 		\caption{แสดงผลลัพธ์เฉลี่ยของวิธีการเชิงตัวเลขสำหรับการต่อเติมภาพ}
 	\end{table}	
-	\hspace{1cm} จะเห็นว่าจากตาราง พบว่าแม้วิธีการทำซ้ำจุดตรึง และวิธีการสปริทเบรกแมน จะมีคุณภาพใกล้เคียงกัน แต่ว่าวิธีการสปริทเบรกแมน ใช้เวลาในการประมวลผลน้อยกว่ามาก ผู้วิจัย จึงนำวิธีการสปริทเบรกเมนไปใช้พัฒนาวิธีการต่อเติมภาพชนิดใหม่ลำดับถัดไป
+	\hspace{1cm} 
+	% TODO
+	รอใส่สรุปใหม่
 	
 	\subsubsection{ขั้นตอนวิธีการสำหรับต่อเติมภาพชนิดใหม่}
 	\hspace{1cm} จากวิธีการสปริทเบรกแมนนั้นจะใช้วิธีการหาคำตอบโดยวิธีการทำซ้ำจนกระทั่งลู่เข้า ทางผู้ศึกษาจึงสนใจที่หาคำตอบเริ่มต้นสำหรับการทำซ้ำที่ดีขึ้น เพื่อทำให้การทำซ้ำลู่เข้าสู่คำตอบได้เร็วขึ้น โดยการทำงานกับรูปภาพที่เล็กกว่า จากนั้นจึงทำการขยายลัพธ์ที่ได้ขึ้นมาทำกับภาพใหญ่ ซึ่งวิธีนี้เรียกว่าวิธีพีระมิดรูปภาพ ( pyramid methods) \cite{ref:image-pyramid}  โดยผู้วิจัยจะทำการย่อขนาดรูปลงครึ่งนึงโดยใช้วิธี Bilinear Interpolation ทั้งสิ้น 4 ครั้ง จากนั้นเริ่มทำการต่อเติมภาพขนาดเล็ก จากนั้นนำผลลัพธ์ที่ได้จากภาพขนาดเล็ก ทำการขยายภาพขึ้นสองเท่าโดยใช้ Bilinear Interpolation
@@ -361,22 +698,135 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 	 	\caption{การเตรียมคำตอบเริ่มต้นจากภาพขนาดเล็ก}
 	 	\label{image:intialsolution}
 	 \end{figure}
-	
+ 	\newpage
+	\begin{algorithm}[H]
+		\caption{Split-bergman Color solver with Image Pyramid (Multi Resolution)}
+		\KwIn{
+			\\
+			\hspace{1cm} $u$ is image which is damaged image \\
+			\hspace{1cm} $D$ is image which is image of inpaint domain \\
+			\hspace{1cm} $\lambda$ is positive rational number which is regularization parameter \\
+			\hspace{1cm} $\theta$ is positive rational number which is panelty parameter that shouldn't too big or too small \\
+			\hspace{1cm} $N_0$ is positive interger  which is number of maximum iteration on smallest size image \\
+			\hspace{1cm} $N_1$ is positive interger  which is number of maximum iteration on image that isn't the biggest neither  smallest \\
+			\hspace{1cm} $N_2$ is positive interger  which is number of maximum iteration on biggest size image \\
+			\hspace{1cm} $g$ is positive integer which is number of gauss seidel iteration \\
+			\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
+		}
+		\KwOut{inpainted image}    
+		\SetKwFunction{FMain}{MultiSplitBergmanColorInpaint}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$u, D, \lambda, \theta, g, N_0,N_1,N_2, \varepsilon,c,m$}}{
+			\textbf{Initialize} $height = $ height of $u$, $width = $ width of u \\
+			\If{c < M}{
+				$x = BilinearResize(u,\lfloor width * 0.5 \rfloor,\lfloor height * 0.5 \rfloor)$\\
+				$y = BilinearResize(D,\lfloor width * 0.5 \rfloor,\lfloor height * 0.5 \rfloor)$\\
+				$r = MultiSplitBergmanColorInpaint(x,y, \lambda, \theta, g, N_0, N_1, N_2, \varepsilon,c+1,m)$\\
+				$R = BilinearResize(r,width,height)$\\
+				$u = MergeResult(u,D,R)$
+			}
+			\If{$c \neq 1$}{
+				\uIf{$1 = m$}{$N_0= N_1$}
+				\Else{$N_0 = N_2$}
+			}
+			\textbf{return} $ SplitBergmanColorInpaint(u_l, D, \lambda, \tau, \beta, N_0, \varepsilon) $ 
+		}
+		\SetKwFunction{FMain}{MergeResult}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$u, D, R$}}{
+			\textbf{Initialize} $height = $ height of $u$, $width = $ width of u \\
+			\For{i = 0; i < height; i++}{
+				\For{j = 0; j<i; j++}{
+					\If{$D_{i,j} \neq 0$}{$u_{i,j} = R_{i,j}$}
+				}		
+			}
+			\textbf{return} $ u$ 
+		}	
+	\end{algorithm}
+	\newpage
+	\begin{algorithm}[H]
+		\caption{Bilinear Interpolation for Image resizing}
+		% https://stackoverflow.com/questions/26142288
+		\SetKwFunction{FMain}{BilinearResize}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$I,x,y$}}{
+			\textbf{Initialize} $J$ is image that height $x$ and width $y$, \\ $v =$ height of $I$ and $w$ is width of $I$,\\ $S_R = \frac{c}{a}, S_C = \frac{d}{b}, r = 1,2,...,v, c = 1,2,...,w,$\\$r' = 1,2,...x, c' = 1,2,...,y,  $ \\
+			$r_f = \lfloor r' \cdot S_R \rfloor $\\
+			$c_f = \lfloor c' \cdot S_C \rfloor $\\
+			$\triangle r = r_f - r$ \\
+			$\triangle c = c_f - c$ \\
+			$J(r',c') = I(r,c)\cdot(1-\triangle r)\cdot (1-\triangle c) $\\$+ I(r+1,c) \cdot \triangle r \cdot (1 - \triangle c) $\\$+I(r,c+1)\cdot(1-\triangle r)\cdot\triangle c$\\$+ I(r+1,c+1)\cdot\triangle r \cdot \triangle c$ \\
+			\textbf{return} $ J $ 
+		}
+	\end{algorithm}
+
 	\hspace{1cm} โดยจะทำการเปรียบเทียบจำนวนครั้งในชั้นที่รูปภาพมีขนาดเล็ก จนไปถึงชั้นที่มีขนาดใหญ่ ตัวอย่าง เช่น 10/3/3/10000 หมายถึงในชั้นเล็กสุดซึ่งขนาดเป็น 32x32 พิกเซลจะทำซ้ำ 10 ครั้งหรือจนค่าความคลาดเคลื่อนสัมพัทธ์ต่างกันไม่เกิน 0.0001  ชั้นถัดมาขนาดเป็น 64x64 จะทำซ้ำ 3 ครั้งหรือจนค่าความคลาดเคลื่อนสัมพัทธ์ต่างกันไม่เกิน 0.0001 และชั้นถัดมา ชั้นถัดมาขนาดเป็น 128x128 จะทำซ้ำ 3 ครั้งหรือจนค่าความคลาดเคลื่อนสัมพัทธ์ต่างกันไม่เกิน 0.0001 และสุดท้ายขนาด 256x256 จะทำซ้ำ 3 ครั้งหรือจนค่าความคลาดเคลื่อนสัมพัทธ์ต่างกันไม่เกิน 0.0001 ซึ่งเมื่อทำการทดสอบแล้วได้ผลลัพธ์ดังตารางนี้
 	
-		\begin{table}[H]
+	\begin{table}[H]
+		\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|c|}
+			\hline
+			รูปแบบการทำซ้ำ  & รูปภาพ &เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+			\hline
+			ไม่ใช้พีระมิดรูปภาพ & 1 &  &  & \\ 
+			& 2 &  &  & \\
+			& 3 &  &  & \\
+			& 4 &  &  & \\
+			& 5 &  &  & \\
+			\hline
+			10/1/1/10000 & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			10/3/3/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			10/10/10/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			100/1/1/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			100/3/3/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			100/10/10/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+		\end{tabular}
+		\caption{แสดงผลลัพธ์ของการใช้พีระมิดภาพในการต่อเติมในชั้นที่ต่างกัน}
+\end{table}	
+	
+	\begin{table}[H]
 		\centering
 		\begin{tabular}[ht]{|l|c|c|c|c|}
 			\hline
 			รูปแบบการทำซ้ำ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
 			\hline
-			ไม่ใช้พีระมิดรูปภาพ & 13.690378 & 30.72924 & 0.9997676 \\
-			10/1/1/10000 & 8.719006 & 30.5632 & 0.9997186 \\
-			10/3/3/10000 & 5.8064316 & 30.62492 & 0.9997298 \\
-			10/10/10/10000 & 2.6100824 & 30.64522 & 0.9997388 \\
-			100/1/1/10000 & 5.839534 & 30.68802 & 0.9997514 \\
-			100/3/3/10000 & 4.4923898 & 30.68914 & 0.9997498 \\
-			100/10/10/10000 & 2.4151272 & 30.67366 & 0.9997476 \\
+			ไม่ใช้พีระมิดรูปภาพ & & & \\
+			10/1/1/10000 & & &  \\
+			10/3/3/10000 & & & \\
+			10/10/10/10000 & & & \\
+			100/1/1/10000 & & & \\
+			100/3/3/10000 & & & \\
+			100/10/10/10000 & & & \\
 			\hline
 		\end{tabular}
 		\caption{แสดงผลลัพธ์เฉลี่ยของการใช้พีระมิดภาพในการต่อเติมในชั้นที่ต่างกัน}
@@ -412,20 +862,70 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 	\end{figure}
 	
 	 โดยผู้วิจัยจึงกำหนดให้การทำซ้ำในรูปภาพขนาดใหญ่สุดมีการทำซ้ำเพียง 10 ครั้ง และพบว่าได้ผลลัพธ์ดังนี้
-	
+		\begin{table}[H]
+		\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|c|}
+			\hline
+			รูปแบบการทำซ้ำ  & รูปภาพ &เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+			\hline
+			ไม่ใช้พีระมิดรูปภาพ & 1 &  &  & \\ 
+			& 2 &  &  & \\
+			& 3 &  &  & \\
+			& 4 &  &  & \\
+			& 5 &  &  & \\
+			\hline
+			10/1/1/10000 & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			10/3/3/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			10/10/10/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			100/1/1/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			100/3/3/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+			100/10/10/10000  & 1 &  & & \\
+			& 2 &  & & \\
+			& 3 &  & & \\
+			& 4 &  & & \\
+			& 5 &  & & \\
+			\hline
+		\end{tabular}
+		\caption{แสดงผลลัพธ์ของการใช้พีระมิดภาพในการต่อเติมโดยกำหนดให้ชั้นรูปภาพขนาดใหญ่สุดทำซ้ำเพียง 10 ครั้ง}
+	\end{table}	
 	\begin{table}[H]
 		\centering
 		\begin{tabular}[ht]{|l|c|c|c|c|}
 			\hline
 			รูปแบบการทำซ้ำ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
 			\hline
-			ไม่ใช้พีระมิดรูปภาพ & 0.394235 & 25.22906 & 0.9989972 \\
-			10/1/1/10 & 0.3839476 & 31.31306 & 0.9997732 \\
-			10/3/3/10 & 0.3672704 & 30.95474 & 0.9997682 \\
-			10/10/10/10 & 0.4077878 & 30.78114 & 0.9997406 \\
-			100/1/1/10 & 0.3789076 & 31.25708 & 0.9997518 \\
-			100/3/3/10 & 0.3939378 & 30.8896 & 0.999746 \\
-			100/10/10/10 & 0.4507862 & 30.81302 & 0.9997504 \\
+			ไม่ใช้พีระมิดรูปภาพ &  &  &  \\
+			10/1/1/10 &  &  &  \\
+			10/3/3/10 &  &  & \\
+			10/10/10/10 &  & &  \\
+			100/1/1/10 &  &  & \\
+			100/3/3/10 & & &  \\
+			100/10/10/10 & & & \\
 			\hline
 		\end{tabular}
 		\caption{แสดงผลลัพธ์เฉลี่ยของการใช้พีระมิดภาพในการต่อเติมโดยกำหนดให้ชั้นรูปภาพขนาดใหญ่สุดทำซ้ำเพียง 10 ครั้ง}
@@ -434,53 +934,153 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 	จากตารางจะเห็นว่า การทำซ้ำในชั้นที่รูปภาพมีขนาดเล็กมากจำนวนมาก ไม่ช่วยให้การประมวลผลได้เร็วขึ้น ผู้วิจัยจึงเลือกใช้การทำซ้ำแบบ 10/3/3/10 ในการต่อเติมภาพ
 	
 	\subsubsection{การทดสอบประสิทธิภาพในการซ่อมแซมภาพจิตรกรรมไทยโบราณ}
-	\hspace{1cm}ซึ่งภาพจิตรกรรมทีี่ใช้ทดสอบ มีทั้งสิ้น 5  ภาพได้แก่ ภาพที่ 1 และภาพที่ 2 คือ จิตรกรรมฝาผนังวัดแก้วไพฑูรย์ ภาพที่ 3 คือ จิตรกรรมฝาผนังวัดพระยืนพุทธบาทยุคล ภาพที่ 4 คือ จิตรกรรมฝาผนังวัดคงคาราม และภาพที่ 5 คือ จิตรกรรมฝาผนังวัดท่าถนน
-	โดยจะทำให้ข้อมูลข้องทั้ง 5 ภาพเกิดความเสียหาย โดยใช้รอยความเสียหายจากภาพพระเจ้าสร้างอดัม
+	\hspace{1cm}ซึ่งภาพจิตรกรรมทีี่ใช้ทดสอบ มีทั้งสิ้น 5  ภาพได้แก่ ภาพที่ \ref{image:thaiart_case01_original} \footnote{ภาพถ่ายที่วัดแก้วไพฑูรย์; ภาพจาก  https://commons.wikimedia.org/wiki/File:จิตรกรรมฝาผนัง\_วัดแก้วไพฑูรย์\_(7).jpg สืบค้นเมื่อวันที่ 23 กันยายน 2561}   และภาพที่ \ref{image:thaiart_case02_original} \footnote{ภาพถ่ายที่วัดแก้วไพฑูรย์; ภาพจาก  https://commons.wikimedia.org/wiki/File:จิตรกรรมฝาผนัง\_วัดแก้วไพฑูรย์\_(2).jpg สืบค้นเมื่อวันที่ 23 กันยายน 2561} คือ จิตรกรรมฝาผนังวัดแก้วไพฑูรย์ ภาพที่ \ref{image:thaiart_case03_original} \footnote{ภาพถ่ายที่วัดพระยืนพุทธบาทยุคล; ภาพจาก  https://commons.wikimedia.org/wiki/File:Wat\_Phra\_Yuen\_Phutthabat\_Yukhon\_01.jpg สืบค้นเมื่อวันที่ 23 กันยายน 2561}  คือ จิตรกรรมฝาผนังวัดพระยืนพุทธบาทยุคล ภาพที่ \ref{image:thaiart_case04_original} \footnote{ภาพถ่ายที่วัดคงคาราม; ภาพจาก  https://commons.wikimedia.org/wiki/File:จิตรกรรม\_อุโบสถวัดคงคาราม.JPG สืบค้นเมื่อวันที่ 23 กันยายน 2561} คือ จิตรกรรมฝาผนังวัดคงคาราม และภาพที่ \ref{image:thaiart_case05_original} \footnote{ภาพถ่ายที่วัดท่าถนน; ภาพจาก  https://commons.wikimedia.org/wiki/File:Wat\_Tha\_Thanon\_05.JPG สืบค้นเมื่อวันที่ 23 กันยายน 2561} คือ จิตรกรรมฝาผนังวัดท่าถนน
+	โดยจะทำให้ข้อมูลข้องทั้ง 5 ภาพเกิดความเสียหาย โดยใช้รอยความเสียหายจากภาพาพระเจ้าสร้างอดัม
 	
 	\begin{figure}[H]
 		\centering
-		\begin{subfigure}{0.25\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
-			\includegraphics[width=0.7\linewidth]{images/thaiart/case01-original.png}
+			\includegraphics[width=0.8\linewidth]{images/thaiart/case01-original.png}
 			\caption{วัดแก้วไพฑูรย์}
+			\label{image:thaiart_case01_original}
 		\end{subfigure}
-		\begin{subfigure}{0.25\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
-			\includegraphics[width=0.7\linewidth]{images/thaiart/case02-original.png}
+			\includegraphics[width=0.8\linewidth]{images/thaiart/case02-original.png}
 			\caption{วัดแก้วไพฑูรย์}
+			\label{image:thaiart_case02_original}
 		\end{subfigure}
-		\begin{subfigure}{0.25\linewidth}
+	
+			\bigskip
+	
+	
+		\begin{subfigure}{0.4\linewidth}
 			\centering
-			\includegraphics[width=0.7\linewidth]{images/thaiart/case03-original.png}
+			\includegraphics[width=0.8\linewidth]{images/thaiart/case03-original.png}
 			\caption{วัดพระยืนพุทธบาทยุคล}
-		\end{subfigure}
-
-		\bigskip
-		
-		\begin{subfigure}{0.2\linewidth}
+			\label{image:thaiart_case03_original}			
+		\end{subfigure}		
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/thaiart/case04-original.png}
 			\caption{วัดคงคาราม}
+			\label{image:thaiart_case04_original}			
 		\end{subfigure}
-		\begin{subfigure}{0.2\linewidth}
+	
+			\bigskip
+	
+	
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/thaiart/case05-original.png}
 			\caption{วัดท่าถนน}
+			\label{image:thaiart_case05_original}			
 		\end{subfigure}
-		\begin{subfigure}{0.2\linewidth}
-			\centering
-			\includegraphics[width=0.8\linewidth]{images/thaiart/Restoration_of_the_Sistine_Chapel_frescoes.png}
-			\caption{พระเจ้าสร้างอดัม}
-		\end{subfigure}
-		\begin{subfigure}{0.2\linewidth}
+		\begin{subfigure}{0.4\linewidth}
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/thaiart/inpaint-domain.png}
 			\caption{รอยความเสียหาย}
 		\end{subfigure}
 	\end{figure}
-	
-	 \hspace{1cm}  จากนั้นทำการทดสอบการต่อเติมภาพทั้ง 5 โดยทดสอบวิธีสปริทเบรกแมน วิธีทีที่พัฒนาขึ้นโดยใช้วิธีการสปริทเบรกแมนพร้อมทั้งการใช้พีระมิดรูปภาพที่มีการทำซ้ำแต่ละชั้นเป็น 10/3/3/10 และวิธี Fast Marching Method ซึ่งถูกเขีียนไว้ในชุดคำสั่ง OpenCV ได้ผลลัพธ์ออกเป็นดังตารางนี้
+	\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/thaiart/case01-toinpaint.png}
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/thaiart/case02-toinpaint.png}
+	\end{subfigure}
+	\vspace{1cm}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/thaiart/case03-toinpaint.png}			
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/thaiart/case04-toinpaint.png}			
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/thaiart/case05-toinpaint.png}			
+	\end{subfigure}
+	\caption{ภาพที่ทำให้เสียหาย}
+\end{figure}
+	 \hspace{1cm} จากนั้นทำการทดสอบการต่อเติมภาพทั้ง 5 โดยทดสอบวิธีสปริทเบรกแมน และวิธีทีที่พัฒนาขึ้นโดยใช้วิธีการสปริทเบรกแมนพร้อมทั้งการใช้พีระมิดรูปภาพที่มีการทำซ้ำแต่ละชั้นเป็น 10/3/3/10  ได้ผลลัพธ์ออกมาเป็นดังนี้
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/splitbergman_case01.png}
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/splitbergman_case02.png}
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/splitbergman_case03.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/splitbergman_case04.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/splitbergman_case05.png}			
+		\end{subfigure}
+		\caption{ผลลัพธ์จากวิธีการสปริทเบรกแมน}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/multisplitbergman_case01.png}
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/multisplitbergman_case02.png}
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/multisplitbergman_case03.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/multisplitbergman_case04.png}			
+		\end{subfigure}
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/result_ex4/multisplitbergman_case05.png}			
+		\end{subfigure}
+		\caption{ผลลัพธ์จากวิธีการที่พัฒนาขึ้น}
+	\end{figure}
 
+	 \hspace{1cm} โดยได้ผลลัพธ์ออกเป็นดังตารางนี้
+	\begin{table}[H]
+		\centering
+		\begin{tabular}[ht]{|l|c|c|c|c|c|}
+			\hline
+			วิธีการ  & รูปภาพ &เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+			\hline
+			สปริทเบรกแมน & 1 &  &  & \\ 
+			 & 2 &  &  & \\
+			 & 3 &  &  & \\
+			 & 4 &  &  & \\
+			 & 5 &  &  & \\
+			 \hline
+			วิธีการที่พัฒนาขึ้น & 1 &  & & \\
+			 & 2 &  & & \\
+			 & 3 &  & & \\
+			 & 4 &  & & \\
+			 & 5 &  & & \\
+			\hline
+		\end{tabular}
+		\caption{แสดงผลลัพธ์เฉลี่ยของการซ่อมแซมภาพศิลปะไทย}
+	\end{table}	
+	ซึ่งได้ผลลัพธ์เฉลี่ยออกมาดังนี้
 	\begin{table}[H]
 		\centering
 		\begin{tabular}[ht]{|l|c|c|c|c|}
@@ -489,7 +1089,6 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 			\hline
 			สปริทเบรกแมน & 0.9518894 & 36.8499 & 0.9999882 \\ 
 			วิธีการที่พัฒนาขึ้น & 0.2826256 & 36.79616 & 0.999988 \\
-			OpenCV - Fast Marching Method & 0.0198226 & 35.56518 & 0.9968536 \\
 			\hline
 		\end{tabular}
 		\caption{แสดงผลลัพธ์เฉลี่ยของการซ่อมแซมภาพศิลปะไทย}
@@ -561,16 +1160,17 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 	จะได้ว่าส่วนที่เหลือเป็นสีขาวในภาพคือบทบรรยาย แต่ว่าขอบของบทบรรยายก็ต้องถูกลบออกไปด้วย จึงทำการ dilate เพื่อขยายขอบของบทบรรยายให้เท่ากับบทบรรยายที่อยู่ในเฟรมวิดีโอ และสิ่งที่เหลืออยู่คือโดเมนต่อเติมที่จะนำไปใช้ในการซ่อมแซมภาพต่อไป
 	
 	\hspace{1cm} ซึ่งวิธีการหาบทบรรยายที่กล่าวไปข้างต้น จะทำการทดสอบกับบทความ lorem ipsum ที่ถูกแปลเป็นภาษาไทย ภาษาอังกฤษ และภาษาญี่ปุ่น โดยมีความสามารถในการหาโดเมนต่อเติมใบบทบรรยายภาษาต่างๆ  เฉลี่ยดังนี้
-	
+	% scalebox ย่อตารางได้
+	%TODO ทำภาพแถวละ2
 	\begin{table}[H]
 		\centering
 		\begin{tabular}[ht]{|l|c|c|c|c|}
 			\hline
 			ภาษา  & จำนวนพิกเซลในโดเมน & จำนวนพิกเซลที่ตรวจพบ & จำนวนพิกเซลที่ผิดพลาด & ร้อยละการผิดพลาด \\
 			\hline
-			ไทย & 23222219.8 & 24083124.8 & 2141201 & 9.220398882 \\
-			อังกฤษ & 27278744.8 & 28598424.2 & 3714320.8 & 13.61613769 \\
-			ญี่ปุ่น & 28544173 & 30103466.2 & 3740970.6 & 13.10584872 \\
+			ไทย & 23,222,220 & 24083,125 & 2141201 & 9.22 \\
+			อังกฤษ & 27,278,745 & 28,598,424 & 3714321 & 13.62 \\
+			ญี่ปุ่น & 28,544,173 & 30,103,466 & 3740971 & 13.11 \\
 			\hline
 		\end{tabular}
 		\caption{แสดงความคาดเคลื่อนเฉลี่ยของการหาโดเมนต่อเติม ในบทบรรยายภาษาต่างๆ}
@@ -640,7 +1240,6 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 		\hline
 		สปริทเบรกแมน & * & * & * \\
 		ที่คิดค้นขึ้น & 75.75894242 & 29.4711168 & 0.947267 \\
-		OpenCV - Fast Marching Method & 48.64641114 & 33.0566406 & 0.9621476 \\
 		\hline
 	\end{tabular}
 	\caption{แสดงผลลัพธ์เฉลี่ยของการลบบทบรรยายจากอนิเมะ}
@@ -698,6 +1297,13 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 	%\url{https://en.wikipedia.org/wiki/Pyramid_(image_processing)#cite_ref-1}
 	%\url{https://en.wikipedia.org/wiki/Multiresolution_analysis}
 	
+	\bibitem{ref:PSNR}
+	David Salomon. Data Compression: The Complete Reference (4 ed.). Springer. pp. 281. 2007.
+	%ISBN 978-1846286025.  \url{https://books.google.co.th/books?id=ujnQogzx_2EC&lpg=PA281&ots=FolwqB8qsN&dq=PSNR+infinite&pg=PA281&redir_esc=y#v=onepage&q=PSNR%20infinite&f=false}
+	
+	\bibitem{ref:SSIM}
+	Zhou Wang, Alan Conrad Bovik, Hamid Rahim Sheikh and Eero P. Simoncelli, "Image quality assessment: from error visibility to structural similarity," in IEEE Transactions on Image Processing, vol. 13, no. 4, pp. 600-612, 2004.
+	%\url{https://doi.org/10.1109/TIP.2003.819861}
 	
 \end{thebibliography}
 \end{document}
