@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  21 NOV 2018 01:38
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  21 NOV 2018 18:45
 entering extended mode
 **./ProjectProgress.tex
 (ProjectProgress.tex
@@ -1052,20 +1052,27 @@ Overfull \hbox (27.33064pt too wide) detected at line 192
 []
  []
 
-[5]
+[5] [6]
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/it' will be
-(Font)              scaled to size 14.75995pt on input line 225.
+(Font)              scaled to size 14.75995pt on input line 242.
+ [7
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 198--225
-$[]$  
- []
+] [8
 
-[6] [7]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 318--381
+] [9
+
+]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 321--382
 []$[]$  
  []
 
-[8] [9] [10] [11] [12]
+[10
+
+] [11] [12
+
+] [13
+
+]
 File: images/image_inpaint_synthetic/case01-original.png Graphic file (type bmp
 )
 <images/image_inpaint_synthetic/case01-original.png>
@@ -1096,7 +1103,9 @@ p)
 File: images/image_inpaint_synthetic/case05-toinpaint.png Graphic file (type bm
 p)
 <images/image_inpaint_synthetic/case05-toinpaint.png>
- [13] [14]
+ [14
+
+] [15]
 File: images/result_ex1/timemarch01.png Graphic file (type bmp)
 <images/result_ex1/timemarch01.png>
 File: images/result_ex1/timemarch02.png Graphic file (type bmp)
@@ -1107,6 +1116,7 @@ File: images/result_ex1/timemarch04.png Graphic file (type bmp)
 <images/result_ex1/timemarch04.png>
 File: images/result_ex1/timemarch05.png Graphic file (type bmp)
 <images/result_ex1/timemarch05.png>
+ [16]
 File: images/result_ex1/fixpoint01.png Graphic file (type bmp)
 <images/result_ex1/fixpoint01.png>
 File: images/result_ex1/fixpoint02.png Graphic file (type bmp)
@@ -1117,7 +1127,7 @@ File: images/result_ex1/fixpoint04.png Graphic file (type bmp)
 <images/result_ex1/fixpoint04.png>
 File: images/result_ex1/fixpoint05.png Graphic file (type bmp)
 <images/result_ex1/fixpoint05.png>
- [15]
+ [17]
 File: images/result_ex1/splitbergman01.png Graphic file (type bmp)
 <images/result_ex1/splitbergman01.png>
 File: images/result_ex1/splitbergman02.png Graphic file (type bmp)
@@ -1128,24 +1138,27 @@ File: images/result_ex1/splitbergman04.png Graphic file (type bmp)
 <images/result_ex1/splitbergman04.png>
 File: images/result_ex1/splitbergman05.png Graphic file (type bmp)
 <images/result_ex1/splitbergman05.png>
- [16] [17] [18]
+ [18] [19]
 File: images/image_inpaint_synthetic/image_pyramid.png Graphic file (type bmp)
 <images/image_inpaint_synthetic/image_pyramid.png>
- [19]
-File: images/image_inpaint_synthetic/image_inital_solution.png Graphic file (ty
-pe bmp)
-<images/image_inpaint_synthetic/image_inital_solution.png>
- [20]
-Overfull \hbox (0.96135pt too wide) in paragraph at lines 734--734
+
+Overfull \hbox (0.96135pt too wide) in paragraph at lines 753--753
 \OML/cmm/m/it/12 MultiSplitBergmanColorInpaint\OT1/cmr/m/n/12 (\OML/cmm/m/it/12
  x; y; ^^U; ^^R; g; N[]; N[]; N[]; "; c \OT1/cmr/m/n/12 + 
  []
 
-[21]
-Overfull \vbox (65.5424pt too high) has occurred while \output is active []
+[20] [21] [22
 
+]
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
+(Font)              scaled to size 12.29996pt on input line 807.
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
+(Font)              scaled to size 8.60997pt on input line 807.
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
+(Font)              scaled to size 6.14998pt on input line 807.
+ [23
 
-[22] [23] [24]
+]
 File: images/just10enough/only10time.png Graphic file (type bmp)
 <images/just10enough/only10time.png>
 File: images/just10enough/only100time.png Graphic file (type bmp)
@@ -1154,25 +1167,15 @@ File: images/just10enough/only1000time.png Graphic file (type bmp)
 <images/just10enough/only1000time.png>
 File: images/just10enough/only10000time.png Graphic file (type bmp)
 <images/just10enough/only10000time.png>
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
+(Font)              scaled to size 13.46844pt on input line 907.
 
-Underfull \hbox (badness 4492) in paragraph at lines 914--914
-[]\TU/THSarabunNew(0)/m/n/12 ตารางที่ 5: |แสดงผลลัพธ์ของการใช้พีระมิดภาพในการต่
+Underfull \hbox (badness 4492) in paragraph at lines 954--954
+[]\TU/THSarabunNew(0)/m/n/12 ตารางที่ 7: |แสดงผลลัพธ์ของการใช้พีระมิดภาพในการต่
 อเติมโดยกำหนดให้ชั้นรูปภาพขนาดใหญ่สุดทำซ้ำ
  []
 
-[25] [26]
-LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 12.29996pt on input line 937.
-LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 8.60997pt on input line 937.
-LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 6.14998pt on input line 937.
-
-Underfull \hbox (badness 10000) in paragraph at lines 937--937
-[][][]\TU/THSarabunNew(0)/m/n/10 ภาพถ่ายที่วัดพระยืนพุทธบาทยุคล; ภาพจาก https:/
-/commons.wikimedia.org/wiki/
- []
-
+[24] [25]
 File: images/thaiart/case01-original.png Graphic file (type bmp)
 <images/thaiart/case01-original.png>
 File: images/thaiart/case02-original.png Graphic file (type bmp)
@@ -1195,7 +1198,7 @@ File: images/thaiart/case04-toinpaint.png Graphic file (type bmp)
 <images/thaiart/case04-toinpaint.png>
 File: images/thaiart/case05-toinpaint.png Graphic file (type bmp)
 <images/thaiart/case05-toinpaint.png>
-[27] [28]
+ [26] [27]
 File: images/result_ex4/splitbergman_case01.png Graphic file (type bmp)
 <images/result_ex4/splitbergman_case01.png>
 File: images/result_ex4/splitbergman_case02.png Graphic file (type bmp)
@@ -1206,6 +1209,7 @@ File: images/result_ex4/splitbergman_case04.png Graphic file (type bmp)
 <images/result_ex4/splitbergman_case04.png>
 File: images/result_ex4/splitbergman_case05.png Graphic file (type bmp)
 <images/result_ex4/splitbergman_case05.png>
+ [28]
 File: images/result_ex4/multisplitbergman_case01.png Graphic file (type bmp)
 <images/result_ex4/multisplitbergman_case01.png>
 File: images/result_ex4/multisplitbergman_case02.png Graphic file (type bmp)
@@ -1216,61 +1220,48 @@ File: images/result_ex4/multisplitbergman_case04.png Graphic file (type bmp)
 <images/result_ex4/multisplitbergman_case04.png>
 File: images/result_ex4/multisplitbergman_case05.png Graphic file (type bmp)
 <images/result_ex4/multisplitbergman_case05.png>
- [29] [30] [31]
+ [29] [30]
 File: images/inori-subbed-preview.png Graphic file (type bmp)
 <images/inori-subbed-preview.png>
- [32]
-File: images/subtitle_detection/detection-original.png Graphic file (type bmp)
-<images/subtitle_detection/detection-original.png>
-File: images/subtitle_detection/detection-threshold.png Graphic file (type bmp)
-
-<images/subtitle_detection/detection-threshold.png>
-File: images/subtitle_detection/detection-inverse.png Graphic file (type bmp)
-<images/subtitle_detection/detection-inverse.png>
-File: images/subtitle_detection/detection-blackfill.png Graphic file (type bmp)
-
-<images/subtitle_detection/detection-blackfill.png>
-File: images/subtitle_detection/detection-erode-opening.png Graphic file (type 
-bmp)
-<images/subtitle_detection/detection-erode-opening.png>
-File: images/subtitle_detection/detection-stoke.png Graphic file (type bmp)
-<images/subtitle_detection/detection-stoke.png>
- [33]
-Overfull \hbox (24.2274pt too wide) in paragraph at lines 1167--1176
+ [31]
+Overfull \hbox (56.15334pt too wide) in paragraph at lines 1186--1209
  [][] 
  []
 
-File: images/skipborrow/prevframe.png Graphic file (type bmp)
-<images/skipborrow/prevframe.png>
-File: images/skipborrow/currentframe.png Graphic file (type bmp)
-<images/skipborrow/currentframe.png>
-File: images/skipborrow/prevframeinverse.png Graphic file (type bmp)
-<images/skipborrow/prevframeinverse.png>
-File: images/skipborrow/currentframeinverse.png Graphic file (type bmp)
-<images/skipborrow/currentframeinverse.png>
-[34] [35]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1309.
- [36]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1309.
+
+Overfull \hbox (24.2274pt too wide) in paragraph at lines 1213--1222
+ [][] 
+ []
+
+[32
+
+] [33] [34
+
+] [35
+
+] [36]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1427.
+ [37]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1427.
  (ProjectProgress.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1309.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1309.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1427.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1427.
 
 Package rerunfilecheck Info: File `ProjectProgress.out' has not changed.
 (rerunfilecheck)             Checksum: 7FF7BA285D24A11B8E6069A8E309D3BE.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1309.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1427.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 53 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25752 strings out of 427798
- 465378 string characters out of 3151797
- 556829 words of memory out of 3000000
- 29482 multiletter control sequences out of 15000+200000
- 543774 words of font info for 102 fonts, out of 3000000 for 9000
+ 25706 strings out of 427798
+ 463431 string characters out of 3151797
+ 555219 words of memory out of 3000000
+ 29448 multiletter control sequences out of 15000+200000
+ 545601 words of font info for 111 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 42i,21n,65p,1255b,641s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,21n,65p,1315b,645s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on ProjectProgress.pdf (36 pages).
+Output written on ProjectProgress.pdf (37 pages).
