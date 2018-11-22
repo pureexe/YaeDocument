@@ -1211,4 +1211,42 @@ File: images/result_ex4/multisplitbergman_case02.png Graphic file (type bmp)
 File: images/result_ex4/multisplitbergman_case03.png Graphic file (type bmp)
 <images/result_ex4/multisplitbergman_case03.png>
 File: images/result_ex4/multisplitbergman_case04.png Graphic file (type bmp)
-<images/result_ex4/mul
+<images/result_ex4/multisplitbergman_case04.png>
+File: images/result_ex4/multisplitbergman_case05.png Graphic file (type bmp)
+<images/result_ex4/multisplitbergman_case05.png>
+ [24] [25]
+File: images/inori-subbed-preview.png Graphic file (type bmp)
+<images/inori-subbed-preview.png>
+ [26] [27] [28
+
+] [29
+
+] [30
+
+] [31]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1250.
+ [32]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1250.
+
+(ProjectProgress.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1250.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1250.
+
+Package rerunfilecheck Info: File `ProjectProgress.out' has not changed.
+(rerunfilecheck)             Checksum: 1EAB7FF8E1B8F291C16E4A88A4B83060.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1250.
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 53 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 25711 strings out of 427798
+ 463608 string characters out of 3151797
+ 555231 words of memory out of 3000000
+ 29452 multiletter control sequences out of 15000+200000
+ 545609 words of font info for 112 fonts, out of 3000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 42i,20n,65p,1315b,603s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on ProjectProgress.pdf (32 pages).
