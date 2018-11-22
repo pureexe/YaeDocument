@@ -181,7 +181,7 @@
 \hspace{1cm} ต่อไปจะกล่าวทบทวนวิธีการเชิงตัวเลขสำหรับแก้สมการเชิงอนุพันธ์ย่อยใน (\ref{e3}) 
 
 \begin{itemize}
-	\item [(1)] วิธีการเดินเวลาแบบชัดแจ้ง (explicit time marching method) 
+	\item [(1)] วิธีการเดินเวลาแบบชัดแจ้ง (explicit time marching method)
 	
 	คณะวิจัย \cite{ref:ROF-template} ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนโดยใช้วิธีการเดินเวลาแบบชัดแจ้ง ซึ่งสามารถประยุกต์เป็นวิธีเชิงตัวเลขสำหรับการต่อเติมภาพได้ดังนี้
 	
@@ -191,6 +191,23 @@
 	\label{e4}
 	\end{align}
 	เมื่อ $t_k=t_0+k\tau\ (\tau>0)$  แทนขั้นเวลาที่ $k$ และ $t_0=0$ แทนขั้นเวลาเริ่มต้น
+	
+	 วิธีเดินเวลาแบบชัดแจ้งสำหรับภาพเฉดเทามีขั้นตอนวิธีดังนี้ 
+	\begin{algorithm}[H]
+		\caption{ETM Method for TV-based Image Inpainting}		
+		\SetKwFunction{FMain}{$u \longleftarrow EMT$}
+		\SetKwProg{Fn}{}{}{end}
+		\Fn{\FMain{$u,z,\lambda,\beta,\tau,N,\varepsilon$}}{
+			\textbf{initialize}
+			$i = 0$; $z = u$; $err = 1$\\
+			\While{$ i < N $ \textbf{and} $err > \varepsilon$}{
+				$u^{old} = u$\\
+				$u = u + \tau\left(\nabla \cdot\left(\dfrac{\nabla u}{\sqrt{u_x^2 + u_y^2+ \beta}}\right) + \lambda(u-z) \right)$ \\ 		
+				$err = \frac{||u-u^{old}||}{||u||}$ \\
+				$ i = i + 1 $
+			}
+		}
+	\end{algorithm}
 	
 	\item [(2)] วิธีการทำซ้ำแบบจุดตรึง (fixed-point iteration method)
 	
@@ -207,69 +224,31 @@
 \begin{align*}
 |\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
  \end{align*}
-จึงทำให้สามารถเขียน วิธีเดินเวลาแบบชัดแจ้งสำหรับภาพเฉดเทาเป็นขั้นตอนวิธีได้ดังนี้ 
+
+\clearpage
+วิธีการทำซ้ำแบบจุดตรึงมีขั้นตอนดังนี้
 \begin{algorithm}[H]
-	\caption{Explicit time marching gray-scale solver}
-	\KwIn{
-		\\
-		\hspace{1cm} $u$ is image which is damaged image \\
-		\hspace{1cm} $\lambda$ is regularization parameter which has explain in equation (\ref{e2}) \\
-		\hspace{1cm} $\beta$ is positive rational number which is use to avoid devide by zero \\
-		\hspace{1cm} $\tau$ is positive rational number which is marching parameter \\
-		\hspace{1cm} $N$ is positive interger  which is number of maximum loop iteration \\
-		\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
-	}
-	\KwOut{inpainted image}    
-	\SetKwFunction{FMain}{ExplictTimeMarchingInpaint}
-	\SetKwProg{Fn}{Function}{:}{}
-	\Fn{\FMain{$u, \lambda, \tau, \beta, N, \varepsilon$}}{
-		\textbf{initialize}
-		$i = 0$ 
-		$z = u$\\
+	\caption{FP Method for TV-based Image Inpainting}	
+	\SetKwFunction{FMain}{FP}
+	\SetKwProg{Fn}{}{}{end}
+	\Fn{\FMain{$u, z,\lambda, \beta, N, \varepsilon$}}{		
+		\textbf{initialize} $i=0$;$u = z$;$err = 1 $\\
 		\While{$ i < N $ \textbf{and} $err > \varepsilon$}{
-			$u^{old} = u$\\
-			$u = u + \tau\left(\nabla \cdot\left(\dfrac{\nabla u}{\sqrt{u_x^2 + u_y^2+ \beta}}\right) + \lambda(u-z) \right)$ \\ 		
+			$ u^{old} = u$ \\
+			$u = GS(u, z, \lambda, \beta, N_{gs})$\\
 			$err = \frac{||u-u^{old}||}{||u||}$ \\
 			$ i = i + 1 $
 		}
 		\textbf{return} $ u $ 
 	}
-\end{algorithm}
-
-\clearpage
-และจะสามารถเขียน ขั้นตอนวิธีจุดตรึงสำหรับภาพเฉดเทาเป็นขั้นตอนวิธีได้ดังนี้ 
-\begin{algorithm}[H]
-	\caption{Fixed point gray-scale solver}
-	\KwIn{
-		\\
-		\hspace{1cm} $u$ is image which is damaged image \\
-		\hspace{1cm} $\lambda$ is regularization parameter which has explain in equation (\ref{e2}) \\
-		\hspace{1cm} $\beta$ is positive rational number which is use to avoid devide by zero \\
-		\hspace{1cm} $N_{gs}$ is positive integer which is number of gauss seidel iteration \\
-		\hspace{1cm} $N$ is positive interger  which is number of maximum loop iteration \\
-		\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
-	}
-	\KwOut{inpainted image}    
-	\SetKwFunction{FMain}{FixedPointInpaint}
-	\SetKwProg{Fn}{Function}{:}{}
-	\Fn{\FMain{$u, \lambda, \beta, N_{gs},  N, \varepsilon$}}{		
-		\textbf{initialize} $i=0$\\
-		$u = z$ \\
-		\While{$ i < N $ \textbf{and} $err > \varepsilon$}{
-			$ u^{old} = u$ \\
-			$u = InnerFixedPointInpaint(u, z, \lambda, \beta, N_{gs})$\\
-			$err = \frac{||u-u^{old}||}{||u||}$		
-			$ i = i + 1 $
-		}
-		\textbf{return} $ u $ 
-	}
-	\SetKwFunction{FMain}{InnerFixedPointInpaint}
+	\SetKwFunction{FMain}{$u \longleftarrow GS(u, z, \lambda, \beta, N_{gs})$}
 	\Fn{\FMain{$u, z, \lambda, \beta, N_{gs}$}}{
 		\textbf{initialize} $k = 0$\\
-		compute $D(u) = \frac{1}{\sqrt{u_x^2+u_y^2+\beta}}$\\
+		compute $D(u)_{i,j} = \frac{1}{\sqrt{u_x^2+u_y^2+\beta}}, 1 \leq i \leq n_x, 1 \leq j \leq n_y$\\
 		\While{$k < N_{gs}$}{
-				$u_{i,j}^{k+1} = \frac{\lambda{i,j}z_{i,j}+                (D_{i,j}(u_{i+1,j}+u_{i,j+1})+D_{i-1,j}u_{i-1,j}+D_{i,j-1}u_{i,j-1})}{
-				\lambda_{i,j}+(2D_{i,j}+D_{i-1,j}+D_{i,j-1})}$
+				$u_{i,j}^{k+1} = \frac{\lambda_{i,j}z_{i,j}+                (D_{i,j}(u_{i+1,j}^k+u_{i,j+1}^k)+D_{i-1,j}u_{i-1,j}^{k+1}+D_{i,j-1}u_{i,j-1}^{k+1})}{
+				\lambda_{i,j}+(2D_{i,j}+D_{i-1,j}+D_{i,j-1})}$\\
+				$k = k+1$
 		}
 		\textbf{return} $ u $ 
 	}
@@ -284,7 +263,7 @@
 	
 	เริ่มจากการแนะนำเวกเตอร์เสริม $\boldsymbol{w}$ พารามิเตอร์เบรกแมน (Bregman parameter) $\boldsymbol{b}$ และพารามิเตอร์เพนัลที (panalty parameter) $\theta>0$ และเขียน (\ref{e1}) ใหม่ ดังนี้
 	\begin{align}
-	\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
+	\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  | \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
 	\label{e6}
 	\end{align}
 	สำหรับการหาคำตอบของ (\ref{e6}) เราจะใช้วิธีการหาค่าต่ำที่สุดแบบสลับ (alternating minimization method) โดยเริ่มจากการตรึง $\boldsymbol{w}^{\text{old}}$ และ $\boldsymbol{b}^{\text{old}}$ จากนั้นแก้ปัญหาย่อย
@@ -294,7 +273,7 @@
 	\end{align}
 	จากนั้นใช้ $u^{\text{New}}$ ที่ได้จากการแก้ปัญหาย่อยใน (\ref{e7}) เพื่อแก้ปัญหาย่อย
 	\begin{align}
-	\boldsymbol{w}^{\text{New}}=\underset{\boldsymbol{w}}{\arg\min} \{ \mathcal{J}_2(\boldsymbol{w}) = \int_{\Omega}  |\nabla \boldsymbol{w}|  d\Omega  + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u^{\text{New}} + \boldsymbol{b}^{\text{old}}) d\Omega \}
+	\boldsymbol{w}^{\text{New}}=\underset{\boldsymbol{w}}{\arg\min} \{ \mathcal{J}_2(\boldsymbol{w}) = \int_{\Omega}  |\boldsymbol{w}|  d\Omega  + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u^{\text{New}} + \boldsymbol{b}^{\text{old}}) d\Omega \}
 	\label{e8}
 	\end{align}
 	สุดท้ายจึงปรับปรุงพารามิเตอร์เบรกแมน 
@@ -303,39 +282,37 @@
 	\label{e9}
 	\end{align}
 	ดำเนินการเช่นนี้จนกระทั่ง $||u^{\text{new}}-u^{\text{old}}||< \epsilon_1$ หรือ $\text{New}>\epsilon_2$ เมื่อ $\epsilon_1,\epsilon_2>0$  
-	\clearpage
-	จะสามารถเขียน ขั้นตอนวิธีสปริทเบรกแมนสำหรับภาพเฉดเทาเป็นขั้นตอนวิธีได้ดังนี้ 
+	วิธีการสปริทเบรกแมนมีขั้นตอนวิธีดังนี้
 	\begin{algorithm}[H]
-		\caption{Split-bregman gray-scale solver}
-		\KwIn{
-			\\
-			\hspace{1cm} $u$ is image which is damaged image \\
-			\hspace{1cm} $\lambda$ is regularization parameter that has explain in equation (\ref{e2}) \\
-			\hspace{1cm} $\theta$ is positive rational number which is panelty parameter that shouldn't too big or too small \\
-			\hspace{1cm} $N$ is positive interger  which is number of maximum loop iteration \\
-			\hspace{1cm} $N_{gs}$ is positive integer which is number of gauss seidel iteration \\
-			\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
-		}
-		\KwOut{inpainted image}    
-		\SetKwFunction{FMain}{SplitBregmanInpaint}
-		\SetKwProg{Fn}{Function}{:}{}
-		\Fn{\FMain{$u, \lambda, \theta, N_{gs}, N, \varepsilon$}}{
+		\caption{SB method for TV-based Image Inpainting}    
+		\SetKwFunction{FMain}{$u \longleftarrow SB$}
+		\SetKwProg{Fn}{}{}{end}
+		
+		\Fn{\FMain{$u, z,\lambda, \theta, N_{gs}, N, \varepsilon$}}{
 			\textbf{initialize}
 			$i = 0$,
-			$b = \vec{0}$,
-			$w = \vec{0}$,
-			$z = u$ \\
+			$\boldsymbol{b} = \vec{0}$,
+			$\boldsymbol{w} = \vec{0}$,
+			$u = u_{0}$ \\
 			\While{$ i < N $ \textbf{and} $err > \varepsilon$}{
-				$u^{old} = u$ \\
-				$u =\underset{u}{\arg\min} \{ \mathcal{J}_1(u) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega + \frac{\theta}{2} \int_{\Omega} (w - \nabla u + b) d\Omega \}$ \\
-				$w = \underset{w}{\arg\min} \{ \mathcal{J}_2({w) = \int_{\Omega}  |\nabla w|  d\Omega  + \frac{\theta}{2} \int_{\Omega} (w - \nabla u + b}) d\Omega \}$\\
-				$ b = b + \nabla u - w $ \\
+				$u^{old} = u$; 
+				$w^{old} = w$;
+				$b^{old} = b$;
+				 \\
+				$u=\underset{u}{\arg\min} \{ \mathcal{J}_1(u) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w}^{\text{old}} - \nabla u + \boldsymbol{b}^{\text{old}}) d\Omega \}$ \\
+				$w =\underset{\boldsymbol{w}}{\arg\min} \{ \mathcal{J}_2(\boldsymbol{w}) = \int_{\Omega}  | \boldsymbol{w}|  d\Omega  + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u^{\text{New}} + \boldsymbol{b}^{\text{old}}) d\Omega \}$\\
+				$ b = b^{old} + \nabla u - \boldsymbol{w} $ \\
 				$err = \frac{||u-u^{old}||}{||u||}$ \\
 				$ i = i + 1 $ \\
 			}
-			\textbf{return} $ u $ 
 		}
 	\end{algorithm}
+	\clearpage
+	\textbf{หมายเหตุ:}
+	\begin{itemize}
+		\item [(1)] แก้ปัญหา $ u = \underset{u}{\arg\min} \mathcal{J}_1(u) $ ด้วยการคำนวณคำตอบของ $ - \theta \triangle u + \lambda u = \lambda z - \theta \nabla \cdot (\boldsymbol{w}-\boldsymbol{b})$ โดยใช้ Finite Difference Method และการทำซ้ำ Gauss-seidel จำนวน $N_{gs}$ รอบ
+		\item [(2)] แก้ปัญหา $ \boldsymbol{w} = \underset{\boldsymbol{w}}{\arg\min} \mathcal{J}_2(\boldsymbol{w}) $ ด้วยการคำนวณคำตอบของ $\boldsymbol{w} = max((\nabla u + \boldsymbol{b}) - \frac{1}{\theta},0)$
+	\end{itemize}
 \end{itemize}
 
 \subsection{ตัวแบบการต่อเติมภาพสีที่ใช้การแปรผันรวม}\label{inpaint-model-color}
@@ -351,7 +328,6 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 \min_{\boldsymbol{u}} \{ \bar{\mathcal{J}}(\boldsymbol{u})= \mathcal{\bar{D}}(\boldsymbol{u},\boldsymbol{z})+  \mathcal{\bar{R}}(\boldsymbol{u}) \}
 \label{e10}
 \end{align}
-\clearpage
 เมื่อ
 \begin{align*}
 \mathcal{\bar{D}}(\boldsymbol{u},\boldsymbol{z}) 
@@ -370,97 +346,33 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 \end{align}
 
 \vspace{1cm}
-ซึ่งสามารถประยุกต์ใช้วิธีภาพเฉดเทา มาใช้งานกับภาพสีได้ดังต่อไปนี้ \\
-สำหรับวิธีการเดินเวลา สามารถประยุกต์จากขั้นตอนสำหรับภาพเฉดเทาเป็นขั้นตอนสำหรับภาพสีได้ดังนี้
-
+สำหรับขั้นตอนวิธีสปริทเบรกแมนสำหรับภาพสี แสดงได้ดังนี้
 \begin{algorithm}[H]
-\caption{Explicit time marching color image solver}
-\KwIn{
-	\\
-	\hspace{1cm} $u$ is image which is damaged image \\
-	\hspace{1cm} $\lambda$ is regularization parameter which has explain in equation (\ref{e2}) \\
-	\hspace{1cm} $\beta$ is positive rational number which is use to avoid devide by zero \\
-	\hspace{1cm} $\tau$ is positive rational number which is marching parameter \\
-	\hspace{1cm} $N$ is positive interger  which is number of maximum loop \\
-	\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
-}
-\KwOut{inpainted image}    
-\SetKwFunction{FMain}{ExplictTimeMarchingColorInpaint}
-\SetKwProg{Fn}{Function}{:}{}
-\Fn{\FMain{$u, \lambda, \tau, \beta, N, \varepsilon$}}{
-	\ForEach{$l, l \in \{1,2,3\}$}{
-		$u_l =ExplictTimeMarchingInpaint(u_l, \lambda, \tau, \beta, N, \varepsilon) $
-	}
-	\textbf{return} $ u $ 
-}
-\end{algorithm}
-
-ในทำนองเดียวกัน จะได้ว่าขั้นตอนการต่อเติมภาพสีสำหรับวิธีการตรึงจุด คือ
-
-\begin{algorithm}[H]
-	\caption{Fixed point color solver}
-	\KwIn{
-		\\
-		\hspace{1cm} $u$ is image which is damaged image \\
-	\hspace{1cm} $\lambda$ is regularization parameter which has explain in equation (\ref{e2}) \\
-		\hspace{1cm} $\beta$ is positive rational number which is use to avoid devide by zero \\
-		\hspace{1cm} $N_{gs}$ is positive integer which is number of gauss seidel iteration \\
-		\hspace{1cm} $N$ is positive interger  which is number of maximum loop iteration \\
-		\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
-	}
-	\KwOut{inpainted image}    
-	\SetKwFunction{FMain}{FixedPointColorInpaint}
-	\SetKwProg{Fn}{Function}{:}{}
-	\Fn{\FMain{$u, \lambda, \beta, N_{gs},  N, \varepsilon$}}{		
-		\ForEach{$l, l \in \{1,2,3\}$}{
-			$u_l =FixedPointInpaint(u_l, \lambda, \beta, N_{gs},  N, \varepsilon) $
+	\caption{Split-bregman Color solver}
+	\SetKwFunction{FMain}{$\boldsymbol{u} \longleftarrow SBC$}
+	\SetKwProg{Fn}{}{}{end}
+	\Fn{\FMain{$\boldsymbol{u}, \boldsymbol{z} \lambda, \theta, N_{gs}, N, \varepsilon$}}{
+		\For{$l = 1:3$}{
+		$u_l \longleftarrow SB(u_l, z_l \lambda, \theta, N_{gs}, N, \varepsilon) $
 		}
-		\textbf{return} $ u $ 
 	}
 \end{algorithm}
 \vspace{1cm}
-และขั้นตอนวิธีสปริทเบรกแมน สำหรับภาพสี\\
-\begin{algorithm}[H]
-	\caption{Split-bregman Color solver}
-	\KwIn{
-		\\
-		\hspace{1cm} $u$ is image which is damaged image \\
-		\hspace{1cm} $\lambda$ is regularization parameter which has explain in equation (\ref{e2}) \\
-		\hspace{1cm} $\theta$ is positive rational number which is panelty parameter that shouldn't too big or too small \\
-		\hspace{1cm} $N$ is positive interger  which is number of maximum loop \\
-		\hspace{1cm} $g$ is positive integer which is number of gauss seidel iteration \\
-		\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
-	}
-	\KwOut{inpainted image}    
-	\SetKwFunction{FMain}{SplitBregmanColorInpaint}
-	\SetKwProg{Fn}{Function}{:}{}
-	\Fn{\FMain{$u, \lambda, \theta, N_{gs}, N, \varepsilon$}}{
-		\ForEach{$l, l \in \{1,2,3\}$}{
-		$u_l =SplitBregmanInpaint(u_l, \lambda, \theta, N_{gs}, N, \varepsilon) $
-	}
-	\textbf{return} $ u $ 
-	}
-\end{algorithm}
-
-\clearpage
 \subsection{การวัดประสิทธิภาพของภาพที่ผ่านกระบวนการต่อเติม}
-\hspace{1cm} หลังจากการต่อเติมภาพแล้วจำเป็นต้องพิจารณาว่าการวัดคุณภาพของภาพที่ผ่านการต่อเติมดีมากน้อยเพียงใด โดยในวิจัยนี้จะสนใจคุณภาพของค่าในแต่ละพิกเซลที่ใกล้เคียงกับภาพต้นฉบับ และโครงสร้างโดยรวมที่ใกล้เคียงกับภาพต้นฉบับ โดยการวัดค่าดังต่อไปนี้
 
-\subsubsection{Peak Signal Noise Ration: PSNR}
-\hspace{1cm}  Peak signal-to-noise ratio (PSNR) \cite{ref:PSNR} ใช้สำหรับวัดคุณภาพของภาพโดยเปรียบเทียบจากพิกเซลแต่ละพิกเซล โดยภาพที่มีความคล้ายต้นฉบับจะมีค่า PSNR เข้าใกล้อนันต์ หรือก็คือยิ่งมีค่ามากยิ่งคุณภาพดี ซึ่งสามารถคำนวณได้โดย
-$$ PSNR = 10 \cdot log_{10} ( \frac{{peak}^2}{\sqrt{MSE}} )$$
+\hspace{1cm} การประเมินคุณภาพของการต่อเติมภาพของวิธีการเชิงตัวเลข จะใช้ค่า PSNR \cite{ref:PSNR} และ SSIM \cite{ref:SSIM} โดย
 
-เมื่อ $MSE$ คือ mean square error และ $peak$ คือค่าสูงสุดโดยประเภทของภาพ ซึ่งสำหรับงานที่จะพูดถึงต่อไปนี้ จะพิจารณาภาพเป็นฟังก์ชันที่มีความเข้มของภาพอยู่ในช่วง $ [0,1] $ จึงได้ว่า $peak$ มีค่าเป็น $1$
+$$ PSNR = 10 \cdot log_{10} ( \frac{1}{\sqrt{MSE}} )$$
 
-\subsubsection{Structural Similarity: SSIM}
-\hspace{1cm} Structural similarity (SSIM)  \cite{ref:SSIM} ใช้สำหรับว่าวัดคุณภาพของภาพจากโครงสร้างของภาพ โดยพิจารณาว่าภาพนั้นมีโครงสร้างแตกต่างหรือคล้ายคลึงกับภาพต้นฉบับมากน้อยเพียงใด โดยมีค่าอยู่ระหว่าง 0 ถึง 1 หากทั้งสองภาพมีความคล้ายคลึงกันมากค่า SSIM  จะเข้าใกล้กับค่า 1 ซึ่ง SSIM นั้นสามารถคำนวณได้โดย
-$$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c_1)(\sigma_x^2+\sigma_y^2+c_2)}$$
-เมื่อ $x,y$ คือภาพที่ต้องการเปรียบเทียบ $\mu$ คือค่าเฉลี่ยของภาพ $\sigma^2$ คือค่าความแปรปรวนของภาพ $\sigma_{xy}$ คือความแปรปรวนร่วม $c_1 =  (0.01L)^2, c_2 = (0.03L)^2$ และ $L$ คือค่าสูงสุดโดยประเภทของภาพ ซึ่งสำหรับงานที่จะพูดถึงต่อไปนี้ จะพิจารณาภาพเป็นฟังก์ชันที่มีความเข้มของภาพอยู่ในช่วง $ [0,1] $ จึงได้ว่า $L$ มีค่าเป็น 1
+$$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u}} + 0.0009)}{(\mu_u^2+\mu_{\tilde{u}}^2+0.0001)(\sigma_u^2+\sigma_{\tilde{u}}^2+0.0009)}$$
 
-\clearpage
+\hspace{1cm}  เมื่อ MSE คือ mean square error ของภาพ $u$ และภาพ $\tilde{u}$ โดยที่ภาพ $u$ และภาพ $\tilde{u}$  แทนภาพต้นฉบับ และภาพที่ได้จากการซ่อมแซมโดยวิธีเชิงตัวเลข
+
+\vspace{1cm}
+
 \section{ผลการดำเนินงานเบื้องต้น}
 	\subsection{การซ่อมแซมภาพจิตรกรรมไทยโบราณ}
-	\hspace{1cm} สำหรับการซ่อมแซมจิตรกรรมไทยโบราณ ก่อนอื่นจะทำการปรับปรุงขั้นตอนวิธีเชิงตัวเลขที่มีอยู่แต่เดิมให้ดีขึ้นเสียก่อน โดยระหว่างการปรับปรุงวิธีเชิงตัวเลข จะใช้ภาพสีที่ได้สร้างขึ้นทั้งสิ้น 5 ภาพ โดยแต่ละภาพมีขนาด 256 x 256 พิกเซล ซึ่งมีดังนี้
+	\hspace{1cm} สำหรับการซ่อมแซมจิตรกรรมไทยโบราณ จะเริ่มจากการทำการปรับปรุงขั้นตอนวิธีเชิงตัวเลขที่มีอยู่แต่เดิมให้ดีขึ้นเสียก่อน โดยระหว่างการปรับปรุงวิธีเชิงตัวเลข จะใช้ภาพสีที่ได้สังเคราะห์ขึ้นทั้งสิ้น 5 ภาพ โดยแต่ละภาพมีขนาด 256 x 256 พิกเซล ซึ่งมีดังนี้
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{0.4\linewidth}
@@ -514,8 +426,8 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 	\end{figure}
 	\subsubsection{การเปรียบเทียบประสิทธิภาพขั้นตอนวิธีเชิงตัวเลขที่มีอยู่สำหรับตัวแบบต่อเติมภาพสีที่ใช้การแปรผันรวม}
 	
-	\hspace{1cm} โดยจะทำการเปรียบเทียบความเร็วของวิธีการแก้การแปรผันรวมที่มีอยู่เดิม ดังที่ได้กล่าวไว้ในหัวข้อ \ref{inpaint-model-grayscale} และหัวข้อ \ref{inpaint-model-color} โดยวิธีการทั้ง 3 วิธี จะทำการทำซ้ำจนกระทั่งภาพในการทำซ้ำรอบปัจจุบัน กับภาพการทำซ้ำในครั้งก่อนหน้า มีค่าความคลาดเคลื่อนสัมพัทธ์ (relative error) ต่างกันไม่เกิน 0.0001 หรือ ทำซ้ำเกิน 10,000 รอบ ซึ่งได้ผลลัพธ์เฉลี่ยของรูปภาพที่ใช้ทดสอบดังนี้
-
+	\hspace{1cm}
+	การทดสอบประสิทธิ์ภาพจะใช้ $\varepsilon = 1x10^{-4} และ N= 10,000$ โดยมีการซ่อมแซมภาพสังเคราะห์ทั้ง 5 ภาพดังนี้
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{0.4\linewidth}
@@ -538,7 +450,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch05.png}			
 		\end{subfigure}
-		\caption{ผลลัพธ์จากวิธีการเดินเวลา}
+		\caption{ผลการซ่อมแซมจากวิธีการเดินเวลา}
 	\end{figure}
 \begin{table}[H]
 	\centering
@@ -555,7 +467,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 		เฉลี่ย & 120.68  & 16.72  & 0.9960 \\
 		\hline
 	\end{tabular}
-	\caption{ผลลัพธ์ของวิธีการเดินเวลาสำหรับการต่อเติมภาพ}
+	\caption{ผลการซ่อมแซมวิธีการเดินเวลา}
 \end{table}	
 \begin{figure}[H]
 	\centering
@@ -579,7 +491,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 		\centering
 		\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint05.png}			
 	\end{subfigure}
-	\caption{ผลลัพธ์จากวิธีการจุดตรึง}
+	\caption{ผลการซ่อมแซมจากวิธีการจุดตรึง}
 \end{figure}
 \begin{table}[H]
 	\centering
@@ -596,7 +508,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 		เฉลี่ย & 74.81  & 38.67  & 0.9999 \\
 		\hline
 	\end{tabular}
-	\caption{ผลลัพธ์ของวิธีจุดตรึงสำหรับการต่อเติมภาพ}
+	\caption{ผลการซ่อมแซมของวิธีจุดตรึง}
 \end{table}	
 \begin{figure}[H]
 	\centering
@@ -620,7 +532,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 		\centering
 		\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman05.png}			
 	\end{subfigure}
-	\caption{ผลลัพธ์จากวิธีการสปริทเบรกแมน}
+	\caption{ผลการซ่อมแซมจากวิธีการสปริทเบรกแมน}
 \end{figure}
 \begin{table}[H]
 	\centering
@@ -637,9 +549,9 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 		เฉลี่ย & 14.06  & 39.42  & 0.9999 \\
 		\hline
 	\end{tabular}
-	\caption{ผลลัพธ์ของวิธีสปริทเบรกแมนสำหรับการต่อเติมภาพ}
+	\caption{ผลการซ่อมแซมของวิธีสปริทเบรกแมน}
 \end{table}
-	เมื่อเปรียบเทียบผลลัพธ์เฉลี่ยจากทั้ง 3 วิธีได้ดังตารางนี้ิ
+	ประสิทธิภาพของวิธีการเชิงตัวเลขทั้ง 3 วิธี สามารถสรุปได้ดังนี้
 	\begin{table}[H]
 		\centering
 		\begin{tabular}[ht]{|l|c|c|c|c|}
@@ -651,7 +563,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 			การสปริทเบรกแมน & 14.06 & 39.42 & 0.9999  \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์เฉลี่ยของวิธีการเชิงตัวเลขสำหรับการต่อเติมภาพ}
+		\caption{แสดงการซ่อมแซมเฉลี่ยของวิธีการเชิงตัวเลข}
 	\end{table}	
 	\hspace{1cm} 
 	ซึ่งจากทั้ง 3 วิธีที่ได้ทดสอบ จะเห็นได้ว่าวิธีการสปริทเบรกแมนใช้เวลาน้อยกว่าวิธีอื่น และมีคุณภาพ ซึ่งพิจราณาจาก ค่า PSNR และค่า SSIM มากกว่าวิธีอื่น ซึ่งผู้วิจัยจะใช้วิธีสปิทเบรกแมนมาใช้ในการพัฒนาวิธีต่อเติมภาพเป็นลำดับถัดไป
@@ -667,79 +579,33 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 	 	\end{subfigure}
  		 \caption{วิธีการพีระมิดรูปภาพ}
 	 \end{figure}
- 	\hspace{1cm} ซึ่งขั้นตอนวิธีสำหรับการทำพีระมิดรูปภาพสำหรับการต่อเติมภาพแบบสปริทเบรกแมนเพื่อให้ประมวลผลได้เร็วขึ้นนั้นสามารถทำได้ดังนี้
+ 	\hspace{1cm} ขั้นตอนวิธีสำหรับการทำพีระมิดรูปภาพสำหรับการต่อเติมภาพแบบสปริทเบรกแมนเพื่อให้ประมวลผลได้เร็วขึ้นนั้นสามารถสรุปได้ดังนี้
 	\begin{algorithm}[H]
 		\label{algo:MultiSplitBregmanColorInpaint}
-		\caption{Split-bregman Color solver with Image Pyramid (Multi Resolution)}
-		\KwIn{
-			\\
-			\hspace{1cm} $u$ is image which is damaged image \\
-			\hspace{1cm} $\lambda$ is positive rational number which is regularization parameter \\
-			\hspace{1cm} $\theta$ is positive rational number which is panelty parameter that shouldn't too big or too small \\
-			\hspace{1cm} $N_0$ is positive interger  which is number of maximum iteration on smallest size image \\
-			\hspace{1cm} $N_1$ is positive interger  which is number of maximum iteration on image that isn't the biggest neither  smallest \\
-			\hspace{1cm} $N_2$ is positive interger  which is number of maximum iteration on biggest size image \\
-			\hspace{1cm} $N_{gs}$ is positive integer which is number of gauss seidel iteration \\
-			\hspace{1cm} $\varepsilon$ is positive rational number  which is expected relative error \\
-		}
-		\KwOut{inpainted image}    
-		\SetKwFunction{FMain}{MultiSplitBregmanColorInpaint}
-		\SetKwProg{Fn}{Function}{:}{}
-		\Fn{\FMain{$u, \lambda, \theta, N_{gs}, N_0,N_1,N_2, \varepsilon,c,m$}}{
-			\textbf{Initialize} $height = $ height of $u$, $width = $ width of u \\
+		\caption{Multi-resolution SB method}
+		\SetKwFunction{FMain}{$u \longleftarrow MRSBC $}
+		\SetKwProg{Fn}{}{}{end}
+		\Fn{\FMain{$\boldsymbol{u}, \boldsymbol{z},\lambda, \theta, N_{gs}, N_0,N_1,N_2, \varepsilon,c,m$}}{
+			\textbf{Initialize} $height = $ height of $\boldsymbol{u}$, $width = $ width of $\boldsymbol{u}$ \\
 			\If{c < m}{
-				$x = BilinearResize(u,\lfloor width * 0.5 \rfloor,\lfloor height * 0.5 \rfloor)$\\
-				$y = BilinearResize(\lambda,\lfloor width * 0.5 \rfloor,\lfloor height * 0.5 \rfloor)$\\
-				$r = MultiSplitBregmanColorInpaint(x,y, \lambda, \theta,$ \\$ \hspace{1cm}  N_{gs}, N_0, N_1, N_2, \varepsilon,c+1,m)$\\
-				$R = BilinearResize(r,width,height)$\\
-				$u = CopyResultByLambda(u,\lambda,R)$
+				$x = Bilinear(\boldsymbol{u},\lfloor width * 0.5 \rfloor,\lfloor height * 0.5 \rfloor)$\\
+				$y = Bilinear(\lambda,\lfloor width * 0.5 \rfloor,\lfloor height * 0.5 \rfloor)$\\
+				$r = MRSBC(x,y, \lambda, \theta,$ \\$ \hspace{1cm}  N_{gs}, N_0, N_1, N_2, \varepsilon,c+1,m)$\\
+				$\boldsymbol{u} = Bilinear(r,width,height)$\\
 			}
-			\uIf{$c = 1$}{$N=N_0$}
-			\uElseIf{$c = m$}{$N = N_2$}
+			\uIf{$c = 1$}{$N_{SB}=N_0$}
+			\uElseIf{$c = m$}{$N_{SB} = N_2$}
 			\Else{
-				$N = N_1$
+				$N_{SB} = N_1$
 			}
-			$u = SplitBregmanColorInpaint(u_l, \lambda, \theta, N_{gs}, N, \varepsilon) $  \\
-			\textbf{return} $u$
+			$u = SBC(\boldsymbol{u}, \boldsymbol{z}, \lambda, \theta, N_{gs}, N_{SB}, \varepsilon) $  \\
 		}
 	\end{algorithm}
-	\clearpage
-	โดยสำหรับขัั้นตอนวิธีนี้ จะมีขั้นตอนวิธีย่อยสำหรับช่วยอีกสองขั้นตอน คือ
-	\\ 1. ขั้นตอนสำหรับการคัดลอกผลลัพธ์ที่ได้จากการทำพีระมิดรูปภาพจากระดับชั้นที่ภาพมีขนาดเล็ก มาสู่บริเวณที่เป็นโดเมนต่อเติมของภาพในระดับชั้นขนาดใหญ่
-	\begin{algorithm}[H]
-		\caption{Copy image inside inpaint domain by $\lambda$ }
-		\KwIn{
-			\\
-			\hspace{1cm} $u$ is image which is damaged image \\
-			\hspace{1cm} $\lambda$ regulazation paramter lambda from equation (\ref{e2})\\
-			\hspace{1cm} $v$ is image which will copy to u image
-		}
-		\KwOut{image}    
-		\SetKwFunction{FMain}{CopyResultByLambda}
-		\SetKwProg{Fn}{Function}{:}{}
-		\Fn{\FMain{$u, \lambda, v$}}{
-			\textbf{Initialize} $height = $ height of $u$, $width = $ width of u \\
-			\For{i = 0; i < height; i++}{
-				\For{j = 0; j<i; j++}{
-					\If{$\lambda_{i,j} = 0$}{$u_{i,j} = v_{i,j}$}
-				}		
-			}
-			\textbf{return} $ u $ 
-		}	
-	\end{algorithm}
- 	2. ขั้นตอนสำหรับปรับขนาดภาพด้วย bilinear interpolation
-	\begin{algorithm}[H]
-		\caption{Bilinear Interpolation for Image resizing}
-			\KwIn{
-			\\
-			\hspace{1cm} $u$ is image which need to resize \\
-			\hspace{1cm} $x$ is positive integer which is new image height \\
-			\hspace{1cm} $y$ is positive integer which  is new image width \\
-		}
-		\KwOut{image}
+\begin{algorithm}[H]
+		\caption{Bilinear Interpolation}
 		% https://stackoverflow.com/questions/26142288
-		\SetKwFunction{FMain}{BilinearResize}
-		\SetKwProg{Fn}{Function}{:}{}
+		\SetKwFunction{FMain}{$J \longleftarrow Bilinear$}
+		\SetKwProg{Fn}{}{}{end}
 		\Fn{\FMain{$I,x,y$}}{
 			\textbf{Initialize} $J$ is image that height $x$ and width $y$, \\ $v =$ height of $I$ and $w$ is width of $I$,\\ $S_R = \frac{c}{a}, S_C = \frac{d}{b}, r = 1,2,...,v, c = 1,2,...,w,$\\$r' = 1,2,...x, c' = 1,2,...,y,  $ \\
 			$r_f = \lfloor r' \cdot S_R \rfloor $\\
@@ -892,7 +758,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 			\hline
 			100/3/3/10  & 1 & 0.29 & 45.08& 1.0000 \\
 			& 2 & 0.36 & 32.36 & 0.9999\\
-			& 3 & 0.40 & 0.40 & 0.9996\\
+			& 3 & 0.40 & 24.35 & 0.9996\\
 			& 4 & 0.38 & 27.88 & 0.9998\\
 			& 5 & 0.37 & 30.28 & 0.9999 \\
 			\hline
@@ -916,7 +782,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 			10/3/3/10 & 0.33 & 29.83  & 0.9994 \\
 			10/10/10/10 & 0.38 & 32.56 & 0.9995 \\
 			100/1/1/10 & 0.34 & 31.50 & 0.9999 \\
-			100/3/3/10 & 0.36 & 27.20 & 0.9999 \\
+			100/3/3/10 & 0.36 & 31.99 & 0.9999 \\
 			100/10/10/10 & 0.38 & 33.39 & 0.9998 \\
 			\hline
 		\end{tabular}
@@ -1109,19 +975,14 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 	\hspace{1cm}เนื่องจากไฟล์วิดีโอนั้นประกอบชุดของภาพหลายภาพ ทำให้ขั้นตอนวิธีการลบคำบรรยายออกจากวิดีโอ จะต้องทำการต่อเติมบริเวณที่เป็นบทบรรยายทีละภาพ นั่นคือจะมีขั้นตอนวิธีดังนี้ \\
 	
 	\begin{algorithm}[H]
-		\caption{remove subtitle from video}
-		\KwIn{
-			 $V$ is video with subtitle \\
-		}
-		\KwOut{video without subtitle}
-		\SetKwFunction{FMain}{RemoveSubtitle}
-		\SetKwProg{Fn}{Function}{:}{}
+		\caption{remove subtitle from video}	
+		\SetKwFunction{FMain}{$V \longleftarrow RemoveS$}
+		\SetKwProg{Fn}{}{}{end}
 		\Fn{\FMain{$V$}}{
-			\ForEach{$u_i$ is frame number $i$ of video $V$}{
-				$\bullet$ find inpaint domain $D$ from $u_i$\\
-				$\bullet$ inpaint image $u_i$ by using domain $D$\\
+			\ForEach{$\boldsymbol{u}_i$ เป็นเฟรมที่ $i$ ในวิดีโอ $V$}{
+				$\bullet$ หาโดเมนต่อเติม $D$ จาก $\boldsymbol{u}_i$\\
+				$\bullet$ ต่อเติมภาพ $\boldsymbol{u}_i$ โดยใช้โดเมนต่อเติม $D$\\
 			}
-			\textbf{return} $ V $ 
 		}
 	\end{algorithm}
 	\vspace{1cm}
@@ -1135,28 +996,23 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 	
 	\begin{algorithm}[H]
 		\caption{finding subtitle}
-		\KwIn{
-			\\
-			\hspace{1cm} $u$ is image which is part of anime frame\\
-		}
-		\KwOut{inpainting domain (subtitle)}    
-		\SetKwFunction{FMain}{FindSubtitle}
-		\SetKwProg{Fn}{Function}{:}{}
-		\Fn{\FMain{$u$}}{
-			$\bullet$  to find the edge of subtitle. we find color black in image $u$ by mark black color region as white and otherwise color is mark to black.\\
-			$\bullet$ change white region in image to black and black region in image to white. now we get white region in image \\
-			$\bullet$ remove any white region that attach to edge of image, because subtitle always floating away  from screen edge.\\
-			$\bullet$  remove white region that too big to be subtitle \\
-			$\bullet$  remove white region that too small to be subtitle \\
-			$\bullet$ dilate white region with subtitle edge width \\
-			$\bullet$ every white region left on image should be subtitle.
+		\SetKwFunction{FMain}{$D \longleftarrow findsub$}
+		\SetKwProg{Fn}{}{}{}
+		\Fn{\FMain{$\boldsymbol{u}$}}{
+			$\bullet$ ทำการเปลี่ยนสีดำในภาพ $\boldsymbol{u}$ ให้เป็นสีขาวแล้วเปลี่ยนอื่นๆ ให้เป็นสีดำเพื่อหาขอบของคำบรรยาย\\
+			$\bullet$ เปลี่ยนพื้นที่สีขาวในภาพให้เป็นสีดำ และเปลี่ยนพื้นที่สีดำให้เป็นสีขาว\\
+			$\bullet$ ทำการลบพื้นที่สีขาวซึ่งติดกับขอบของภาพออกไป เนื่องจากบทบรรยายจะลอยอยู่ ไม่ติดกับขอบเสมอ\\
+			$\bullet$  ลบพื้นที่ๆ ใหญ่เกินกว่าจะเป็นบทบรรยาย \\
+			$\bullet$  ลบพื้นที่ ซึ่งเล็กเกินกว่าจะเป็นบทบรรยาย \\
+			$\bullet$ ทำการขยายพื้นที่ๆ เป็นสีขาวขึ้นด้วยความกว้างของขอบบทบรรยาย \\
+			$\bullet$ สีขาวที่เหลืออยู่ในภาพจะเป็นบทบรรยาย
 		}	
 	\end{algorithm}
 	\clearpage
 	\hspace{1cm} ซึ่งวิธีการหาบทบรรยายที่กล่าวไปข้างต้น จะทำการทดสอบกับบทความ lorem ipsum ที่ถูกแปลเป็นภาษาไทย ภาษาอังกฤษ และภาษาญี่ปุ่น โดยมีความสามารถในการหาโดเมนต่อเติมใบบทบรรยายภาษาต่างๆ ดังนี้
-	%TODO ทำภาพแถวละ2
 	\begin{table}[H]
 		\centering
+		\footnotesize
 		\begin{tabular}[ht]{|l|c|c|c|c|c|}
 			\hline
 			ภาษา  & วีดีโอ & จำนวนพิกเซลในโดเมน & จำนวนพิกเซลที่ตรวจพบ & จำนวนพิกเซลที่ผิดพลาด & ร้อยละการผิดพลาด \\
@@ -1184,6 +1040,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 	\end{table}
 	\begin{table}[H]
 		\centering
+			\footnotesize
 		\begin{tabular}[ht]{|l|c|c|c|c|}
 			\hline
 			ภาษา  & จำนวนพิกเซลในโดเมน & จำนวนพิกเซลที่ตรวจพบ & จำนวนพิกเซลที่ผิดพลาด & ร้อยละการผิดพลาด \\
@@ -1202,117 +1059,69 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 	\hspace{1cm} สำหรับอนิเมะนั้น แต่ละเฟรมจะเป็นรูปภาพ เราจึงสามารถประยุกต์ใช้วิธีการซ่อมแซมภาพจิตรกรรมไทย มาใช้ในการลบคำบรรยายได้ แต่ผู้วิจัยก็ได้สังเกตว่า สำหรับอนิเมะที่เป็นวิดีโอแล้ว ในขณะที่ประมวลผลวิดีโอ เราสามารถใช้ผลการต่อเติมภาพจากภาพที่แล้ว มาใช้เป็นคำตอบเริ่มต้นจึงได้ว่าขึ้นตอนการลบบทบรรยายออกจากวิดีโอมีดังนี้\\
 	\begin{algorithm}[H]
 		\caption{subtitle remove with reference from previous frame}
-		\KwIn{$V$ is video with subtitle}
-		\KwOut{video without frame}    
-		\SetKwFunction{FMain}{RemoveSubitlte}
-		\SetKwProg{Fn}{Function}{:}{}
+		\SetKwFunction{FMain}{$V \longleftarrow removeS1$}
+		\SetKwProg{Fn}{}{}{end}
 		\Fn{\FMain{$V$}}{
-			\textbf{initialize} $i =1$, $N_{f}$ is total frame in $V$ \\
+			\textbf{initialize} $i =1$, $N_{f}$ เป็นจำนวนเฟรมใน $V$ \\
 			\While{$i < N_f - 1$}{
-				$u_i$ is frame number $i$ of video $V$ \\
-				$u_{i+1}$ is frame number $i$ of video $V$ \\
-				$D$ is inpainted domain of subtitle from frame $u_{i+1}$ \\
-				$u_{i+1} = BorrowFrame(u_{i},D,u_{i+1})$
+				$\boldsymbol{u}_i$ คือเฟรมที่ $i$ ใน $V$ \\
+				$u_{i+1}$ คือเฟรมที่ $i+1$ ใน $V$ \\
+				$D$ คือโดเมนต่อเติมใน $\boldsymbol{u}_{i+1}$ \\
+				$\boldsymbol{u}_{i+1} = removeS2(\boldsymbol{u}_{i},D,u_{i+1})$
 			}
 			\textbf{return} $V$
 		}	
 	\end{algorithm}
-	\hspace{1cm} โดย $BorrowFrame(u_{i},D,u_{i+1})$  คือขั้นตอนวิธีที่ \ref{algo:borrowframe} ซึ่งในทำนองเดียวกันเราสามารถเปลี่ยน $BorrowFrame(u_{i},D,u_{i+1})$ เป็น $SkipFrame(u_{i},D,u_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipframe} และเปลี่ยนเป็น  $SkipฺBorrowFrame(u_{i},D,u_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipnborrowframe} ได้
-	ก่อนอื่นจะขอแนะนำขั้นตอนวิธีสำหรับคัดลอกภาพโดยใช้โดเมนต่อเติม โดยเมื่อมีภาพ $u$ กับภาพ $v$ หากพื้นที่อยู่นอกโดเมนต่อเติมจะใช้ข้อมูลจากภาพ $u$ และเมื่ออยู่ในโดเมนต่อเติมจะใช้ข้อมูลจากภาพ $v$
-	\begin{algorithm}[H]
-		\caption{Copy image inside inpaint domain from v to u}
-		\KwIn{
-			\\
-			\hspace{1cm} $u$ is image which is damaged image \\
-			\hspace{1cm} $D$ is image which is image of inpaint domain\\
-			\hspace{1cm} $v$ is image which will copy to u image
-		}
-		\KwOut{image}    
-		\SetKwFunction{FMain}{CopyByDomain}
-		\SetKwProg{Fn}{Function}{:}{}
-		\Fn{\FMain{$u, D, v$}}{
-			\textbf{Initialize} $height = $ height of $u$, $width = $ width of u \\
-			\For{i = 0; i < height; i++}{
-				\For{j = 0; j<i; j++}{
-					\If{$D_{i,j} \neq 0$}{$u_{i,j} = v_{i,j}$}
-				}		
-			}
-			\textbf{return} $ u $ 
-		}	
-	\end{algorithm}
-	\clearpage
+	\hspace{1cm} โดย $removeS2(\boldsymbol{u}_{i},D,u_{i+1})$  คือขั้นตอนวิธีที่ \ref{algo:borrowframe} ซึ่งในทำนองเดียวกันเราสามารถเปลี่ยน $removeS2(u_{i},D,\boldsymbol{u}_{i+1})$ เป็น $removeS3(\boldsymbol{u}_{i},D,u_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipframe} และเปลี่ยนเป็น  $removeS4(\boldsymbol{u}_{i},D,\boldsymbol{u}_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipnborrowframe} ได้
+	
 	ขั้นตอนวิธี การยืมเฟรม จะเป็นการนำผลลัพธ์จากเฟรมก่อนหน้ามาเป็นคำตอบในการเริ่มต้นในการประมวลผลเพื่อให้ผลลัพธ์ลู่เข้าได้เร็วขึ้น
 	\begin{algorithm}[H]
 		\label{algo:borrowframe}
-		\caption{ฺBorrow Frame Technique}
-		\KwIn{
-			\\
-			\hspace{1cm} $u$ is image which is current frame\\
-			\hspace{1cm} $v$ is image which is previous frame\\
-			\hspace{1cm} $D$ is image which is image of inpaint domain \\
-		}
-		\KwOut{inpainted frame}    
-		\SetKwFunction{FMain}{BorrowFrame}
-		\SetKwProg{Fn}{Function}{:}{}
-		\Fn{\FMain{$u, D, v$}}{
-			$U = CopyByDomain(u,D,\vec{0})$ \\
-			$V = CopyByDomain(v,D,\vec{0})$ \\
-			$s =$ SSIM of $U$ and $V$ \\
+		\caption{ฺborrow frame technique}  
+		\SetKwFunction{FMain}{$\boldsymbol{v} \longleftarrow removeS2$}
+		\SetKwProg{Fn}{}{}{end}
+		\Fn{\FMain{$\boldsymbol{u} , D, \boldsymbol{v} $}}{
+			$s =$ ค่า SSIM ระหว่าง  $\boldsymbol{u}$ และ $\boldsymbol{v}$  บริเวณนอกโดเมนต่อเติม\\
 			\If{s > 0.9}{
-				$u = CopyByDomain(u,D,v)$
+				คัดลอกบริเวณในโดเมนต่อเติมจาก $\boldsymbol{u} $ ไปยัง $\boldsymbol{z}$
 			}
-			\textbf{return} $MultiSplitBregmanColorInpaint(u,D,\lambda, \theta, g, N_0, N_1, N_2, \varepsilon,1,m)$
-		}	
-	\end{algorithm}
-	ขั้นตอนวิธี การข้ามเฟรม สำหรับเฟรมใดที่ผลลัพธ์ใกล้เคียงกันมาก จะทำการข้ามการต่อเติมภาพในเฟรมนั้นไปโดยใช้คำตอบจากเฟรมก่อนหน้าแทนเพื่อลดเวลาการประมวลผล
-	\begin{algorithm}[H]
-		\label{algo:skipframe}
-		\caption{skip frame technique}
-		\KwIn{
-			\\
-			\hspace{1cm} $u$ is image which is current frame\\
-			\hspace{1cm} $v$ is image which is previous frame\\
-			\hspace{1cm} $D$ is image which is image of inpaint domain \\
-		}
-		\KwOut{inpainted frame}    
-		\SetKwFunction{FMain}{SkipFrame}
-		\SetKwProg{Fn}{Function}{:}{}
-		\Fn{\FMain{$u, D, v$}}{
-			$U = CopyByDomain(u,D,\vec{0})$ \\
-			$V = CopyByDomain(v,D,\vec{0})$ \\
-			$s =$ SSIM of $U$ and $V$ \\
-			\If{s > 0.95}{
-				\textbf{return} $CopyByDomain(u,D,v)$ 
-			}
-			\textbf{return} $MultiSplitBregmanColorInpaint(u,D,\lambda, \theta, g, N_0, N_1, N_2, \varepsilon,1,m)$
+			$\boldsymbol{v} = MRSBC(\boldsymbol{u} ,\boldsymbol{z} ,\lambda, \theta, N_{gs}, N_0, N_1, N_2, \varepsilon,1,m)$
 		}	
 	\end{algorithm}
 	\clearpage
+	ขั้นตอนวิธี การข้ามเฟรม สำหรับเฟรมใดที่ผลลัพธ์ใกล้เคียงกันมาก จะทำการข้ามการต่อเติมภาพในเฟรมนั้นไปโดยใช้คำตอบจากเฟรมก่อนหน้าแทนเพื่อลดเวลาการประมวลผล
+	\begin{algorithm}[H]
+		\label{algo:skipframe}
+		\caption{skip frame Technique}  
+		\SetKwFunction{FMain}{$\boldsymbol{v}, \longleftarrow removeS3$}
+		\SetKwProg{Fn}{}{}{end}
+		\Fn{\FMain{$\boldsymbol{u}, D, \boldsymbol{v}$}}{
+			$s =$ ค่า SSIM ระหว่าง  $\boldsymbol{u}$ และ $\boldsymbol{v}$  บริเวณนอกโดเมนต่อเติม\\
+			\uIf{s > 0.95}{
+				คัดลอกบริเวณในโดเมนต่อเติมจาก $\boldsymbol{u}$ ไปยัง $\boldsymbol{v}$
+			}
+			\Else{
+				$\boldsymbol{v} = MRSBC(\boldsymbol{u} ,\boldsymbol{z} ,\lambda, \theta, N_{gs}, N_0, N_1, N_2, \varepsilon,1,m)$
+			}
+		}	
+	\end{algorithm}
 	ขั้นตอนวิธี การข้ามและยืมเฟรม คือขั้นตอนวิธี \ref{algo:borrowframe} และขั้นตอนวิธี \ref{algo:skipframe} ที่นำมาประยุกต์ใช้งานร่วมกัน
 	\begin{algorithm}[H]
-		\small
 		\label{algo:skipnborrowframe}
-		\caption{Skip and borrow frame technique}
-		\KwIn{
-			\\
-			\hspace{1cm} $u$ is image which is current frame\\
-			\hspace{1cm} $v$ is image which is previous frame\\
-			\hspace{1cm} $D$ is image which is image of inpaint domain \\
-		}
-		\KwOut{inpainted frame}    
-		\SetKwFunction{FMain}{SkipBorrowFrame}
-		\SetKwProg{Fn}{Function}{:}{}
-		\Fn{\FMain{$u, D, v$}}{
-			$U = CopyByDomain(u,D,\vec{0})$ \\
-			$V = CopyByDomain(v,D,\vec{0})$ \\
-			$s =$ SSIM of $U$ and $V$ \\
+		\caption{skip and borrow frame technique}  
+		\SetKwFunction{FMain}{$\boldsymbol{v} \longleftarrow removeS4$}
+		\SetKwProg{Fn}{}{}{end}
+		\Fn{\FMain{$\boldsymbol{u} , D, \boldsymbol{v} $}}{
+			$s =$ ค่า SSIM ระหว่าง  $u$ และ $v$  บริเวณนอกโดเมนต่อเติม\\
 			\uIf{s > 0.95}{
-				\textbf{return} $CopyByDomain(u,D,v)$ 
+				คัดลอกบริเวณในโดเมนต่อเติมจาก $\boldsymbol{u} $ ไปยัง $\boldsymbol{v}$
 			}
-			\ElseIf{s > 0.9}{
-				$u = CopyByDomain(u,D,v)$ 
+			\uElseIf{s > 0.9}{
+				คัดลอกบริเวณในโดเมนต่อเติมจาก $\boldsymbol{u} $ ไปยัง $\boldsymbol{z}$\\
+				$\boldsymbol{v} = MRSBC(\boldsymbol{u} ,\boldsymbol{z} ,\lambda, \theta, N_{gs}, N_0, N_1, N_2, \varepsilon,1,m)$
+			}\Else{
+				$\boldsymbol{v} = MRSBC(\boldsymbol{u} ,\boldsymbol{z} ,\lambda, \theta, N_{gs}, N_0, N_1, N_2, \varepsilon,1,m)$
 			}
-			\textbf{return} $MultiSplitBregmanColorInpaint(u,D,\lambda, \theta, g, N_0, N_1, N_2, \varepsilon,1,m)$
 		}	
 	\end{algorithm}
 	
@@ -1383,8 +1192,6 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 
 \hspace{1cm} สำหรับวิธีสปริทเบรกแมน เนื่องจากใช้เวลา 1 ชั่วโมงแล้วยังประมวลผลวิดีโอชุดทดสอบแรกไม่เสร็จ ทางผู้พัฒนาจึงตัดสินใจยุติการทดลอง เนื่องจากอาจต้องใช้เวลาการประมวลผลเป็นเวลาหลายชั่วโมงสำหรับวิดีโอความยาว 1 นาที ส่วนวิธีที่คิดค้นขึ้น พบว่าสำหรับวิดีโอที่มีความยาว 1 นาที สามารถทำงานได้เสร็จอย่างรวดเร็ว โดยใช้เวลาเพียง 75 วินาที
 
-\vspace{1cm}
-	
 \section{แผนการดำเนินงานวิจัย}
 \hspace{1cm} แผนการดำเนินงานตลอดทั้งโครงการสามารถสรุปได้โดยย่อจากตารางต่อไปนี้
 \begin{center}
@@ -1404,8 +1211,6 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 	\end{tabular}}
 \end{center}
 
-
-\clearpage
 
 \section{บรรณานุกรม}
 
