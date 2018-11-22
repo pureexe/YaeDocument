@@ -692,7 +692,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 				$y = BilinearResize(\lambda,\lfloor width * 0.5 \rfloor,\lfloor height * 0.5 \rfloor)$\\
 				$r = MultiSplitBregmanColorInpaint(x,y, \lambda, \theta,$ \\$ \hspace{1cm}  N_{gs}, N_0, N_1, N_2, \varepsilon,c+1,m)$\\
 				$R = BilinearResize(r,width,height)$\\
-				$u = CopyByDomain(u,\lambda,R)$
+				$u = CopyResultByLambda(u,\lambda,R)$
 			}
 			\uIf{$c = 1$}{$N=N_0$}
 			\uElseIf{$c = m$}{$N = N_2$}
@@ -705,23 +705,23 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 	\end{algorithm}
 	\clearpage
 	โดยสำหรับขัั้นตอนวิธีนี้ จะมีขั้นตอนวิธีย่อยสำหรับช่วยอีกสองขั้นตอน คือ
-	\\ 1. ขั้นตอนสำหรับการคัดลอกข้อมูลที่อยู่ในโดเมนต่อเติมจากรูป v ไปรูป u
+	\\ 1. ขั้นตอนสำหรับการคัดลอกผลลัพธ์ที่ได้จากการทำพีระมิดรูปภาพจากระดับชั้นที่ภาพมีขนาดเล็ก มาสู่บริเวณที่เป็นโดเมนต่อเติมของภาพในระดับชั้นขนาดใหญ่
 	\begin{algorithm}[H]
-		\caption{Copy image inside inpaint domain from v to u}
+		\caption{Copy image inside inpaint domain by $\lambda$ }
 		\KwIn{
 			\\
 			\hspace{1cm} $u$ is image which is damaged image \\
-			\hspace{1cm} $D$ is image which is image of inpaint domain (also compatible with regulazation paramter lambda from equation (\ref{e2}))\\
+			\hspace{1cm} $\lambda$ regulazation paramter lambda from equation (\ref{e2})\\
 			\hspace{1cm} $v$ is image which will copy to u image
 		}
 		\KwOut{image}    
-		\SetKwFunction{FMain}{CopyByDomain}
+		\SetKwFunction{FMain}{CopyResultByLambda}
 		\SetKwProg{Fn}{Function}{:}{}
-		\Fn{\FMain{$u, D, v$}}{
+		\Fn{\FMain{$u, \lambda, v$}}{
 			\textbf{Initialize} $height = $ height of $u$, $width = $ width of u \\
 			\For{i = 0; i < height; i++}{
 				\For{j = 0; j<i; j++}{
-					\If{$D_{i,j} \neq 0$}{$u_{i,j} = v_{i,j}$}
+					\If{$\lambda_{i,j} = 0$}{$u_{i,j} = v_{i,j}$}
 				}		
 			}
 			\textbf{return} $ u $ 
@@ -1197,7 +1197,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 	\end{table}	
 	
 	\hspace{1cm} จากการทดลองทั้ง  3 ภาษาพบว่าวิธีการหาคำบรรยายนี้ มีร้อยละการผิดพลาดเฉลี่ยอยู่ที่ 11.98 ซึ่งการทดลองจากนี้ไปจะใช้วิธีการหาคำบรรยายนี้ในการหาโดเมนต่อเติมแบบอัตโนมัติ
-	
+	\clearpage
 	\subsubsection{การลบคำบรรยายจากบทอนิเมะ}
 	\hspace{1cm} สำหรับอนิเมะนั้น แต่ละเฟรมจะเป็นรูปภาพ เราจึงสามารถประยุกต์ใช้วิธีการซ่อมแซมภาพจิตรกรรมไทย มาใช้ในการลบคำบรรยายได้ แต่ผู้วิจัยก็ได้สังเกตว่า สำหรับอนิเมะที่เป็นวิดีโอแล้ว ในขณะที่ประมวลผลวิดีโอ เราสามารถใช้ผลการต่อเติมภาพจากภาพที่แล้ว มาใช้เป็นคำตอบเริ่มต้นจึงได้ว่าขึ้นตอนการลบบทบรรยายออกจากวิดีโอมีดังนี้\\
 	\begin{algorithm}[H]
@@ -1217,9 +1217,30 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 			\textbf{return} $V$
 		}	
 	\end{algorithm}
-	\vspace{1cm}
 	\hspace{1cm} โดย $BorrowFrame(u_{i},D,u_{i+1})$  คือขั้นตอนวิธีที่ \ref{algo:borrowframe} ซึ่งในทำนองเดียวกันเราสามารถเปลี่ยน $BorrowFrame(u_{i},D,u_{i+1})$ เป็น $SkipFrame(u_{i},D,u_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipframe} และเปลี่ยนเป็น  $SkipฺBorrowFrame(u_{i},D,u_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipnborrowframe} ได้
-	\vspace{1cm}
+	ก่อนอื่นจะขอแนะนำขั้นตอนวิธีสำหรับคัดลอกภาพโดยใช้โดเมนต่อเติม โดยเมื่อมีภาพ $u$ กับภาพ $v$ หากพื้นที่อยู่นอกโดเมนต่อเติมจะใช้ข้อมูลจากภาพ $u$ และเมื่ออยู่ในโดเมนต่อเติมจะใช้ข้อมูลจากภาพ $v$
+	\begin{algorithm}[H]
+		\caption{Copy image inside inpaint domain from v to u}
+		\KwIn{
+			\\
+			\hspace{1cm} $u$ is image which is damaged image \\
+			\hspace{1cm} $D$ is image which is image of inpaint domain\\
+			\hspace{1cm} $v$ is image which will copy to u image
+		}
+		\KwOut{image}    
+		\SetKwFunction{FMain}{CopyByDomain}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$u, D, v$}}{
+			\textbf{Initialize} $height = $ height of $u$, $width = $ width of u \\
+			\For{i = 0; i < height; i++}{
+				\For{j = 0; j<i; j++}{
+					\If{$D_{i,j} \neq 0$}{$u_{i,j} = v_{i,j}$}
+				}		
+			}
+			\textbf{return} $ u $ 
+		}	
+	\end{algorithm}
+	\clearpage
 	ขั้นตอนวิธี การยืมเฟรม จะเป็นการนำผลลัพธ์จากเฟรมก่อนหน้ามาเป็นคำตอบในการเริ่มต้นในการประมวลผลเพื่อให้ผลลัพธ์ลู่เข้าได้เร็วขึ้น
 	\begin{algorithm}[H]
 		\label{algo:borrowframe}
@@ -1243,7 +1264,6 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 			\textbf{return} $MultiSplitBregmanColorInpaint(u,D,\lambda, \theta, g, N_0, N_1, N_2, \varepsilon,1,m)$
 		}	
 	\end{algorithm}
-	\clearpage
 	ขั้นตอนวิธี การข้ามเฟรม สำหรับเฟรมใดที่ผลลัพธ์ใกล้เคียงกันมาก จะทำการข้ามการต่อเติมภาพในเฟรมนั้นไปโดยใช้คำตอบจากเฟรมก่อนหน้าแทนเพื่อลดเวลาการประมวลผล
 	\begin{algorithm}[H]
 		\label{algo:skipframe}
@@ -1267,9 +1287,10 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 			\textbf{return} $MultiSplitBregmanColorInpaint(u,D,\lambda, \theta, g, N_0, N_1, N_2, \varepsilon,1,m)$
 		}	
 	\end{algorithm}
-	\vspace{1cm}
+	\clearpage
 	ขั้นตอนวิธี การข้ามและยืมเฟรม คือขั้นตอนวิธี \ref{algo:borrowframe} และขั้นตอนวิธี \ref{algo:skipframe} ที่นำมาประยุกต์ใช้งานร่วมกัน
 	\begin{algorithm}[H]
+		\small
 		\label{algo:skipnborrowframe}
 		\caption{Skip and borrow frame technique}
 		\KwIn{
@@ -1295,9 +1316,9 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 		}	
 	\end{algorithm}
 	
-	\clearpage
 	 ซึ่งผลลัพธ์เปรียบเทียบระหว่างแบบใช้วิธี ยืมเฟรม ใช้วิธีข้ามเฟรม และวิธีข้ามและยืมเฟรม ได้ผลดังตาราง
 		\begin{table}[H]
+		\small
 		\centering
 		\begin{tabular}[ht]{|l|c|c|c|c|c|}
 			\hline
@@ -1328,7 +1349,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 			& 5 & 77.45  & 32.46 & 0.9540 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์ของการยืมเฟรมและข้ามเฟรม}
+		\caption{แสดงผลลัพธ์ของขั้นตอนวิธี \ref{algo:MultiSplitBregmanColorInpaint}, \ref{algo:borrowframe}, \ref{algo:skipframe} และ \ref{algo:skipnborrowframe}}
 	\end{table}	
 	\begin{table}[H]
 		\centering
@@ -1342,7 +1363,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 			ยืมเฟรมและข้ามเฟรม & 75.76 & 29.33 & 0.9454 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์เฉลี่ยของการยืมเฟรมและข้ามเฟรม}
+		\caption{แสดงผลลัพธ์เฉลี่ยของขั้นตอนวิธี \ref{algo:MultiSplitBregmanColorInpaint}, \ref{algo:borrowframe}, \ref{algo:skipframe} และ \ref{algo:skipnborrowframe}}
 	\end{table}	
 	
 	\hspace{1cm}  จากนั้นทำการทดสอบการต่อเติมวิดีโอทั้ง 5 โดยวิธีที่คิดค้นขึ้นใช้วิธีการสปริทเบรกแมนพร้อมทั้งการใช้พีระมิดรูปภาพที่มีการทำซ้ำแต่ละชั้นเป็น 10/3/3/10  พร้อมทั้งใช้การข้ามเฟรมและยืมเฟรม ได้ผลลัพธ์ออกเป็นดังตารางนี้
@@ -1362,12 +1383,12 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 
 \hspace{1cm} สำหรับวิธีสปริทเบรกแมน เนื่องจากใช้เวลา 1 ชั่วโมงแล้วยังประมวลผลวิดีโอชุดทดสอบแรกไม่เสร็จ ทางผู้พัฒนาจึงตัดสินใจยุติการทดลอง เนื่องจากอาจต้องใช้เวลาการประมวลผลเป็นเวลาหลายชั่วโมงสำหรับวิดีโอความยาว 1 นาที ส่วนวิธีที่คิดค้นขึ้น พบว่าสำหรับวิดีโอที่มีความยาว 1 นาที สามารถทำงานได้เสร็จอย่างรวดเร็ว โดยใช้เวลาเพียง 75 วินาที
 
-	
+\vspace{1cm}
 	
 \section{แผนการดำเนินงานวิจัย}
 \hspace{1cm} แผนการดำเนินงานตลอดทั้งโครงการสามารถสรุปได้โดยย่อจากตารางต่อไปนี้
 \begin{center}
-	\scalebox{0.7}{\begin{tabular}[ht]{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+	\scalebox{0.8}{\begin{tabular}[ht]{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
 			\hline
 			&\multicolumn{12}{c|}{เดือนที่}\\
 			\cline{2-13}
@@ -1384,7 +1405,7 @@ $$ SSIM(x,y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2+\mu_y^2+c
 \end{center}
 
 
-
+\clearpage
 
 \section{บรรณานุกรม}
 
