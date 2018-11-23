@@ -179,11 +179,10 @@
 เมื่อ $\boldsymbol{n}$ แทนเวกเตอร์หน่วยที่ตั้งฉากกับของของภาพ
 
 \hspace{1cm} ต่อไปจะกล่าวทบทวนวิธีการเชิงตัวเลขสำหรับแก้สมการเชิงอนุพันธ์ย่อยใน (\ref{e3}) 
-
 \begin{itemize}
-	\item [(1)] วิธีการเดินเวลาแบบชัดแจ้ง (explicit time marching method)
+	\item[(1)] วิธีการเดินเวลาแบบชัดแจ้ง (explicit time marching method) 
 	
-	คณะวิจัย \cite{ref:ROF-template} ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนโดยใช้วิธีการเดินเวลาแบบชัดแจ้ง ซึ่งสามารถประยุกต์เป็นวิธีเชิงตัวเลขสำหรับการต่อเติมภาพได้ดังนี้
+	\hspace{1cm} คณะวิจัย \cite{ref:ROF-template} ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนโดยใช้วิธีการเดินเวลาแบบชัดแจ้ง ซึ่งสามารถประยุกต์เป็นวิธีเชิงตัวเลขสำหรับการต่อเติมภาพได้ดังนี้
 	
 	\hspace{1cm} เริ่มจากการแนะนําตัวแปรเวลาสังเคราะห์ (time artificial variable) จากนั้นหาคําตอบแบบสภาวะคงตัว (steady-state solution) ในขณะที่ $t\rightarrow \infty$ ของสมการเชิงอนุพันธ์ย่อยไม่เป็นเชิงเส้นที่ขึ้นอยู่กับเวลา 
 	\begin{align}
@@ -192,11 +191,12 @@
 	\end{align}
 	เมื่อ $t_k=t_0+k\tau\ (\tau>0)$  แทนขั้นเวลาที่ $k$ และ $t_0=0$ แทนขั้นเวลาเริ่มต้น
 	
-	 วิธีเดินเวลาแบบชัดแจ้งสำหรับภาพเฉดเทามีขั้นตอนวิธีดังนี้ 
+	 \vspace{0.5cm} \hspace{0.5cm}วิธีเดินเวลาแบบชัดแจ้งสำหรับภาพเฉดเทามีขั้นตอนวิธีดังนี้  \\
+	 \vspace{0.5cm} 
 	\begin{algorithm}[H]
 		\caption{ETM Method for TV-based Image Inpainting}		
-		\SetKwFunction{FMain}{$u \longleftarrow EMT$}
-		\SetKwProg{Fn}{}{}{end}
+		\SetKwFunction{FMain}{$u \longleftarrow ETM$}\SetAlgoNoLine 
+		\SetKwProg{Fn}{}{}{}
 		\Fn{\FMain{$u,z,\lambda,\beta,\tau,N,\varepsilon$}}{
 			\textbf{initialize}
 			$i = 0$; $z = u$; $err = 1$\\
@@ -209,16 +209,15 @@
 		}
 	\end{algorithm}
 	
-	\item [(2)] วิธีการทำซ้ำแบบจุดตรึง (fixed-point iteration method)
-	
-	คณะวิจัย \cite{ref:FixpointSolver} ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนโดยใช้วิธีการทำซ้ำแบบจุดตรึง ซึ่งสามารถประยุกต์เป็นวิธีเชิงตัวเลขสำหรับการต่อเติมภาพได้ดังนี้
+	 \item[(2)] วิธีการทำซ้ำแบบจุดตรึง (fixed-point iteration method) 
+	 
+	 \hspace{1cm} คณะวิจัย \cite{ref:FixpointSolver} ได้แนะนำวิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวนโดยใช้วิธีการทำซ้ำแบบจุดตรึง ซึ่งสามารถประยุกต์เป็นวิธีเชิงตัวเลขสำหรับการต่อเติมภาพได้ดังนี้
 	
 	\hspace{1cm} เริ่มจากแนะนำดัชนีการทำซ้ำแบบจุดตรึง $\nu=0,1,2,\cdots$ และนิยามรูปแบบการทำซ้ำโดย
 	\begin{align}
 	- \nabla\cdot\left(\dfrac{\nabla u^{[\nu+1]}}{{| \nabla u |}^{[v]} }\right) + \lambda(u^{[\nu+1]}-z)  = 0,\ u^{[0]}=z
 	\label{e5}
 	\end{align}
-\end{itemize}
 
 \hspace{1cm} เนื่องจาก $\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty$ ในบริเวณที่ $u$ มีความเข้มสีเป็นเอกพันธ์ุ ($u(\mathbf{x})=$ ค่าคงตัว) เพื่อหลีกเลี่ยงปัญหาเชิงตัวเลขจะเกิดขึ้นใน (\ref{e4}) และ (\ref{e5}) เราจะใช้ 
 \begin{align*}
@@ -226,11 +225,13 @@
  \end{align*}
 
 \clearpage
-วิธีการทำซ้ำแบบจุดตรึงมีขั้นตอนดังนี้
+\hspace{1cm}วิธีการทำซ้ำแบบจุดตรึงมีขั้นตอนดังนี้ \\
+\vspace{0.5cm} 
 \begin{algorithm}[H]
+	\SetAlgoNoLine
 	\caption{FP Method for TV-based Image Inpainting}	
-	\SetKwFunction{FMain}{FP}
-	\SetKwProg{Fn}{}{}{end}
+	\SetKwFunction{FMain}{$u \longleftarrow FP$}
+	\SetKwProg{Fn}{}{}{}
 	\Fn{\FMain{$u, z,\lambda, \beta, N, \varepsilon$}}{		
 		\textbf{initialize} $i=0$;$u = z$;$err = 1 $\\
 		\While{$ i < N $ \textbf{and} $err > \varepsilon$}{
@@ -239,9 +240,8 @@
 			$err = \frac{||u-u^{old}||}{||u||}$ \\
 			$ i = i + 1 $
 		}
-		\textbf{return} $ u $ 
 	}
-	\SetKwFunction{FMain}{$u \longleftarrow GS(u, z, \lambda, \beta, N_{gs})$}
+	\SetKwFunction{FMain}{$u \longleftarrow GS$}
 	\Fn{\FMain{$u, z, \lambda, \beta, N_{gs}$}}{
 		\textbf{initialize} $k = 0$\\
 		compute $D(u)_{i,j} = \frac{1}{\sqrt{u_x^2+u_y^2+\beta}}, 1 \leq i \leq n_x, 1 \leq j \leq n_y$\\
@@ -250,45 +250,46 @@
 				\lambda_{i,j}+(2D_{i,j}+D_{i-1,j}+D_{i,j-1})}$\\
 				$k = k+1$
 		}
-		\textbf{return} $ u $ 
 	}
 \end{algorithm}
-\vspace{1cm}
+\vspace{0.5cm}
 \hspace{1cm} จาก (\ref{e4}) และ (\ref{e5}) เราพบว่ายิ่ง $\beta$ มีค่าน้อยลงมากขึ้นเท่าไหร่ ความแม่นยำของตัวแบบ (\ref{e1}) ยิ่งมีมากขึ้นเท่านั้น นอกจากนี้ เรายังพบอีกว่า การแก้สมการ (\ref{e4}) และ (\ref{e5}) ยิ่งมีความยุ่งยากมากขึ้นสำหรับ $\beta$ ที่มีค่าน้อยๆ 
 
-\hspace{1cm} เพื่อเอาชนะความยากเชิงตัวเลขนี้ คณะวิจัยโดย \cite{ref:splitbergman-inpaint} ได้แนะนำวิธีการสปริทเบรกแมนซึ่งสามารถกล่าวถึงพอสังเขป ดังนี้
-\clearpage
-\begin{itemize}
-	\item [(3)] วิธีการสปริทเบรกแมน (Split Bregman method)
-	
-	เริ่มจากการแนะนำเวกเตอร์เสริม $\boldsymbol{w}$ พารามิเตอร์เบรกแมน (Bregman parameter) $\boldsymbol{b}$ และพารามิเตอร์เพนัลที (panalty parameter) $\theta>0$ และเขียน (\ref{e1}) ใหม่ ดังนี้
+\hspace{1cm} เพื่อเอาชนะความยากเชิงตัวเลขนี้ คณะวิจัยโดย \cite{ref:splitbergman-inpaint} ได้แนะนำวิธีการสปริทเบรกแมนซึ่งสามารถกล่าวถึงพอสังเขป ดังนี้ \\
+
+\item[(3)] วิธีการสปริทเบรกแมน (Split Bregman method) 
+
+\hspace{1cm} เริ่มจากการแนะนำเวกเตอร์เสริม $\boldsymbol{w}$ พารามิเตอร์เบรกแมน (Bregman parameter) $\boldsymbol{b}$ และพารามิเตอร์เพนัลที (panalty parameter) $\theta>0$ และเขียน (\ref{e1}) ใหม่ ดังนี้
 	\begin{align}
 	\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  | \boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
 	\label{e6}
 	\end{align}
-	สำหรับการหาคำตอบของ (\ref{e6}) เราจะใช้วิธีการหาค่าต่ำที่สุดแบบสลับ (alternating minimization method) โดยเริ่มจากการตรึง $\boldsymbol{w}^{\text{old}}$ และ $\boldsymbol{b}^{\text{old}}$ จากนั้นแก้ปัญหาย่อย
+	\hspace{1cm}สำหรับการหาคำตอบของ (\ref{e6}) เราจะใช้วิธีการหาค่าต่ำที่สุดแบบสลับ (alternating minimization method) โดยเริ่มจากการตรึง $\boldsymbol{w}^{\text{old}}$ และ $\boldsymbol{b}^{\text{old}}$ จากนั้นแก้ปัญหาย่อยสำหรับ $u$
 	\begin{align}
 	u^{\text{New}}=\underset{u}{\arg\min} \{ \mathcal{J}_1(u) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w}^{\text{old}} - \nabla u + \boldsymbol{b}^{\text{old}}) d\Omega \}
 	\label{e7}
 	\end{align}
-	จากนั้นใช้ $u^{\text{New}}$ ที่ได้จากการแก้ปัญหาย่อยใน (\ref{e7}) เพื่อแก้ปัญหาย่อย
+	ต่อไปใช้ $u^{\text{New}}$ ที่ได้จากการแก้ปัญหาย่อย (\ref{e7}) เพื่อแก้ปัญหาย่อยสำหรับ $\boldsymbol{w}$
 	\begin{align}
 	\boldsymbol{w}^{\text{New}}=\underset{\boldsymbol{w}}{\arg\min} \{ \mathcal{J}_2(\boldsymbol{w}) = \int_{\Omega}  |\boldsymbol{w}|  d\Omega  + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u^{\text{New}} + \boldsymbol{b}^{\text{old}}) d\Omega \}
 	\label{e8}
 	\end{align}
-	สุดท้ายจึงปรับปรุงพารามิเตอร์เบรกแมน 
+	สุดท้ายจึงปรับปรุงพารามิเตอร์เบรกแมนโดย 
 	\begin{align}
 	\boldsymbol{b}^{\text{New}}=\boldsymbol{b}^{\text{old}}+\nabla u^{\text{New}}-\boldsymbol{w}^{\text{New}}
 	\label{e9}
 	\end{align}
-	ดำเนินการเช่นนี้จนกระทั่ง $||u^{\text{new}}-u^{\text{old}}||< \epsilon_1$ หรือ $\text{New}>\epsilon_2$ เมื่อ $\epsilon_1,\epsilon_2>0$  
-	วิธีการสปริทเบรกแมนมีขั้นตอนวิธีดังนี้
+	ดำเนินการเช่นนี้จนกระทั่ง $||u^{\text{new}}-u^{\text{old}}||< \epsilon_1$ หรือ $\text{New}>\epsilon_2$ เมื่อ $\epsilon_1,\epsilon_2>0$ \\ 
+	\vspace{0.5cm}
+	\hspace{1cm}วิธีการสปริทเบรกแมนมีขั้นตอนวิธีดังนี้ \\
+	\vspace{0.5cm}
 	\begin{algorithm}[H]
+		\SetAlgoNoLine
 		\caption{SB method for TV-based Image Inpainting}    
 		\SetKwFunction{FMain}{$u \longleftarrow SB$}
-		\SetKwProg{Fn}{}{}{end}
+		\SetKwProg{Fn}{}{}{}
 		
-		\Fn{\FMain{$u, z,\lambda, \theta, N_{gs}, N, \varepsilon$}}{
+		\Fn{\FMain{$u, u_{0}, z,\lambda, \theta, N_{gs}, N, \varepsilon$}}{
 			\textbf{initialize}
 			$i = 0$,
 			$\boldsymbol{b} = \vec{0}$,
@@ -307,17 +308,19 @@
 			}
 		}
 	\end{algorithm}
-	\clearpage
+	\vspace{0.5cm}
 	\textbf{หมายเหตุ:}
 	\begin{itemize}
-		\item [(1)] แก้ปัญหา $ u = \underset{u}{\arg\min} \mathcal{J}_1(u) $ ด้วยการคำนวณคำตอบของ $ - \theta \triangle u + \lambda u = \lambda z - \theta \nabla \cdot (\boldsymbol{w}-\boldsymbol{b})$ โดยใช้ Finite Difference Method และการทำซ้ำ Gauss-seidel จำนวน $N_{gs}$ รอบ
-		\item [(2)] แก้ปัญหา $ \boldsymbol{w} = \underset{\boldsymbol{w}}{\arg\min} \mathcal{J}_2(\boldsymbol{w}) $ ด้วยการคำนวณคำตอบของ $\boldsymbol{w} = max((\nabla u + \boldsymbol{b}) - \frac{1}{\theta},0)$
+		\item [(1)] ผลเฉลยของ $ u = \underset{u}{\arg\min} \mathcal{J}_1(u) $ กำหนดโดยการแก้ปัญหาผลเฉลยของ
+		 $$ - \theta \triangle u + \lambda u = \lambda z - \theta \nabla \cdot (\boldsymbol{w}-\boldsymbol{b})$$ 
+		 โดยใช้วิธีการไฟไนต์ดิฟเฟอเรนจ์และวิธีการเกาส์-ไซเดลจำนวน $N_{gs}$ รอบ
+		\item [(2)] ผลเฉลยของ $ \boldsymbol{w} = \underset{\boldsymbol{w}}{\arg\min} \mathcal{J}_2(\boldsymbol{w}) $ กำหนดโดย $$\boldsymbol{w} = max\bigg\{(\nabla u + \boldsymbol{b}) - \frac{1}{\theta},0\bigg\}$$
 	\end{itemize}
 \end{itemize}
-
+\clearpage
 \subsection{ตัวแบบการต่อเติมภาพสีที่ใช้การแปรผันรวม}\label{inpaint-model-color}
 
-\hspace{1cm} ต่อไปเราจะพิจารณาภาพสีในระบบ RGB นั่นคือ เราสมมติว่า
+\hspace{1cm} ต่อไปเราจะพิจารณาภาพสีในระบบสี RGB นั่นคือ เราสมมติว่า
 
 $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top} : \Omega  \rightarrow V^3 $$
 
@@ -338,7 +341,7 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 \mathcal{\bar{R}}(\boldsymbol{u})= \int_{\Omega}^{}\lvert\nabla u_1 \rvert d\Omega + \int_{\Omega}^{}\lvert\nabla u_2 \rvert d\Omega + \int_{\Omega}^{}\lvert\nabla u_3 \rvert d\Omega
 \end{align*}
 
-\hspace{1cm}  ดังนั้นเพื่อต่อเติมภาพสี จะเป็นการแก้ปัญหาการหาค่าต่ำที่สุดต่อไปนี้ 
+\hspace{1cm}  หลังจากใช้วิธีสปิทเบรกแมนกับ (\ref{e10}) จะได้
 \begin{align}
 \min_{\boldsymbol{u},\boldsymbol{w}_1,\boldsymbol{w}_2,\boldsymbol{w}_3} \{\bar{\mathcal{J}}(\boldsymbol{u},\boldsymbol{w}_1,\boldsymbol{w}_2,\boldsymbol{w}_3)&= \mathcal{\bar{D}}(\boldsymbol{u},\boldsymbol{z}) +  \underset{l=1}{\overset{3}{\sum}} \int_{\Omega}^{}|\boldsymbol{w}_l|d\Omega
 \nonumber\\
@@ -346,9 +349,12 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 \end{align}
 
 \vspace{1cm}
-สำหรับขั้นตอนวิธีสปริทเบรกแมนสำหรับภาพสี แสดงได้ดังนี้
+\hspace{1cm}ขั้นตอนวิธีสปริทเบรกแมนสำหรับภาพสี แสดงได้ดังนี้ 
+\vspace{0.5cm}
+
 \begin{algorithm}[H]
-	\caption{Split-bregman Color solver}
+	\SetAlgoNoLine
+	\caption{SB Method for Color TV-based Image Inpainting}
 	\SetKwFunction{FMain}{$\boldsymbol{u} \longleftarrow SBC$}
 	\SetKwProg{Fn}{}{}{end}
 	\Fn{\FMain{$\boldsymbol{u}, \boldsymbol{z} \lambda, \theta, N_{gs}, N, \varepsilon$}}{
@@ -362,17 +368,34 @@ $$ \boldsymbol{u} = (u_1,u_2,u_3)^{\top},\ \boldsymbol{z} = (z_1,z_2,z_3)^{\top}
 
 \hspace{1cm} การประเมินคุณภาพของการต่อเติมภาพของวิธีการเชิงตัวเลข จะใช้ค่า PSNR \cite{ref:PSNR} และ SSIM \cite{ref:SSIM} โดย
 
-$$ PSNR = 10 \cdot log_{10} ( \frac{1}{\sqrt{MSE}} )$$
+\begin{align*}
+	 \text{PSNR}  &= 10 \cdot log_{10} ( \frac{1}{\sqrt{\text{MSE}}} ) \\
+	\text{SSIM}(u,\tilde{u}) &= \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u}} + 0.0009)}{(\mu_u^2+\mu_{\tilde{u}}^2+0.0001)(\sigma_u^2+\sigma_{\tilde{u}}^2+0.0009)}
+\end{align*}
 
-$$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u}} + 0.0009)}{(\mu_u^2+\mu_{\tilde{u}}^2+0.0001)(\sigma_u^2+\sigma_{\tilde{u}}^2+0.0009)}$$
+\begin{itemize}
+	\item[$\bullet$] MSE คือค่าคลาดเคลื่อนกำลังสองเฉลี่ยของภาพ
+	\item[$\bullet$] $u$ แทนภาพต้นฉบับ
+	\item[$\bullet$] $\tilde{u}$  แทนภาพต้นฉบับ และภาพที่ได้จากการซ่อมแซมโดยวิธีเชิงตัวเลข
+	\item[$\bullet$] $\mu_u$ คือค่าเฉลี่ยของ $u$
+	\item[$\bullet$] $\mu_{\tilde{u}}$ คือค่าเฉลี่ยของ $\tilde{u}$
+	\item[$\bullet$]  $\sigma_u$ คือความแปรปรวนของ $u$ 
+	\item[$\bullet$] $\sigma_{\tilde{u}}$ คือความแปรปรวนของ $\tilde{u}$
+\end{itemize}
 
-\hspace{1cm}  เมื่อ MSE คือ mean square error ของภาพ $u$ และภาพ $\tilde{u}$ โดยที่ภาพ $u$ และภาพ $\tilde{u}$  แทนภาพต้นฉบับ และภาพที่ได้จากการซ่อมแซมโดยวิธีเชิงตัวเลข
+\textbf{หมายเหตุ:}
+\begin{itemize}
+	\item [(1)] ถ้า $\tilde{u} \longrightarrow u $ แล้ว PSNR $\longrightarrow \infty$ หมายถึง ภาพที่ซ่อมแซม $\tilde{u}$ มีคุณภาพดี
+	\item [(2)] ถ้า $SSIM(u,\tilde{u}) = 1 $
+	หมายถึง ภาพที่ซ่อมแซม $\tilde{u}$ มีคุณภาพดี
+\end{itemize}
+
 
 \vspace{1cm}
 
 \section{ผลการดำเนินงานเบื้องต้น}
 	\subsection{การซ่อมแซมภาพจิตรกรรมไทยโบราณ}
-	\hspace{1cm} สำหรับการซ่อมแซมจิตรกรรมไทยโบราณ จะเริ่มจากการทำการปรับปรุงขั้นตอนวิธีเชิงตัวเลขที่มีอยู่แต่เดิมให้ดีขึ้นเสียก่อน โดยระหว่างการปรับปรุงวิธีเชิงตัวเลข จะใช้ภาพสีที่ได้สังเคราะห์ขึ้นทั้งสิ้น 5 ภาพ โดยแต่ละภาพมีขนาด 256 x 256 พิกเซล ซึ่งมีดังนี้
+	\hspace{1cm} สำหรับการซ่อมแซมจิตรกรรมไทยโบราณ ผู้วิจัยจะเริ่มจากการทำการปรับปรุงขั้นตอนวิธีเชิงตัวเลขที่มีอยู่แล้ว โดยใช้ภาพสีที่ได้สังเคราะห์ขึ้นทั้งสิ้น 5 ภาพ โดยแต่ละภาพมีขนาด 256 x 256 พิกเซล ดังรูปที่ \ref{image:synart_original}
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{0.4\linewidth}
@@ -398,6 +421,7 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/case05-original.png}			
 		\end{subfigure}
 		\caption{ภาพต้นฉบับ}
+		\label{image:synart_original}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
@@ -424,10 +448,10 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 		\end{subfigure}
 		\caption{ภาพที่จะทำการซ่อมแซม}
 	\end{figure}
-	\subsubsection{การเปรียบเทียบประสิทธิภาพขั้นตอนวิธีเชิงตัวเลขที่มีอยู่สำหรับตัวแบบต่อเติมภาพสีที่ใช้การแปรผันรวม}
+	\subsubsection{การเปรียบเทียบประสิทธิภาพขั้นตอนวิธีเชิงตัวเลขที่มีอยู่แล้ว}
 	
 	\hspace{1cm}
-	การทดสอบประสิทธิ์ภาพจะใช้ $\varepsilon = 1x10^{-4} และ N= 10,000$ โดยมีการซ่อมแซมภาพสังเคราะห์ทั้ง 5 ภาพดังนี้
+	การทดสอบประสิทธิภาพจะใช้ $\varepsilon = 1 \times 10^{-4}$ และ $N= 10,000$ โดยรูปที่ \ref{result:image-timemarching} - \ref{result:image-splitbregman} และตารางที่ \ref{result:table-timemarching} - \ref{result:table-splitbregman} แสดงผลการซ่อมแซมภาพสังเคราะห์ทั้ง 5 ภาพ
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{0.4\linewidth}
@@ -451,6 +475,7 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch05.png}			
 		\end{subfigure}
 		\caption{ผลการซ่อมแซมจากวิธีการเดินเวลา}
+		\label{result:image-timemarching}
 	\end{figure}
 \begin{table}[H]
 	\centering
@@ -468,6 +493,7 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 		\hline
 	\end{tabular}
 	\caption{ผลการซ่อมแซมวิธีการเดินเวลา}
+	\label{result:table-timemarching}
 \end{table}	
 \begin{figure}[H]
 	\centering
@@ -533,6 +559,7 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 		\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman05.png}			
 	\end{subfigure}
 	\caption{ผลการซ่อมแซมจากวิธีการสปริทเบรกแมน}
+		\label{result:image-splitbregman}
 \end{figure}
 \begin{table}[H]
 	\centering
@@ -550,8 +577,9 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 		\hline
 	\end{tabular}
 	\caption{ผลการซ่อมแซมของวิธีสปริทเบรกแมน}
+	\label{result:table-splitbregman}
 \end{table}
-	ประสิทธิภาพของวิธีการเชิงตัวเลขทั้ง 3 วิธี สามารถสรุปได้ดังนี้
+	\hspace{1cm} ประสิทธิภาพของวิธีการเชิงตัวเลขทั้ง 3 วิธี สามารถสรุปได้ดังนี้
 	\begin{table}[H]
 		\centering
 		\begin{tabular}[ht]{|l|c|c|c|c|}
@@ -566,11 +594,11 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 		\caption{แสดงการซ่อมแซมเฉลี่ยของวิธีการเชิงตัวเลข}
 	\end{table}	
 	\hspace{1cm} 
-	ซึ่งจากทั้ง 3 วิธีที่ได้ทดสอบ จะเห็นได้ว่าวิธีการสปริทเบรกแมนใช้เวลาน้อยกว่าวิธีอื่น และมีคุณภาพ ซึ่งพิจราณาจาก ค่า PSNR และค่า SSIM มากกว่าวิธีอื่น ซึ่งผู้วิจัยจะใช้วิธีสปิทเบรกแมนมาใช้ในการพัฒนาวิธีต่อเติมภาพเป็นลำดับถัดไป
+	จากทั้ง 3 วิธีที่ได้ทดสอบ จะเห็นได้ว่าวิธีการสปริทเบรกแมนใช้เวลาน้อยกว่าวิธีอื่น และมีคุณภาพ ซึ่งพิจารณาจาก ค่า PSNR และค่า SSIM มากกว่าวิธีอื่น ผู้วิจัยจึงสนใจทำการปรับปรุงวิธีสปิทเบรกแมนให้มีประสิทธิภาพสูง
 	
-	\subsubsection{ขั้นตอนวิธีการสำหรับต่อเติมภาพชนิดใหม่}
-	\hspace{1cm} จากวิธีการสปริทเบรกแมนนั้นจะใช้วิธีการหาคำตอบโดยวิธีการทำซ้ำจนกระทั่งลู่เข้า ทางผู้ศึกษาจึงสนใจที่หาคำตอบเริ่มต้นสำหรับการทำซ้ำที่ดีขึ้น เพื่อทำให้การทำซ้ำลู่เข้าสู่คำตอบได้เร็วขึ้น โดยการทำงานกับรูปภาพที่เล็กกว่า จากนั้นจึงทำการขยายผลลัพธ์ที่ได้ขึ้นมาทำกับภาพใหญ่ ซึ่งวิธีนี้เรียกว่าวิธีพีระมิดรูปภาพ (pyramid methods) \cite{ref:image-pyramid}  โดยผู้วิจัยจะทำการย่อขนาดรูปลงครึ่งนึงโดยใช้วิธี Bilinear Interpolation ทั้งสิ้น 4 ครั้ง จากนั้นเริ่มทำการต่อเติมภาพขนาดเล็ก จากนั้นนำผลลัพธ์ที่ได้จากภาพขนาดเล็ก ทำการขยายภาพขึ้นสองเท่าโดยใช้ Bilinear Interpolation
-	 ก่อนจะนำเฉพาะส่วนที่อยู่ในโดเมนต่อเติมของภาพที่ถูกขยายมาทำการต่อเติมเพื่อให้ส่วนที่ถูกขยายขึ้นมาเป็นคำตอบเริ่มต้นสำหรับการต่อเติมภาพในชั้นถัดไป
+	\subsubsection{ขั้นตอนวิธีเชิงตัวเลขสำหรับต่อเติมภาพชนิดใหม่}
+	\hspace{1cm} เพื่อให้วิธีการสปริทเบรกแมนประมวลผลภาพได้รวดเร็วขึ้น ผู้วิจัยได้พัฒนากระบวนการกำหนดคำตอบเริ่มต้น โดยวิธีการ มัลติรีโซลูชัน (multi-resolution method) หรือวิธีการพีระมิดรูปภาพ (pyramid method) \cite{ref:image-pyramid}
+	เริ่มจากการย่อขนาดรูปลงครึ่งนึงโดยใช้วิธี Bilinear Interpolation จนกระทั่งถึงระดับความคมชัดที่ต้องการ จากนั้นทำการต่อเติมภาพขนาดเล็ก และนำผลลัพธ์ที่ได้จากภาพขนาดเล็กทำการขยายภาพขึ้นสองเท่าโดยใช้ Bilinear Interpolation เป็นคำตอบเริ่มต้นสำหรับการต่อเติมภาพในชั้นถัดไป
 	 	\begin{figure}[H]
 	 	\centering
 	 	\begin{subfigure}{0.4\linewidth}
@@ -583,14 +611,15 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 	\begin{algorithm}[H]
 		\label{algo:MultiSplitBregmanColorInpaint}
 		\caption{Multi-resolution SB method}
+		\SetAlgoNoLine
 		\SetKwFunction{FMain}{$u \longleftarrow MRSBC $}
 		\SetKwProg{Fn}{}{}{end}
 		\Fn{\FMain{$\boldsymbol{u}, \boldsymbol{z},\lambda, \theta, N_{gs}, N_0,N_1,N_2, \varepsilon,c,m$}}{
-			\textbf{Initialize} $height = $ height of $\boldsymbol{u}$, $width = $ width of $\boldsymbol{u}$ \\
+			\textbf{Initialize} $height = $ ความสูงของภาพ $\boldsymbol{u}$, $width = $ ความกว้างของภาพ $\boldsymbol{u}$ \\
 			\If{c < m}{
 				$x = Bilinear(\boldsymbol{u},\lfloor width * 0.5 \rfloor,\lfloor height * 0.5 \rfloor)$\\
 				$y = Bilinear(\lambda,\lfloor width * 0.5 \rfloor,\lfloor height * 0.5 \rfloor)$\\
-				$r = MRSBC(x,y, \lambda, \theta,$ \\$ \hspace{1cm}  N_{gs}, N_0, N_1, N_2, \varepsilon,c+1,m)$\\
+				$r = MRSBC(x,z,y, \lambda, \theta,$ \\$ \hspace{1cm}  N_{gs}, N_0, N_1, N_2, \varepsilon,c+1,m)$\\
 				$\boldsymbol{u} = Bilinear(r,width,height)$\\
 			}
 			\uIf{$c = 1$}{$N_{SB}=N_0$}
@@ -603,21 +632,21 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 	\end{algorithm}
 \begin{algorithm}[H]
 		\caption{Bilinear Interpolation}
+		\SetAlgoNoLine
 		% https://stackoverflow.com/questions/26142288
 		\SetKwFunction{FMain}{$J \longleftarrow Bilinear$}
 		\SetKwProg{Fn}{}{}{end}
 		\Fn{\FMain{$I,x,y$}}{
-			\textbf{Initialize} $J$ is image that height $x$ and width $y$, \\ $v =$ height of $I$ and $w$ is width of $I$,\\ $S_R = \frac{c}{a}, S_C = \frac{d}{b}, r = 1,2,...,v, c = 1,2,...,w,$\\$r' = 1,2,...x, c' = 1,2,...,y,  $ \\
+			\textbf{Initialize}  $v =$ ความสูงของภาพ $I$, $w$ คือความกว้างของภาพ $I$,\\ $S_R = \frac{c}{a}, S_C = \frac{d}{b}, r = 1,2,...,v, c = 1,2,...,w,$\\$r' = 1,2,...x, c' = 1,2,...,y,  $ \\
 			$r_f = \lfloor r' \cdot S_R \rfloor $\\
 			$c_f = \lfloor c' \cdot S_C \rfloor $\\
 			$\triangle r = r_f - r$ \\
 			$\triangle c = c_f - c$ \\
 			$J(r',c') = I(r,c)\cdot(1-\triangle r)\cdot (1-\triangle c) $\\$+ I(r+1,c) \cdot \triangle r \cdot (1 - \triangle c) $\\$+I(r,c+1)\cdot(1-\triangle r)\cdot\triangle c$\\$+ I(r+1,c+1)\cdot\triangle r \cdot \triangle c$ \\
-			\textbf{return} $ J $ 
 		}
 	\end{algorithm}
 	\clearpage
-	\hspace{1cm} โดยจะทำการเปรียบเทียบจำนวนครั้งในชั้นที่รูปภาพมีขนาดเล็ก จนไปถึงชั้นที่มีขนาดใหญ่ ตัวอย่าง เช่น 10/3/3/10000 หมายถึงในชั้นเล็กสุดซึ่งขนาดเป็น 32x32 พิกเซลจะทำซ้ำไม่กิน 10 ครั้ง ชั้นถัดมาขนาดเป็น 64x64 จะทำซ้ำไม่เกิน 3 ครั้ง และชั้นถัดมา ชั้นถัดมาขนาดเป็น 128x128 จะทำซ้ำ 3 ครั้ง และสุดท้ายขนาด 256x256 จะทำซ้ำไม่เกิน 10,000 ครั้งหรือจนค่าความคลาดเคลื่อนสัมพัทธ์ต่างกันไม่เกิน 0.0001 ซึ่งเมื่อทำการทดสอบแล้วได้ผลลัพธ์ดังตารางนี้
+	\hspace{1cm} ตารางที่ \ref{result:table-multiresolution1} แสดงผลการเปรียบเทียบประสิทธิภาพของขั้นตอนวิธีการที่ \ref{algo:MultiSplitBregmanColorInpaint} ภายใต้การเปลี่ยนแปลงจำนวนรอบของการทำซ้ำของวิธีการสปริทเบรกแมนบนภาพที่มีความคมชัด 256x256 พิกเซล ตัวอย่าง เช่น 10/3/3/10000 หมายถึงที่ระดับความคมชัดหยาบสุดซึ่งมีขนาดเป็น 32x32 พิกเซลจะทำซ้ำไม่เกิน 10 ครั้ง สำหรับที่ความคมชัดละเอียดขึ้นเป็น 64x64 พิกเซลจะทำซ้ำไม่เกิน 3 ครั้ง และสำหรับที่ระดับความคมชัดเป็น 128x128 พิกเซลจะทำซ้ำ 3 ครั้ง และที่ระดับความคมชัดเป็น 256x256 จะทำซ้ำไม่เกิน 10,000 ครั้งหรือจนค่าความคลาดเคลื่อนสัมพัทธ์ต่างกันไม่เกิน 0.0001 
 	
 	\begin{table}[H]
 		\footnotesize
@@ -669,7 +698,8 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			& 5 & 7.45 & 33.94 & 1.0000 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์ของการใช้พีระมิดภาพในการต่อเติมในชั้นที่ต่างกัน}
+		\caption{ผลการซ่อมแซมภาพโดยวิธีการเชิงตัวเลขที่นำเสนอ}
+		\label{result:table-multiresolution1}
 \end{table}	
 	\begin{table}[H]
 		\centering
@@ -686,39 +716,40 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			100/10/10/10000 & 9.27 & 40.12 & 0.9999 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์เฉลี่ยของการใช้พีระมิดภาพในการต่อเติมในชั้นที่ต่างกัน}
+		\caption{ผลการซ่อมแซมภาพโดยวิธีการเชิงตัวเลขที่นำเสนอในรูปของค่าเฉลี่ยของผลที่ได้จากตารางที่ \ref{result:table-multiresolution1}}
+		\label{result:table-multiresolution1-summary}
 	\end{table}	
 	
-	\hspace{1cm}จากตารางจะสังเกตว่า ยิ่งจำนวนการทำซ้ำในชั้นที่รูปภาพมีขนาดเล็กจำนวนมากครั้ง จะยิ่งทำให้เวลาประมวลผลที่ใช้ในการต่อเติมภาพ ใช้เวลาน้อยลง
+	\hspace{1cm}จากตารางที่ \ref{result:table-multiresolution1-summary} สังเกตว่า ยิ่งจำนวนการทำซ้ำในชั้นที่รูปภาพมีขนาดเล็กจำนวนมากครั้ง จะยิ่งทำให้เวลาประมวลผลที่ใช้ในการต่อเติมภาพใช้เวลาน้อยลง
 	
-	\hspace{1cm} ซึ่งนอกจากนี้แล้ว ผู้วิจัยยังได้สังเกตอีกว่า การทำซ้ำนั้น จะลู่เข้าเร็วในช่วงแรก จากนั้นความเร็วในการลู่เข้าจะลดลง ซึ่งทำให้การทำซ้ำเพียงไม่กี่ครั้งในรูปภาพขนาดใหญ่สุด มีผลลัพธ์ใกล้เคียงกับภาพต้นฉบับได้
+	\hspace{1cm} นอกจากนี้แล้ว ผู้วิจัยยังได้สังเกตอีกว่า การทำซ้ำน จะลู่เข้าเร็วในช่วงแรก จากนั้นความเร็วในการลู่เข้าจะลดลง ซึ่งทำให้การทำซ้ำเพียงไม่กี่ครั้งในระดับความคมชัดเดิม  มีผลการซ่อมแซมภาพจนแสดงความคล้ายคลึงกับภาพต้นฉบับได้
 	
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{0.4\linewidth}
 			\centering
-			\includegraphics[width=0.8\linewidth]{images/just10enough/only10time.png}
-			\caption{ชั้นใหญ่สุด 10 ครั้ง}
+			\includegraphics[width=0.7\linewidth]{images/just10enough/only5time.png}
+			\caption{5 ครั้ง}
 		\end{subfigure}
 		\begin{subfigure}{0.4\linewidth}
 			\centering
-			\includegraphics[width=0.8\linewidth]{images/just10enough/only100time.png}
-			\caption{ชั้นใหญ่สุด 100 ครั้ง}
+			\includegraphics[width=0.7\linewidth]{images/just10enough/only10time.png}
+			\caption{10 ครั้ง}
 		\end{subfigure}
 		\begin{subfigure}{0.4\linewidth}
 			\centering
-			\includegraphics[width=0.8\linewidth]{images/just10enough/only1000time.png}			
-			\caption{ชั้นใหญ่สุด 1,000 ครั้ง}
+			\includegraphics[width=0.7\linewidth]{images/just10enough/only50time.png}			
+			\caption{50 ครั้ง}
 		\end{subfigure}
 		\begin{subfigure}{0.4\linewidth}
 			\centering
-			\includegraphics[width=0.8\linewidth]{images/just10enough/only10000time.png}			
-			\caption{ชั้นใหญ่สุด 10,000 ครั้ง}
+			\includegraphics[width=0.7\linewidth]{images/just10enough/only100time.png}			
+			\caption{100 ครั้ง}
 		\end{subfigure}
-		\caption{พีระมิดที่ลำดับการทำซ้ำเป็น 10/10/10 และชั้นใหญ่สุดทำในจำนวนครั้งที่ต่างกัน}
+		\caption{พีระมิดที่ลำดับการทำซ้ำเป็น 10/10/10 และที่ระดับความคมชัดละเอียดสุดใช้จำนวนการทำซ้ำที่ต่างกัน}
 	\end{figure}
-	
-	 โดยผู้วิจัยจึงกำหนดให้การทำซ้ำในรูปภาพขนาดใหญ่สุดมีการทำซ้ำเพียง 10 ครั้ง และพบว่าได้ผลลัพธ์ดังนี้
+	\clearpage
+	 \hspace{1cm} ผู้วิจัยจึงกำหนดให้การทำซ้ำในระดับความละเอียดสุดเท่ากับ 10 ครั้ง และพบว่าได้ผลการซ่อมแซมดังตารางที่ \ref{result:table-multiresolution2}
 		\begin{table}[H]
 		\centering
 		\small
@@ -769,7 +800,8 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			& 5 & 0.39 & 32.38 & 0.9999 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์ของการใช้พีระมิดภาพในการต่อเติมโดยกำหนดให้ชั้นรูปภาพขนาดใหญ่สุดทำซ้ำเพียง 10 ครั้ง}
+		\caption{ผลการซ่อมแซมภาพโดยวิธีการเชิงตัวเลขที่นำเนอเมื่อใช้การทำซ้ำในระดับความคมชัดละเอียดสุด 10 ครั้ง}
+		\label{result:table-multiresolution2}
 	\end{table}	
 	\begin{table}[H]
 		\centering
@@ -786,13 +818,14 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			100/10/10/10 & 0.38 & 33.39 & 0.9998 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์เฉลี่ยของการใช้พีระมิดภาพในการต่อเติมโดยกำหนดให้ชั้นรูปภาพขนาดใหญ่สุดทำซ้ำเพียง 10 ครั้ง}
+		\caption{ผลการซ่อมแซมภาพโดยวิธีการเชิงตัวเลขที่นำเสนอในรูปของค่าเฉลี่ยของผลที่ได้จากตารางที่ \ref{result:table-multiresolution2}}
+		\label{result:table-multiresolution2-summary}
 	\end{table}	
 
 	\hspace{1cm}จากตารางจะเห็นว่า การทำซ้ำในชั้นที่รูปภาพมีขนาดเล็กมากจำนวนมาก ไม่ช่วยให้การประมวลผลได้เร็วขึ้น ผู้วิจัยจึงเลือกใช้การทำซ้ำแบบ 10/3/3/10 ในการต่อเติมภาพ
 	
 	\subsubsection{การทดสอบประสิทธิภาพในการซ่อมแซมภาพจิตรกรรมไทยโบราณ}
-	\hspace{1cm}ซึ่งภาพจิตรกรรมทีี่ใช้ทดสอบ มีทั้งสิ้น 5  ภาพ โดยแต่ละภาพเป็นภาพสีที่มีขนาด 256x256 พิกเซล ซึ่งทั้ง 5 ภาพได้แก่ ภาพที่ \ref{image:thaiart_case01_original} \footnote{ภาพถ่ายที่วัดแก้วไพฑูรย์; ภาพจาก  https://commons.wikimedia.org/wiki/File:จิตรกรรมฝาผนัง\_วัดแก้วไพฑูรย์\_(7).jpg สืบค้นเมื่อวันที่ 23 กันยายน 2561}   และภาพที่ \ref{image:thaiart_case02_original} \footnote{ภาพถ่ายที่วัดแก้วไพฑูรย์; ภาพจาก  https://commons.wikimedia.org/wiki/File:จิตรกรรมฝาผนัง\_วัดแก้วไพฑูรย์\_(2).jpg สืบค้นเมื่อวันที่ 23 กันยายน 2561} คือ จิตรกรรมฝาผนังวัดแก้วไพฑูรย์ ภาพที่ \ref{image:thaiart_case03_original} \footnote{ภาพถ่ายที่วัดพระยืนพุทธบาทยุคล; ภาพจาก https://commons.wikimedia.org/wiki/File:Wat\_Phra\_Yuen \_Phutthabat\_Yukhon\_01.jpg สืบค้นเมื่อวันที่ 23 กันยายน 2561}  คือ จิตรกรรมฝาผนังวัดพระยืนพุทธบาทยุคล ภาพที่ \ref{image:thaiart_case04_original} \footnote{ภาพถ่ายที่วัดคงคาราม; ภาพจาก  https://commons.wikimedia.org/wiki/File:จิตรกรรม\_อุโบสถวัดคงคาราม.JPG สืบค้นเมื่อวันที่ 23 กันยายน 2561} คือ จิตรกรรมฝาผนังวัดคงคาราม และภาพที่ \ref{image:thaiart_case05_original} \footnote{ภาพถ่ายที่วัดท่าถนน; ภาพจาก  https://commons.wikimedia.org/wiki/File:Wat\_Tha\_Thanon\_05.JPG สืบค้นเมื่อวันที่ 23 กันยายน 2561} คือ จิตรกรรมฝาผนังวัดท่าถนน
+	\hspace{1cm}ภาพจิตรกรรมทีี่ใช้ทดสอบ มีทั้งสิ้น 5  ภาพ โดยแต่ละภาพเป็นภาพสีที่มีขนาด 256x256 พิกเซล ซึ่งทั้ง 5 ภาพได้แก่ ภาพที่ \ref{image:thaiart_case01_original} \footnote{ภาพถ่ายที่วัดแก้วไพฑูรย์; ภาพจาก  https://commons.wikimedia.org/wiki/File:จิตรกรรมฝาผนัง\_วัดแก้วไพฑูรย์\_(7).jpg สืบค้นเมื่อวันที่ 23 กันยายน 2561}   และภาพที่ \ref{image:thaiart_case02_original} \footnote{ภาพถ่ายที่วัดแก้วไพฑูรย์; ภาพจาก  https://commons.wikimedia.org/wiki/File:จิตรกรรมฝาผนัง\_วัดแก้วไพฑูรย์\_(2).jpg สืบค้นเมื่อวันที่ 23 กันยายน 2561} คือ จิตรกรรมฝาผนังวัดแก้วไพฑูรย์ ภาพที่ \ref{image:thaiart_case03_original} \footnote{ภาพถ่ายที่วัดพระยืนพุทธบาทยุคล; ภาพจาก https://commons.wikimedia.org/wiki/File:Wat\_Phra\_Yuen \_Phutthabat\_Yukhon\_01.jpg สืบค้นเมื่อวันที่ 23 กันยายน 2561}  คือ จิตรกรรมฝาผนังวัดพระยืนพุทธบาทยุคล ภาพที่ \ref{image:thaiart_case04_original} \footnote{ภาพถ่ายที่วัดคงคาราม; ภาพจาก  https://commons.wikimedia.org/wiki/File:จิตรกรรม\_อุโบสถวัดคงคาราม.JPG สืบค้นเมื่อวันที่ 23 กันยายน 2561} คือ จิตรกรรมฝาผนังวัดคงคาราม และภาพที่ \ref{image:thaiart_case05_original} \footnote{ภาพถ่ายที่วัดท่าถนน; ภาพจาก  https://commons.wikimedia.org/wiki/File:Wat\_Tha\_Thanon\_05.JPG สืบค้นเมื่อวันที่ 23 กันยายน 2561} คือ จิตรกรรมฝาผนังวัดท่าถนน
 	โดยจะทำให้ข้อมูลข้องทั้ง 5 ภาพเกิดความเสียหาย โดยใช้รอยความเสียหายจากภาพพระเจ้าสร้างอดัม
 	
 	\begin{figure}[H]
@@ -882,7 +915,7 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/result_ex4/splitbergman_case05.png}			
 		\end{subfigure}
-		\caption{ผลลัพธ์จากวิธีการสปริทเบรกแมน}
+		\caption{ผลการซ่อมแซมโดยวิธีการสปริทเบรกแมน}
 	\end{figure}
 	\begin{table}[H]
 		\centering
@@ -899,7 +932,8 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			เฉลี่ย & 2.72  & 34.89  & 1.0000 \\
 			\hline
 		\end{tabular}
-		\caption{ผลลัพธ์การซ่อมแซมภาพศิลปะไทยจากวิธีการสปิทเบรกแมน}
+		\caption{ผลการซ่อมแซมภาพศิลปะไทยจากวิธีการสปิทเบรกแมน}
+		\label{result:table-thaiart-splitbregman}
 	\end{table}
 	\begin{figure}[H]
 		\centering
@@ -923,7 +957,7 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			\centering
 			\includegraphics[width=0.8\linewidth]{images/result_ex4/multisplitbergman_case05.png}			
 		\end{subfigure}
-		\caption{ผลลัพธ์จากวิธีการที่พัฒนาขึ้น}
+		\caption{ผลการซ่อมแซมภาพโดยวิธีการเชิงตัวเลขที่พัฒนาขึ้น}
 	\end{figure}
 		\begin{table}[H]
 		\centering
@@ -940,9 +974,10 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			เฉลี่ย & 0.39  & 35.30  & 1.0000 \\
 			\hline
 		\end{tabular}
-		\caption{ผลลัพธ์การซ่อมแซมภาพศิลปะไทยจากวิธีที่พัฒนาขึ้น}
+		\caption{ผลการซ่อมแซมภาพศิลปะไทยโดยวิธีการเชิงตัวเลขที่พัฒนาขึ้น}
+		\label{result:table-thaiart-mutisplitbregman}
 	\end{table}	 
-	\hspace{1cm}ซึ่งทั้งสองวิธี ได้ผลลัพธ์การซ่อมแซมศิลปะไทยเฉลี่ยออกมาดังนี้
+	\hspace{1cm}ทั้งสองวิธี ได้ผลลัพธ์การซ่อมแซมภาพศิลปะไทยในรูปค่าเฉลี่ยออกมาดังนี้
 	\begin{table}[H]
 		\centering
 		\begin{tabular}[ht]{|l|c|c|c|c|}
@@ -953,9 +988,10 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			วิธีการที่พัฒนาขึ้น & 0.39 & 35.30 & 1.0000 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์เฉลี่ยของการซ่อมแซมภาพศิลปะไทย}
+		\caption{แสดงผลการซ่อมแซมภาพศิลปะไทยในรูปค่าเฉลี่ยจากตารางที่ 		\ref{result:table-thaiart-splitbregman} และตารางที่ 		\ref{result:table-thaiart-mutisplitbregman} }
+		\label{result:table-thaiart-summary}
 	\end{table}	
-	\hspace{1cm} จากตารางจะเห็นได้ว่า วิธีที่พัฒนาขึ้นนั้นสามารถทำงานได้เร็วกว่าวิธีสปริทเบรกแมนเดิม และยังมีคุณภาพที่ดีขึ้นด้วย
+	\hspace{1cm} จากตารางที่ \ref{result:table-thaiart-summary} จะเห็นได้ว่า วิธีที่พัฒนาขึ้นนั้นสามารถทำงานได้เร็วกว่าวิธีสปริทเบรกแมนเดิม และยังมีคุณภาพที่ดีขึ้นด้วย
 	
 	
 	
@@ -972,21 +1008,22 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 		\caption{การแบ่งไฟล์วิดีโอเป็น 5 ส่วนสำหรับใช้เป็น 5 ชุดทดสอบ}
 	\end{figure}
 	
-	\hspace{1cm}เนื่องจากไฟล์วิดีโอนั้นประกอบชุดของภาพหลายภาพ ทำให้ขั้นตอนวิธีการลบคำบรรยายออกจากวิดีโอ จะต้องทำการต่อเติมบริเวณที่เป็นบทบรรยายทีละภาพ นั่นคือจะมีขั้นตอนวิธีดังนี้ \\
+	\hspace{1cm}เนื่องจากไฟล์วิดีโอนั้นประกอบด้วยชุดของภาพหลายภาพ กล่าวคือ $V = \{\boldsymbol{u}_i| i = 1,2,3 ... N_f\}$ ทำให้ขั้นตอนวิธีการลบคำบรรยายออกจากวิดีโอ จะต้องทำการต่อเติมบริเวณที่เป็นบทบรรยายทีละภาพ ดังที่แสดงในขั้นตอนวิธีต่อไปนี้ \\
 	
 	\begin{algorithm}[H]
-		\caption{remove subtitle from video}	
+		\caption{Removing subtitle from video}	
+		\SetAlgoNoLine
 		\SetKwFunction{FMain}{$V \longleftarrow RemoveS$}
-		\SetKwProg{Fn}{}{}{end}
+		\SetKwProg{Fn}{}{}{}
 		\Fn{\FMain{$V$}}{
-			\ForEach{$\boldsymbol{u}_i$ เป็นเฟรมที่ $i$ ในวิดีโอ $V$}{
+			\For{$ i = 1,2,... N_f$}{
 				$\bullet$ หาโดเมนต่อเติม $D$ จาก $\boldsymbol{u}_i$\\
 				$\bullet$ ต่อเติมภาพ $\boldsymbol{u}_i$ โดยใช้โดเมนต่อเติม $D$\\
 			}
 		}
 	\end{algorithm}
 	\vspace{1cm}
-	\hspace{1cm} โดยขั้นตอนการต่อเติมภาพ $u_i$ ด้วยโดเมนต่อเติม $D$ นั้นจะสามารถใช้วิธีการเดียวกับการซ่อมแซมภาพศิลปะไทยได้ ส่วนการหาบทบรรยายอนิเมะ จะกล่าวถึงในขั้นถัดไป
+	\hspace{1cm} โดยขั้นตอนการต่อเติมภาพ $\boldsymbol{u}_i$ ด้วยโดเมนต่อเติม $D$ นั้นจะสามารถใช้วิธีการเดียวกับการซ่อมแซมภาพศิลปะไทยได้ ส่วนการหาบทบรรยายอนิเมะ จะกล่าวถึงในหัวข้อย่อย
 	
 	
 	\subsubsection{การหาบทบรรยายบนอนิเมะ}	
@@ -995,21 +1032,22 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 	\vspace{1cm}
 	
 	\begin{algorithm}[H]
-		\caption{finding subtitle}
+		\caption{Finding subtitle}
 		\SetKwFunction{FMain}{$D \longleftarrow findsub$}
+		\SetAlgoNoLine
 		\SetKwProg{Fn}{}{}{}
 		\Fn{\FMain{$\boldsymbol{u}$}}{
 			$\bullet$ ทำการเปลี่ยนสีดำในภาพ $\boldsymbol{u}$ ให้เป็นสีขาวแล้วเปลี่ยนอื่นๆ ให้เป็นสีดำเพื่อหาขอบของคำบรรยาย\\
-			$\bullet$ เปลี่ยนพื้นที่สีขาวในภาพให้เป็นสีดำ และเปลี่ยนพื้นที่สีดำให้เป็นสีขาว\\
-			$\bullet$ ทำการลบพื้นที่สีขาวซึ่งติดกับขอบของภาพออกไป เนื่องจากบทบรรยายจะลอยอยู่ ไม่ติดกับขอบเสมอ\\
-			$\bullet$  ลบพื้นที่ๆ ใหญ่เกินกว่าจะเป็นบทบรรยาย \\
-			$\bullet$  ลบพื้นที่ ซึ่งเล็กเกินกว่าจะเป็นบทบรรยาย \\
+			$\bullet$ เปลี่ยนบริเวณสีขาวในภาพให้เป็นสีดำ และเปลี่ยนบริเวณสีดำให้เป็นสีขาว\\
+			$\bullet$ ทำการลบบริเวณสีขาวซึ่งติดกับขอบของภาพออกไป เนื่องจากบทบรรยายจะลอยอยู่ ไม่ติดกับขอบเสมอ\\
+			$\bullet$  ลบบริเวณที่ใหญ่เกินกว่าจะเป็นบทบรรยาย \\
+			$\bullet$  ลบบริเวณที่เล็กเกินกว่าจะเป็นบทบรรยาย \\
 			$\bullet$ ทำการขยายพื้นที่ๆ เป็นสีขาวขึ้นด้วยความกว้างของขอบบทบรรยาย \\
 			$\bullet$ สีขาวที่เหลืออยู่ในภาพจะเป็นบทบรรยาย
 		}	
 	\end{algorithm}
 	\clearpage
-	\hspace{1cm} ซึ่งวิธีการหาบทบรรยายที่กล่าวไปข้างต้น จะทำการทดสอบกับบทความ lorem ipsum ที่ถูกแปลเป็นภาษาไทย ภาษาอังกฤษ และภาษาญี่ปุ่น โดยมีความสามารถในการหาโดเมนต่อเติมใบบทบรรยายภาษาต่างๆ ดังนี้
+	\hspace{1cm} วิธีการหาบทบรรยายที่กล่าวไปข้างต้น จะทำการทดสอบกับบทความ lorem ipsum\footnote{Cicero, De finibus bonorum et malorum; เข้าถึงได้ทาง https://en.wikipedia.org/wiki/Lorem\_ipsum สืบค้นเมื่อวันที่ 23 ตุลาคม 2561} ที่ถูกแปลเป็นภาษาไทย ภาษาอังกฤษ และภาษาญี่ปุ่น โดยมีความสามารถในการหาโดเมนต่อเติมใบบทบรรยายภาษาต่างๆ ดังนี้
 	\begin{table}[H]
 		\centering
 		\footnotesize
@@ -1036,7 +1074,7 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			& 5 & 28,558,848 & 30,354,275 & 3,671,730 & 12.86\\
 			\hline
 		\end{tabular}
-		\caption{แสดงความคาดเคลื่อนของการหาโดเมนต่อเติม ในบทบรรยายภาษาต่างๆ}
+		\caption{ความคลาดเคลื่อนของการหาโดเมนต่อเติม ในบทบรรยายภาษาต่างๆ}
 	\end{table}
 	\begin{table}[H]
 		\centering
@@ -1050,34 +1088,44 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			ญี่ปุ่น & 28,544,173 & 30,103,466 & 3,740,971 & 13.11 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงความคาดเคลื่อนเฉลี่ยของการหาโดเมนต่อเติม ในบทบรรยายภาษาต่างๆ}
+		\caption{ความคลาดเคลื่อนเฉลี่ยของการหาโดเมนต่อเติม ในบทบรรยายภาษาต่างๆ}
 	\end{table}	
 	
 	\hspace{1cm} จากการทดลองทั้ง  3 ภาษาพบว่าวิธีการหาคำบรรยายนี้ มีร้อยละการผิดพลาดเฉลี่ยอยู่ที่ 11.98 ซึ่งการทดลองจากนี้ไปจะใช้วิธีการหาคำบรรยายนี้ในการหาโดเมนต่อเติมแบบอัตโนมัติ
 	\clearpage
 	\subsubsection{การลบคำบรรยายจากบทอนิเมะ}
 	\hspace{1cm} สำหรับอนิเมะนั้น แต่ละเฟรมจะเป็นรูปภาพ เราจึงสามารถประยุกต์ใช้วิธีการซ่อมแซมภาพจิตรกรรมไทย มาใช้ในการลบคำบรรยายได้ แต่ผู้วิจัยก็ได้สังเกตว่า สำหรับอนิเมะที่เป็นวิดีโอแล้ว ในขณะที่ประมวลผลวิดีโอ เราสามารถใช้ผลการต่อเติมภาพจากภาพที่แล้ว มาใช้เป็นคำตอบเริ่มต้นจึงได้ว่าขึ้นตอนการลบบทบรรยายออกจากวิดีโอมีดังนี้\\
+	
+			\vspace{0.5cm}
+	
 	\begin{algorithm}[H]
-		\caption{subtitle remove with reference from previous frame}
+		\SetAlgoNoLine
+		\caption{Removeing subtitle from video (Method 1)}
 		\SetKwFunction{FMain}{$V \longleftarrow removeS1$}
 		\SetKwProg{Fn}{}{}{end}
 		\Fn{\FMain{$V$}}{
-			\textbf{initialize} $i =1$, $N_{f}$ เป็นจำนวนเฟรมใน $V$ \\
+			\textbf{initialize} $i =1$\\
 			\While{$i < N_f - 1$}{
 				$\boldsymbol{u}_i$ คือเฟรมที่ $i$ ใน $V$ \\
-				$u_{i+1}$ คือเฟรมที่ $i+1$ ใน $V$ \\
+				$\boldsymbol{u}_{i+1}$ คือเฟรมที่ $i+1$ ใน $V$ \\
 				$D$ คือโดเมนต่อเติมใน $\boldsymbol{u}_{i+1}$ \\
-				$\boldsymbol{u}_{i+1} = removeS2(\boldsymbol{u}_{i},D,u_{i+1})$
+				$\boldsymbol{u}_{i+1} = removeS2(\boldsymbol{u}_{i},D,\boldsymbol{u}_{i+1})$
 			}
-			\textbf{return} $V$
 		}	
 	\end{algorithm}
-	\hspace{1cm} โดย $removeS2(\boldsymbol{u}_{i},D,u_{i+1})$  คือขั้นตอนวิธีที่ \ref{algo:borrowframe} ซึ่งในทำนองเดียวกันเราสามารถเปลี่ยน $removeS2(u_{i},D,\boldsymbol{u}_{i+1})$ เป็น $removeS3(\boldsymbol{u}_{i},D,u_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipframe} และเปลี่ยนเป็น  $removeS4(\boldsymbol{u}_{i},D,\boldsymbol{u}_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipnborrowframe} ได้
+	\vspace{0.5cm}
+	\hspace{1cm}  $removeS2(\boldsymbol{u}_{i},D,u_{i+1})$  คือขั้นตอนวิธีที่ \ref{algo:borrowframe} ซึ่งในทำนองเดียวกันเราสามารถเปลี่ยน $removeS2(u_{i},D,\boldsymbol{u}_{i+1})$ เป็น $removeS3(\boldsymbol{u}_{i},D,u_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipframe} และเปลี่ยนเป็น  $removeS4(\boldsymbol{u}_{i},D,\boldsymbol{u}_{i+1})$ เพื่อใช้กับขั้นตอนวิธี \ref{algo:skipnborrowframe} ได้ \\
 	
-	ขั้นตอนวิธี การยืมเฟรม จะเป็นการนำผลลัพธ์จากเฟรมก่อนหน้ามาเป็นคำตอบในการเริ่มต้นในการประมวลผลเพื่อให้ผลลัพธ์ลู่เข้าได้เร็วขึ้น
+	\vspace{0.5cm}
+	
+	\hspace{1cm} ขั้นตอนวิธี การยืมเฟรม จะเป็นการนำผลลัพธ์จากเฟรมก่อนหน้ามาเป็นคำตอบในการเริ่มต้นในการประมวลผลเพื่อให้ผลลัพธ์ลู่เข้าได้เร็วขึ้น \\
+	
+		\vspace{0.5cm}
+	
 	\begin{algorithm}[H]
+		\SetAlgoNoLine
 		\label{algo:borrowframe}
-		\caption{ฺborrow frame technique}  
+		\caption{Removing subtitle from video (Method 2)}  
 		\SetKwFunction{FMain}{$\boldsymbol{v} \longleftarrow removeS2$}
 		\SetKwProg{Fn}{}{}{end}
 		\Fn{\FMain{$\boldsymbol{u} , D, \boldsymbol{v} $}}{
@@ -1089,12 +1137,14 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 		}	
 	\end{algorithm}
 	\clearpage
-	ขั้นตอนวิธี การข้ามเฟรม สำหรับเฟรมใดที่ผลลัพธ์ใกล้เคียงกันมาก จะทำการข้ามการต่อเติมภาพในเฟรมนั้นไปโดยใช้คำตอบจากเฟรมก่อนหน้าแทนเพื่อลดเวลาการประมวลผล
+	\hspace{1cm}ขั้นตอนวิธี การข้ามเฟรม สำหรับเฟรมใดที่ผลลัพธ์ใกล้เคียงกันมาก จะทำการข้ามการต่อเติมภาพในเฟรมนั้นไปโดยใช้คำตอบจากเฟรมก่อนหน้าแทนเพื่อลดเวลาการประมวลผล \\ 
+	\vspace{0.5cm}
 	\begin{algorithm}[H]
+		\SetAlgoNoLine
 		\label{algo:skipframe}
-		\caption{skip frame technique}  
+		\caption{Removeing subtitle from video (Method 3)}  
 		\SetKwFunction{FMain}{$\boldsymbol{v}, \longleftarrow removeS3$}
-		\SetKwProg{Fn}{}{}{end}
+		\SetKwProg{Fn}{}{}{}
 		\Fn{\FMain{$\boldsymbol{u}, D, \boldsymbol{v}$}}{
 			$s =$ ค่า SSIM ระหว่าง  $\boldsymbol{u}$ และ $\boldsymbol{v}$  บริเวณนอกโดเมนต่อเติม\\
 			\uIf{s > 0.95}{
@@ -1105,12 +1155,15 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			}
 		}	
 	\end{algorithm}
-	ขั้นตอนวิธี การข้ามและยืมเฟรม คือขั้นตอนวิธี \ref{algo:borrowframe} และขั้นตอนวิธี \ref{algo:skipframe} ที่นำมาประยุกต์ใช้งานร่วมกัน
+	\vspace{0.5cm}
+	\hspace{1cm}ขั้นตอนวิธี การข้ามและยืมเฟรม คือขั้นตอนวิธี \ref{algo:borrowframe} และขั้นตอนวิธี \ref{algo:skipframe} ที่นำมาประยุกต์ใช้งานร่วมกัน\\
+	\vspace{0.5cm}
 	\begin{algorithm}[H]
 		\label{algo:skipnborrowframe}
-		\caption{skip and borrow frame technique}  
+		\caption{Removing subtitle from video (Method 4)}  
+		\SetAlgoNoLine
 		\SetKwFunction{FMain}{$\boldsymbol{v} \longleftarrow removeS4$}
-		\SetKwProg{Fn}{}{}{end}
+		\SetKwProg{Fn}{}{}{}
 		\Fn{\FMain{$\boldsymbol{u} , D, \boldsymbol{v} $}}{
 			$s =$ ค่า SSIM ระหว่าง  $u$ และ $v$  บริเวณนอกโดเมนต่อเติม\\
 			\uIf{s > 0.95}{
@@ -1124,8 +1177,8 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			}
 		}	
 	\end{algorithm}
-	
-	 ซึ่งผลลัพธ์เปรียบเทียบระหว่างแบบใช้วิธี ยืมเฟรม ใช้วิธีข้ามเฟรม และวิธีข้ามและยืมเฟรม ได้ผลดังตาราง
+	\vspace{0.5cm}
+	\hspace{1cm}ซึ่งผลลัพธ์เปรียบเทียบระหว่างแบบใช้วิธี ยืมเฟรม ใช้วิธีข้ามเฟรม และวิธีข้ามและยืมเฟรม ได้ผลดังตาราง
 		\begin{table}[H]
 		\small
 		\centering
@@ -1158,7 +1211,8 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			& 5 & 77.45  & 32.46 & 0.9540 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์ของขั้นตอนวิธี \ref{algo:MultiSplitBregmanColorInpaint}, \ref{algo:borrowframe}, \ref{algo:skipframe} และ \ref{algo:skipnborrowframe}}
+		\label{result:table-removesub1}
+		\caption{ผลการลบบทบรรยายออกจากอนิเมะด้วยวิธีการเชิงตัวเลขขั้นตอนวิธี \ref{algo:MultiSplitBregmanColorInpaint}, \ref{algo:borrowframe}, \ref{algo:skipframe} และ \ref{algo:skipnborrowframe}}
 	\end{table}	
 	\begin{table}[H]
 		\centering
@@ -1172,7 +1226,7 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 			ยืมเฟรมและข้ามเฟรม & 75.76 & 29.33 & 0.9454 \\
 			\hline
 		\end{tabular}
-		\caption{แสดงผลลัพธ์เฉลี่ยของขั้นตอนวิธี \ref{algo:MultiSplitBregmanColorInpaint}, \ref{algo:borrowframe}, \ref{algo:skipframe} และ \ref{algo:skipnborrowframe}}
+		\caption{ผลการซ่อมแซมภาพโดยวิธีการเชิงตัวเลขที่นำเสนอในรูปของค่าเฉลี่ยของผลที่ได้จากตารางที่ \ref{result:table-removesub1}}
 	\end{table}	
 	
 	\hspace{1cm}  จากนั้นทำการทดสอบการต่อเติมวิดีโอทั้ง 5 โดยวิธีที่คิดค้นขึ้นใช้วิธีการสปริทเบรกแมนพร้อมทั้งการใช้พีระมิดรูปภาพที่มีการทำซ้ำแต่ละชั้นเป็น 10/3/3/10  พร้อมทั้งใช้การข้ามเฟรมและยืมเฟรม ได้ผลลัพธ์ออกเป็นดังตารางนี้
@@ -1187,7 +1241,7 @@ $$ SSIM(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u
 		วิธีการที่พัฒนาขึ้น & 75.76 & 29.33 & 0.9454 \\
 		\hline
 	\end{tabular}
-	\caption{แสดงผลลัพธ์เฉลี่ยของการลบบทบรรยายจากอนิเมะ}
+	\caption{ผลการลบบทบรรยายออกจากอนิเมะโดยวิธีการสปริทเบรกแมนและวิธีการที่พัฒนาขึ้น}
 \end{table}	
 
 \hspace{1cm} สำหรับวิธีสปริทเบรกแมน เนื่องจากใช้เวลา 1 ชั่วโมงแล้วยังประมวลผลวิดีโอชุดทดสอบแรกไม่เสร็จ ทางผู้พัฒนาจึงตัดสินใจยุติการทดลอง เนื่องจากอาจต้องใช้เวลาการประมวลผลเป็นเวลาหลายชั่วโมงสำหรับวิดีโอความยาว 1 นาที ส่วนวิธีที่คิดค้นขึ้น พบว่าสำหรับวิดีโอที่มีความยาว 1 นาที สามารถทำงานได้เสร็จอย่างรวดเร็ว โดยใช้เวลาเพียง 75 วินาที
