@@ -36,7 +36,7 @@
  \institute[SU]{
  	ภาควิชาคณิตศาสตร์\\
  	มหาวิทยาลัยศิลปากร \\}
- \date[Project Proposal]{การนำเสนอความก้าวหน้าโครงงานวิจัย\\
+ \date[Project Progression]{การนำเสนอความก้าวหน้าโครงงานวิจัย\\
  	30 พฤศจิกายน 2561}
  
  \AtBeginSubsection[]{
@@ -113,20 +113,20 @@
 			%\note{นอกจากนี้ยังมีคณะวิจัยของ Vogel และ Oman ได้แนะนำวิธีการทำซ้ำแบบจุดตรึงสำหรับการกำจัดสัญญาณรบกวนไว้ ซึ่งสามารถนำมาประยุกต์กับวิธีการต่อเติมภาพ เริ่มจากการแนะนำดัชนีการทำซ้ำแบบจุดตรึง u=0,1,2,... และนิยามรูปแบบการทำซ้ำโดย }
 		\end{frame} 
 		\begin{frame}
-	\frametitle{ปัญหาเชิงตัวเลข}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.2\linewidth]{images/grayscale_inpaint/result_splitbergman.png}
-		\caption{ตัวอย่างภาพที่เกิดปัญหาเชิงตัวเลข}
-		\label{image:rgb-space}
-		\end{figure}
-		\begin{align*}
-			\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty
-			\end{align*}
-			\begin{align*}
-			|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
-			\end{align*}
-			% \note{แต่ในบริเวณที่ u มีความเข้มสีเป็นเอกพันธ์ุ จะทำให้ (ชี้บรรทัดบน) 1ส่วนขนาดของแกรด u ลู่ออกสู่อนันต์ เพื่อหลีกเลี่ยงปัญหาเชิงตัวเลขจะเกิดขึ้นใน เราจะใช้ (ชี้บรรทัดล่าง) การประมาณขนาดของแกรดโดยเพิ่ม beta เข้าไป โดยค่า beta นี้ มีค่าน้อยลงมากขึ้นเท่าไหร่ ความแม่นยำของตัวแบบยิ่งมีมากขึ้นเท่านั้น แต่ เรายังพบอีกว่าการแก้สมการยิ่งมีความยุ่งยากมากขึ้นสำหรับ beta น้อยๆ }
+			\frametitle{ปัญหาเชิงตัวเลข}
+				\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.2\linewidth]{images/grayscale_inpaint/result_splitbergman.png}
+				\caption{ตัวอย่างภาพที่เกิดปัญหาเชิงตัวเลข}
+				\label{image:rgb-space}
+				\end{figure}
+				\begin{align*}
+				\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty
+				\end{align*}
+				\begin{align*}
+				|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
+				\end{align*}
+				% \note{แต่ในบริเวณที่ u มีความเข้มสีเป็นเอกพันธ์ุ จะทำให้ (ชี้บรรทัดบน) 1ส่วนขนาดของแกรด u ลู่ออกสู่อนันต์ เพื่อหลีกเลี่ยงปัญหาเชิงตัวเลขจะเกิดขึ้นใน เราจะใช้ (ชี้บรรทัดล่าง) การประมาณขนาดของแกรดโดยเพิ่ม beta เข้าไป โดยค่า beta นี้ มีค่าน้อยลงมากขึ้นเท่าไหร่ ความแม่นยำของตัวแบบยิ่งมีมากขึ้นเท่านั้น แต่ เรายังพบอีกว่าการแก้สมการยิ่งมีความยุ่งยากมากขึ้นสำหรับ beta น้อยๆ }
 		\end{frame}
 		\begin{frame}
 			\frametitle{วิธีการสปริทเบรกแมน (Split Bregman method)}
@@ -155,59 +155,81 @@
 		\end{frame}  
 		\begin{frame}
 			\frametitle{Peak Signal Noise Ratio (PSNR)}
+			\begin{align*}
+			\text{PSNR}  = 10 \cdot log_{10} ( \frac{1}{\sqrt{\text{MSE}}} )
+			\end{align*}
+			\begin{itemize}
+				\item[$\bullet$] MSE คือค่าคลาดเคลื่อนกำลังสองเฉลี่ยของภาพ โดยที่ MSE = $\frac{1}{nx \times ny} \sum (u - \tilde{u})^2 $
+				\item[$\bullet$] $u$ แทนภาพต้นฉบับ
+				\item[$\bullet$] $\tilde{u}$  แทนภาพที่ได้จากการซ่อมแซมโดยวิธีเชิงตัวเลข
+			\end{itemize}
 		\end{frame}
 		\begin{frame}
 			\frametitle{Structural Similarity (SSIM)}
+			\begin{align*}
+			\text{SSIM}(u,\tilde{u}) = \frac{(2\mu_u\mu_{\tilde{u}} + 0.0001)(2\sigma_{u\tilde{u}} + 0.0009)}{(\mu_u^2+\mu_{\tilde{u}}^2+0.0001)(\sigma_u^2+\sigma_{\tilde{u}}^2+0.0009)}
+			\end{align*}
+			\begin{itemize}
+				\item[$\bullet$] $u$ แทนภาพต้นฉบับ
+				\item[$\bullet$] $\tilde{u}$  แทนภาพต้นฉบับ และภาพที่ได้จากการซ่อมแซมโดยวิธีเชิงตัวเลข
+				\item[$\bullet$] $\mu_u$ คือค่าเฉลี่ยของ $u$
+				\item[$\bullet$] $\mu_{\tilde{u}}$ คือค่าเฉลี่ยของ $\tilde{u}$
+				\item[$\bullet$]  $\sigma_u$ คือความแปรปรวนของ $u$ 
+				\item[$\bullet$] $\sigma_{\tilde{u}}$ คือความแปรปรวนของ $\tilde{u}$
+			\end{itemize}
 		\end{frame}
 		\begin{frame}
 			\frametitle{ภาพสังเคราะห์}
 			\begin{figure}[H]
 				\centering
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case01-original.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case01-original.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case02-original.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case02-original.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case03-original.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case03-original.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case04-original.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case04-original.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case05-original.png}	
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case05-original.png}	
 				\end{subfigure}
 				\caption{ภาพต้นฉบับ}
 				\label{image:synart_original}
-			\end{figure}
+			\end{figure}			
+		\end{frame}
+		\begin{frame}
+			\frametitle{ภาพสังเคราะห์ที่จะซ่อมแซม}
 			\begin{figure}[H]
 				\centering
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case01-toinpaint.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case01-toinpaint.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case02-toinpaint.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case02-toinpaint.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case03-toinpaint.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case03-toinpaint.png}
 				\end{subfigure}
 				\bigskip
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case04-toinpaint.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case04-toinpaint.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.9\linewidth]{images/image_inpaint_synthetic/case05-toinpaint.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case05-toinpaint.png}
 				\end{subfigure}
 				\caption{ภาพที่จะทำการซ่อมแซม}
 			\end{figure}
@@ -307,9 +329,25 @@
 		\end{frame}
 		\begin{frame}
 			\frametitle{พีระมิดรูปภาพ}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.6\linewidth}
+					\centering
+					\includegraphics[width=0.8\linewidth]{images/image_inpaint_synthetic/image_pyramid.png}
+				\end{subfigure}
+				\caption{วิธีการพีระมิดรูปภาพ}
+			\end{figure}
 		\end{frame}
 		\begin{frame}
 			\frametitle{พีระมิดรูปภาพ (ต่อ)}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.8\linewidth}
+					\centering
+					\includegraphics[width=1\linewidth]{images/image_inpaint_synthetic/image_inital_solution.png}
+				\end{subfigure}
+				\caption{วิธีการพีระมิดรูปภาพ}
+			\end{figure}
 		\end{frame}
 		\begin{frame}
 			\frametitle{ผลการซ่อมแซมเมื่อใช้พีระมิดรูปภาพ}
@@ -360,7 +398,330 @@
 			\end{figure}
 		\end{frame}
 		\begin{frame}
-			\frametitle{พีระมิดรูปภาพ (ต่อ)}
+			\frametitle{ผลการซ่อมแซมภาพในระดับความคมชัดละเอียดสุด 10 ครั้ง}
+			\begin{table}[H]
+				\centering
+				\begin{tabular}[ht]{|l|c|c|c|c|}
+					\hline
+					รูปแบบการทำซ้ำ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+					\hline
+					ไม่ใช้พีระมิดรูปภาพ & 0.37 & 17.26 & 0.9963  \\
+					10/1/1/10 & 0.40 & 28.54 & 0.9993 \\
+					10/3/3/10 & 0.33 & 29.83  & 0.9994 \\
+					10/10/10/10 & 0.38 & 32.56 & 0.9995 \\
+					100/1/1/10 & 0.34 & 31.50 & 0.9999 \\
+					100/3/3/10 & 0.36 & 31.99 & 0.9999 \\
+					100/10/10/10 & 0.38 & 33.39 & 0.9998 \\
+					\hline
+				\end{tabular}
+				\caption{{\small ผลการซ่อมแซมภาพเฉลี่ยเมื่อใช้การทำซ้ำในระดับความคมชัดละเอียดสุด 10 ครั้ง}}
+			\end{table}	
+		\end{frame}
+		\begin{frame}
+			\frametitle{การซอมแซมภาพจิตรกรรมไทยโบราณ}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case01-original.png}
+					\caption{วัดแก้วไพฑูรย์}
+					\label{image:thaiart_case01_original}
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case02-original.png}
+					\caption{วัดแก้วไพฑูรย์}
+					\label{image:thaiart_case02_original}
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case03-original.png}
+					\caption{วัดพระยืนพุทธบาทยุคล}
+					\label{image:thaiart_case03_original}			
+				\end{subfigure}		
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case04-original.png}
+					\caption{วัดคงคาราม}
+					\label{image:thaiart_case04_original}			
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case05-original.png}
+					\caption{วัดท่าถนน}
+					\label{image:thaiart_case05_original}			
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/inpaint-domain.png}
+					\caption{รอยความเสียหาย}
+				\end{subfigure}
+				\caption{ภาพต้นฉบับสำหรับใช้ในการทดสอบ}
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{ภาพที่ทำให้เสียหาย}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case01-toinpaint.png}
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case02-toinpaint.png}
+				\end{subfigure}
+				\vspace{1cm}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case03-toinpaint.png}			
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case04-toinpaint.png}			
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/thaiart/case05-toinpaint.png}			
+				\end{subfigure}
+				\caption{ภาพที่ทำให้เสียหาย}
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{ผลการซ่อมแซมโดยวิธีการสปริทเบรกแมน}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/splitbergman_case01.png}
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/splitbergman_case02.png}
+				\end{subfigure}
+				\vspace{1cm}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/splitbergman_case03.png}			
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/splitbergman_case04.png}			
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/splitbergman_case05.png}			
+				\end{subfigure}
+				\caption{ผลการซ่อมแซมโดยวิธีการสปริทเบรกแมน}
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{ผลการซ่อมแซมโดยวิธีการที่พัฒนาขึ้น}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/multisplitbergman_case01.png}
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/multisplitbergman_case02.png}
+				\end{subfigure}
+				\vspace{1cm}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/multisplitbergman_case03.png}			
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/multisplitbergman_case04.png}			
+				\end{subfigure}
+				\begin{subfigure}{0.3\linewidth}
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/result_ex4/multisplitbergman_case05.png}			
+				\end{subfigure}
+				\caption{ผลการซ่อมแซมโดยวิธีการที่พัฒนาขึ้น}
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{เปรียบเทียบระหว่าง 2 วิธี}
+		\end{frame}
+		\begin{frame}
+			\frametitle{ผลการซ่อมแซมภาพศิลปะไทย}
+			\begin{table}[H]
+				\centering
+				\begin{tabular}[ht]{|l|c|c|c|c|}
+					\hline
+					วิธีการ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+					\hline
+					สปริทเบรกแมน & 2.72 & 34.89 & 1.0000 \\ 
+					วิธีการที่พัฒนาขึ้น & 0.39 & 35.30 & 1.0000 \\
+					\hline
+				\end{tabular}
+				\caption{แสดงผลการซ่อมแซมภาพศิลปะไทยในรูปค่าเฉลี่ย}
+				\label{result:table-thaiart-summary}
+			\end{table}	
+		\end{frame}
+		\begin{frame}
+			\frametitle{การลบบทบรรยายบนอนิเมะ}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\linewidth]{images/inori-preview.png}
+				\caption{ Festival Asia Special Video - feat. Inori Aizawa }
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Lorem Ipsum}
+				\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.85\linewidth]{images/lorem4lang.png}
+				\caption{Lorem Ipsum ทั้ง 4 ภาษา \footnote{ \tiny{ส่วนหนึ่งของ Lorem ipsum  ในภาษาต่างๆ จาก https://en.wikipedia.org/wiki/Lorem\_ipsum,  https://ja.wikipedia.org/wiki/Lorem\_ipsum และ  https://th.wikipedia.org/wiki/ลอเร็มอิปซัม สืบค้นเมื่อ 25 พฤศจิกายน 2561} } }
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{แบ่งเป็น 5 ส่วน}
+				\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\linewidth]{images/inori-subbed-preview.png}
+				\caption{แบ่งวิดีโอออกเป็น 5 ส่วน}
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{การหาบทบรรยาย}
+			\begin{figure}[H]
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.8\linewidth]{images/subtitle_detection/detection-original.png}
+					\caption{ภาพเฟรมอนิเมะบริเวณที่มีบทบรรยาย}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.8\linewidth]{images/subtitle_detection/detection-threshold.png}
+					\caption{ให้สีดำในภาพเป็นสีขาว สีอื่นเป็นสีดำ }
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.8\linewidth]{images/subtitle_detection/detection-inverse.png}
+					\caption{สลับสีขาวเป็นสีดำ สีดำเป็นสีขาว}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.8\linewidth]{images/subtitle_detection/detection-blackfill.png}
+					\caption{ภาพหลังทำการเปลี่ยนพื้นที่สีขาว}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.8\linewidth]{images/subtitle_detection/detection-erode-opening.png}
+					\caption{ลบสิ่งที่เล็กเกินไปหรือใหญ่เกินไป}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.8\linewidth]{images/subtitle_detection/detection-stoke.png}
+					\caption{ขยายโดเมนต่อเติมให้ครอบคลุม}
+				\end{subfigure}
+				\caption{ขั้นตอนวิธีการหาบทบรรยาย}
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{ผลลัพธ์การหาบทบรรยาย}
+			\begin{table}[H]
+				\centering
+				\footnotesize
+				\begin{tabular}[ht]{|l|c|c|c|c|}
+					\hline
+					ภาษา  & จำนวนพิกเซลในโดเมน & จำนวนพิกเซลที่ตรวจพบ & จำนวนพิกเซลที่ผิดพลาด & ร้อยละการผิดพลาด \\
+					\hline
+					ไทย & 23,222,220 & 24,083,125 & 2,141,201 & 9.22 \\
+					อังกฤษ & 27,278,745 & 28,598,424 & 3,714,321 & 13.62 \\
+					ญี่ปุ่น & 28,544,173 & 30,103,466 & 3,740,971 & 13.11 \\
+					\hline
+				\end{tabular}
+				\caption{ความคลาดเคลื่อนเฉลี่ยของการหาโดเมนต่อเติม ในบทบรรยายภาษาต่างๆ}
+			\end{table}	
+		\end{frame}
+		\begin{frame}
+			\frametitle{การข้ามเฟรมและยืมเฟรม}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.95\linewidth]{images/skipborrow/prevframe.png}
+					\caption{เฟรมก่อนหน้า}
+					\label{image:ssim_location_prev}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.95\linewidth]{images/skipborrow/currentframe.png}
+					\caption{เฟรมปัจจุบัน}
+					\label{image:ssim_location_curr}
+				\end{subfigure}
+				\bigskip
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.95\linewidth]{images/skipborrow/prevframeinverse.png}
+					\caption{บริเวณคำนวณ SSIM ของเฟรมก่อนหน้า}
+					\label{image:ssim_location_prev_inv}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.95\linewidth]{images/skipborrow/currentframeinverse.png}
+					\caption{บริเวณคำนวณ SSIM ของเฟรมปัจจุบัน}
+					\label{image:ssim_location_curr_inv}
+				\end{subfigure}
+				\caption{บริเวณที่คำนวณ SSIM สำหรับการยืมเฟรมและข้ามเฟรม}
+				\label{image:ssim_location}
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{ผลการลบโดยใช้วิธีข้ามเฟรมและยืมเฟรม}
+			\begin{table}[H]
+				\centering
+				\begin{tabular}[ht]{|l|c|c|c|c|}
+					\hline
+					วิธีการ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+					\hline
+					สปริทเบรกแมนและพีระมิดรูปภาพ & 141.29 & 31.39  &  0.9510\\
+					ยืมเฟรม & 132.78 & 32.20 & 0.9655\\
+					ข้ามเฟรม & 89.29 & 29.07 & 0.9408 \\
+					ยืมเฟรมและข้ามเฟรม & 75.76 & 29.33 & 0.9454 \\
+					\hline
+				\end{tabular}
+				\caption{การลบคำบรรยายเฉลี่ยด้วยวิธีต่างๆ}
+			\end{table}	
+		\end{frame}
+		\begin{frame}
+			\frametitle{ผลการลบคำบรรยาย}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.80\linewidth]{images/subtitle-remove/beforesubtitleremove.png}
+					\caption{ก่อนลบคำบรรยาย}
+					\label{image:ssim_location_prev}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.80\linewidth]{images/subtitle-remove/aftersubtitleremove.png}
+					\caption{หลังลบคำบรรยาย}
+					\label{image:ssim_location_curr}
+				\end{subfigure}
+				\caption{ก่อนลบคำบรรยายและหลังลบคำบรรยาย}
+			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{ผลการลบคำบรรยาย (ต่อ)}
+			\begin{table}[H]
+				\centering
+				\begin{tabular}[ht]{|l|c|c|c|c|}
+					\hline
+					วิธีการ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+					\hline
+					สปริทเบรกแมน & * & * & * \\
+					วิธีการที่พัฒนาขึ้น & 75.76 & 29.33 & 0.9454 \\
+					\hline
+				\end{tabular}
+				\caption{ผลการลบบทบรรยายออกจากอนิเมะโดยวิธีการสปริทเบรกแมนและวิธีการที่พัฒนาขึ้น}
+			\end{table}	
 		\end{frame}
 		\begin{frame}
 			\frametitle{วิธีการดำเนินงาน}
