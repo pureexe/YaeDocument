@@ -57,10 +57,23 @@
  		\section{Introduction}		
 		\begin{frame}
 			\frametitle{ความก้าวหน้า}
-			\begin{itemize}
-				\item การซ่อมแซมภาพศิลปะไทย
-				\item การลบคำบรรยายอนิเมะ
-			\end{itemize}
+			%\begin{itemize}
+			%	\item การซ่อมแซมภาพศิลปะไทย
+			%	\item การลบคำบรรยายอนิเมะ
+			%\end{itemize}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.8\linewidth]{images/thaiart/case01-toinpaint.png}
+					\caption*{{\large การซ่อมแซมภาพศิลปะไทย}}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.8\linewidth]{images/subtitle-remove/square.png}
+					\caption*{{\large การลบคำบรรยายอนิเมะ}}
+				\end{subfigure}
+			\end{figure}
 		\end{frame}
 		\begin{frame}
 			\frametitle{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม}
@@ -190,9 +203,10 @@
 					\centering
 					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case02-original.png}
 				\end{subfigure}
+				\vspace{1cm}
 				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case03-original.png}
+					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case03-original.png}	
 				\end{subfigure}
 				\begin{subfigure}{0.3\linewidth}
 					\centering
@@ -203,8 +217,7 @@
 					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case05-original.png}	
 				\end{subfigure}
 				\caption{ภาพต้นฉบับ}
-				\label{image:synart_original}
-			\end{figure}			
+			\end{figure}
 		\end{frame}
 		\begin{frame}
 			\frametitle{ภาพสังเคราะห์ที่จะซ่อมแซม}
@@ -218,11 +231,11 @@
 					\centering
 					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case02-toinpaint.png}
 				\end{subfigure}
+				\vspace{1cm}
 				\begin{subfigure}{0.3\linewidth}
 					\centering
 					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case03-toinpaint.png}
 				\end{subfigure}
-				\bigskip
 				\begin{subfigure}{0.3\linewidth}
 					\centering
 					\includegraphics[width=0.7\linewidth]{images/image_inpaint_synthetic/case04-toinpaint.png}
@@ -235,82 +248,89 @@
 			\end{figure}
 		\end{frame}
 		\begin{frame}
-			\frametitle{ผลการทดสอบ}
+			\frametitle{วิธีการเดินเวลา}
 			\begin{figure}[H]
 				\centering
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch01.png}
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/timemarch01.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch02.png}
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/timemarch02.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\vspace{1cm}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch03.png}			
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/timemarch03.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch04.png}			
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/timemarch04.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/timemarch05.png}			
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/timemarch05.png}
 				\end{subfigure}
 				\caption{ผลการซ่อมแซมจากวิธีการเดินเวลา}
-				\label{result:image-timemarching}
 			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{วิธีการทำซ้ำแบบจุดตรึง}
 			\begin{figure}[H]
 				\centering
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint01.png}
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/fixpoint01.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint02.png}
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/fixpoint02.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\vspace{1cm}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint03.png}			
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/fixpoint03.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint04.png}			
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/fixpoint04.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/fixpoint05.png}			
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/fixpoint05.png}
 				\end{subfigure}
 				\caption{ผลการซ่อมแซมจากวิธีการทำซ้ำแบบจุดตรึง}
 			\end{figure}
+		\end{frame}
+		\begin{frame}
+			\frametitle{วิธีการสปริทเบรกแมน}
 			\begin{figure}[H]
 				\centering
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman01.png}
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/splitbergman01.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman02.png}
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/splitbergman02.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\vspace{1cm}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman03.png}			
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/splitbergman03.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman04.png}			
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/splitbergman04.png}
 				\end{subfigure}
-				\begin{subfigure}{0.15\linewidth}
+				\begin{subfigure}{0.3\linewidth}
 					\centering
-					\includegraphics[width=0.8\linewidth]{images/result_ex1/splitbergman05.png}			
+					\includegraphics[width=0.7\linewidth]{images/result_ex1/splitbergman05.png}
 				\end{subfigure}
 				\caption{ผลการซ่อมแซมจากวิธีการสปริทเบรกแมน}
-				\label{result:image-splitbregman}
 			\end{figure}
-		\end{frame} 
+		\end{frame}
 		\begin{frame}
 			\frametitle{ประสิทธิภาพของวิธีการเชิงตัวเลขทั้ง 3 วิธี}
 			\begin{table}[H]
@@ -545,6 +565,30 @@
 		\end{frame}
 		\begin{frame}
 			\frametitle{เปรียบเทียบระหว่าง 2 วิธี}
+			\begin{figure}[H]
+				\centering
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.6\linewidth]{images/result_ex4_scaleup/original.png}
+					\caption{ภาพต้นฉบับ}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.6\linewidth]{images/result_ex4_scaleup/toinpaint.png}
+					\caption{ภาพที่เสียหาย}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.6\linewidth]{images/result_ex4_scaleup/splitbregman.png}			
+					\caption{วิธีสปริทเบรกแมน}
+				\end{subfigure}
+				\begin{subfigure}{0.4\linewidth}
+					\centering
+					\includegraphics[width=0.6\linewidth]{images/result_ex4_scaleup/multisplitbregman.png}	
+					\caption{วิธีที่พัฒนาขึ้น}
+				\end{subfigure}
+				\caption{เปรียบเทียบระหว่างผลการซ่อมแซมทั้ง 2 วิธี}
+			\end{figure}
 		\end{frame}
 		\begin{frame}
 			\frametitle{ผลการซ่อมแซมภาพศิลปะไทย}
@@ -579,7 +623,7 @@
 			\end{figure}
 		\end{frame}
 		\begin{frame}
-			\frametitle{แบ่งเป็น 5 ส่วน}
+			\frametitle{การแบ่งไฟล์วิดีโอ}
 				\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.8\linewidth]{images/inori-subbed-preview.png}

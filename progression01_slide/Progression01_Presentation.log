@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  26 NOV 2018 12:02
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6730 64-bit) (preloaded format=xelatex 2018.8.10)  26 NOV 2018 21:26
 entering extended mode
 **./Progression01_Presentation.tex
 (Progression01_Presentation.tex
@@ -1250,12 +1250,6 @@ LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
 ("C:\Program Files\MiKTeX 2.9\tex\latex\beamer\beamercolorthemestructure.sty")
 (Progression01_Presentation.aux
 
-LaTeX Warning: Label `result:table-thaiart-summary' multiply defined.
-
-
-LaTeX Warning: Label `result:table-thaiart-summary' multiply defined.
-
-
 LaTeX Warning: Label `image:ssim_location_prev' multiply defined.
 
 
@@ -1500,64 +1494,73 @@ LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
 (Font)              scaled to size 4.91998pt on input line 53.
  [1
 
-] [2
-
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 76.
+File: images/thaiart/case01-toinpaint.png Graphic file (type bmp)
+<images/thaiart/case01-toinpaint.png>
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
+(Font)              scaled to size 12.29996pt on input line 77.
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
+(Font)              scaled to size 11.06996pt on input line 77.
+LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
+(Font)              scaled to size 14.75995pt on input line 77.
+LaTeX Font Info:    Try loading font information for U+msa on input line 77.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 76.
+LaTeX Font Info:    Try loading font information for U+msb on input line 77.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 76.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 77.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/it' will be
-(Font)              scaled to size 13.46844pt on input line 76.
+(Font)              scaled to size 13.46844pt on input line 77.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/it' will be
-(Font)              scaled to size 9.83997pt on input line 76.
+(Font)              scaled to size 9.83997pt on input line 77.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/it' will be
-(Font)              scaled to size 7.37997pt on input line 76.
+(Font)              scaled to size 7.37997pt on input line 77.
+File: images/subtitle-remove/square.png Graphic file (type bmp)
+<images/subtitle-remove/square.png>
+ [2
+
+]
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 13.46844pt on input line 76.
+(Font)              scaled to size 13.46844pt on input line 89.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 9.83997pt on input line 76.
+(Font)              scaled to size 9.83997pt on input line 89.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 7.37997pt on input line 76.
+(Font)              scaled to size 7.37997pt on input line 89.
 
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 76.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 89.
 
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 76.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 89.
 
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 11.06996pt on input line 76.
-LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 6.14998pt on input line 76.
+(Font)              scaled to size 6.14998pt on input line 89.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 11.06996pt on input line 76.
+(Font)              scaled to size 11.06996pt on input line 89.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 6.14998pt on input line 76.
+(Font)              scaled to size 6.14998pt on input line 89.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/it' will be
-(Font)              scaled to size 11.06996pt on input line 76.
+(Font)              scaled to size 11.06996pt on input line 89.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/it' will be
-(Font)              scaled to size 6.14998pt on input line 76.
+(Font)              scaled to size 6.14998pt on input line 89.
 [3
 
 ]
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/it' will be
-(Font)              scaled to size 13.46844pt on input line 87.
+(Font)              scaled to size 13.46844pt on input line 100.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/it' will be
-(Font)              scaled to size 9.83997pt on input line 87.
+(Font)              scaled to size 9.83997pt on input line 100.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/it' will be
-(Font)              scaled to size 7.37997pt on input line 87.
+(Font)              scaled to size 7.37997pt on input line 100.
  [4
 
 ] [5
@@ -1567,8 +1570,6 @@ LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/it' will be
 ]
 File: images/grayscale_inpaint/result_splitbergman.png Graphic file (type bmp)
 <images/grayscale_inpaint/result_splitbergman.png>
-LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 12.29996pt on input line 130.
  [7
 
 ] [8
@@ -1626,6 +1627,9 @@ File: images/result_ex1/timemarch04.png Graphic file (type bmp)
 <images/result_ex1/timemarch04.png>
 File: images/result_ex1/timemarch05.png Graphic file (type bmp)
 <images/result_ex1/timemarch05.png>
+ [14
+
+]
 File: images/result_ex1/fixpoint01.png Graphic file (type bmp)
 <images/result_ex1/fixpoint01.png>
 File: images/result_ex1/fixpoint02.png Graphic file (type bmp)
@@ -1636,6 +1640,9 @@ File: images/result_ex1/fixpoint04.png Graphic file (type bmp)
 <images/result_ex1/fixpoint04.png>
 File: images/result_ex1/fixpoint05.png Graphic file (type bmp)
 <images/result_ex1/fixpoint05.png>
+ [15
+
+]
 File: images/result_ex1/splitbergman01.png Graphic file (type bmp)
 <images/result_ex1/splitbergman01.png>
 File: images/result_ex1/splitbergman02.png Graphic file (type bmp)
@@ -1646,26 +1653,23 @@ File: images/result_ex1/splitbergman04.png Graphic file (type bmp)
 <images/result_ex1/splitbergman04.png>
 File: images/result_ex1/splitbergman05.png Graphic file (type bmp)
 <images/result_ex1/splitbergman05.png>
+ [16
 
-Overfull \vbox (13.75043pt too high) detected at line 313
- []
-
-[14
-
-] [15
+] [17
 
 ]
 File: images/image_inpaint_synthetic/image_pyramid.png Graphic file (type bmp)
 <images/image_inpaint_synthetic/image_pyramid.png>
- [16
+ [18
 
 ]
 File: images/image_inpaint_synthetic/image_inital_solution.png Graphic file (ty
 pe bmp)
 <images/image_inpaint_synthetic/image_inital_solution.png>
- [17
 
-] [18
+[19
+
+] [20
 
 ]
 File: images/just10enough/only5time.png Graphic file (type bmp)
@@ -1677,12 +1681,12 @@ File: images/just10enough/only50time.png Graphic file (type bmp)
 File: images/just10enough/only100time.png Graphic file (type bmp)
 <images/just10enough/only100time.png>
 
-Overfull \vbox (11.12386pt too high) detected at line 399
+Overfull \vbox (11.12386pt too high) detected at line 419
  []
 
-[19
+[21
 
-] [20
+] [22
 
 ]
 File: images/thaiart/case01-original.png Graphic file (type bmp)
@@ -1698,10 +1702,10 @@ File: images/thaiart/case05-original.png Graphic file (type bmp)
 File: images/thaiart/inpaint-domain.png Graphic file (type bmp)
 <images/thaiart/inpaint-domain.png>
 
-Overfull \vbox (1.78047pt too high) detected at line 461
+Overfull \vbox (1.78047pt too high) detected at line 481
  []
 
-[21
+[23
 
 ]
 File: images/thaiart/case01-toinpaint.png Graphic file (type bmp)
@@ -1714,7 +1718,7 @@ File: images/thaiart/case04-toinpaint.png Graphic file (type bmp)
 <images/thaiart/case04-toinpaint.png>
 File: images/thaiart/case05-toinpaint.png Graphic file (type bmp)
 <images/thaiart/case05-toinpaint.png>
- [22
+ [24
 
 ]
 File: images/result_ex4/splitbergman_case01.png Graphic file (type bmp)
@@ -1727,7 +1731,7 @@ File: images/result_ex4/splitbergman_case04.png Graphic file (type bmp)
 <images/result_ex4/splitbergman_case04.png>
 File: images/result_ex4/splitbergman_case05.png Graphic file (type bmp)
 <images/result_ex4/splitbergman_case05.png>
- [23
+ [25
 
 ]
 File: images/result_ex4/multisplitbergman_case01.png Graphic file (type bmp)
@@ -1740,36 +1744,49 @@ File: images/result_ex4/multisplitbergman_case04.png Graphic file (type bmp)
 <images/result_ex4/multisplitbergman_case04.png>
 File: images/result_ex4/multisplitbergman_case05.png Graphic file (type bmp)
 <images/result_ex4/multisplitbergman_case05.png>
- [24
+ [26
 
-] [25
+]
+File: images/result_ex4_scaleup/original.png Graphic file (type bmp)
+<images/result_ex4_scaleup/original.png>
+File: images/result_ex4_scaleup/toinpaint.png Graphic file (type bmp)
+<images/result_ex4_scaleup/toinpaint.png>
+File: images/result_ex4_scaleup/splitbregman.png Graphic file (type bmp)
+<images/result_ex4_scaleup/splitbregman.png>
+File: images/result_ex4_scaleup/multisplitbregman.png Graphic file (type bmp)
+<images/result_ex4_scaleup/multisplitbregman.png>
 
-] [26
+Overfull \vbox (11.17921pt too high) detected at line 592
+ []
+
+[27
+
+] [28
 
 ]
 File: images/inori-preview.png Graphic file (type bmp)
 <images/inori-preview.png>
- [27
+ [29
 
 ]
 File: images/lorem4lang.png Graphic file (type bmp)
 <images/lorem4lang.png>
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 8.60997pt on input line 580.
+(Font)              scaled to size 8.60997pt on input line 624.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 12.29996pt on input line 580.
+(Font)              scaled to size 12.29996pt on input line 624.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/bx/n' will be
-(Font)              scaled to size 8.60997pt on input line 580.
+(Font)              scaled to size 8.60997pt on input line 624.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/it' will be
-(Font)              scaled to size 12.29996pt on input line 580.
+(Font)              scaled to size 12.29996pt on input line 624.
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/it' will be
-(Font)              scaled to size 8.60997pt on input line 580.
- [28
+(Font)              scaled to size 8.60997pt on input line 624.
+ [30
 
 ]
 File: images/inori-subbed-preview.png Graphic file (type bmp)
 <images/inori-subbed-preview.png>
- [29
+ [31
 
 ]
 File: images/subtitle_detection/detection-original.png Graphic file (type bmp)
@@ -1787,14 +1804,14 @@ bmp)
 <images/subtitle_detection/detection-erode-opening.png>
 File: images/subtitle_detection/detection-stoke.png Graphic file (type bmp)
 <images/subtitle_detection/detection-stoke.png>
- [30
+ [32
 
 ]
-Overfull \hbox (7.16208pt too wide) in paragraph at lines 641--641
+Overfull \hbox (7.16208pt too wide) in paragraph at lines 685--685
  [] 
  []
 
-[31
+[33
 
 ]
 File: images/skipborrow/prevframe.png Graphic file (type bmp)
@@ -1805,25 +1822,25 @@ File: images/skipborrow/prevframeinverse.png Graphic file (type bmp)
 <images/skipborrow/prevframeinverse.png>
 File: images/skipborrow/currentframeinverse.png Graphic file (type bmp)
 <images/skipborrow/currentframeinverse.png>
- [32
+ [34
 
-] [33
+] [35
 
 ]
 File: images/subtitle-remove/beforesubtitleremove.png Graphic file (type bmp)
 <images/subtitle-remove/beforesubtitleremove.png>
 File: images/subtitle-remove/aftersubtitleremove.png Graphic file (type bmp)
 <images/subtitle-remove/aftersubtitleremove.png>
- [34
+ [36
 
-] [35
+] [37
 
-] [36
+] [38
 
 ]
 LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
-(Font)              scaled to size 30.6023pt on input line 750.
- [37
+(Font)              scaled to size 30.6023pt on input line 794.
+ [39
 
 ]
 \tf@nav=\write6
@@ -1835,11 +1852,11 @@ LaTeX Font Info:    Font shape `TU/THSarabunNew(0)/m/n' will be
 \tf@snm=\write8
 \openout8 = `Progression01_Presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 751.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 751.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 795.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 795.
  (Progression01_Presentation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 751.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 751.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 795.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 795.
 Package rerunfilecheck Info: File `Progression01_Presentation.out' has not chan
 ged.
 (rerunfilecheck)             Checksum: CC3E76BBBB7AEBE26F150AC99DAF45FB.
@@ -1849,12 +1866,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 36445 strings out of 427798
- 693905 string characters out of 3151797
- 781517 words of memory out of 3000000
- 39868 multiletter control sequences out of 15000+200000
- 544810 words of font info for 110 fonts, out of 3000000 for 9000
+ 36458 strings out of 427798
+ 694530 string characters out of 3151797
+ 781405 words of memory out of 3000000
+ 39875 multiletter control sequences out of 15000+200000
+ 544818 words of font info for 111 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  48i,21n,65p,839b,684s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Progression01_Presentation.pdf (37 pages).
+Output written on Progression01_Presentation.pdf (39 pages).
