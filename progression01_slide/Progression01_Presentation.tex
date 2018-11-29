@@ -169,12 +169,13 @@
 		\begin{frame}
 			\frametitle{Peak Signal Noise Ratio (PSNR)}
 			\begin{align*}
-			\text{PSNR}  = 10 \cdot log_{10} ( \frac{1}{\sqrt{\text{MSE}}} )
+			\text{PSNR}  = 10 \cdot log_{10} ( \frac{1}{\sqrt{\text{MSE}}} )  \hspace{1cm}
 			\end{align*}
 			\begin{itemize}
 				\item[$\bullet$] MSE คือค่าคลาดเคลื่อนกำลังสองเฉลี่ยของภาพ โดยที่ MSE = $\frac{1}{nx \times ny} \sum (u - \tilde{u})^2 $
 				\item[$\bullet$] $u$ แทนภาพต้นฉบับ
 				\item[$\bullet$] $\tilde{u}$  แทนภาพที่ได้จากการซ่อมแซมโดยวิธีเชิงตัวเลข
+				\item[$\bullet$] PSNR มีหน่วยเป็น dB
 			\end{itemize}
 		\end{frame}
 		\begin{frame}
@@ -249,10 +250,12 @@
 		\end{frame}
 		\begin{frame}
 			\frametitle{เกณฑ์หยุดการทำซ้ำ}
-			\begin{align*}
-				\text{รอบการทำซ้ำ} &\leq 10,000 \\[1cm]
-				\frac{|| u_{new} - u_{old} ||}{|| u_{new} ||} &\geq 10^{-4}
-			\end{align*}
+			{\Large
+				\begin{align*}
+					\text{รอบการทำซ้ำ} &\leq 10,000 \hspace{0.5cm}\text{รอบ}\\[1.5cm]
+					\frac{|| u_{new} - u_{old} ||}{|| u_{new} ||} &\geq 10^{-4}
+				\end{align*}
+			}
 		\end{frame}
 		\begin{frame}
 			\frametitle{วิธีการเดินเวลา}
