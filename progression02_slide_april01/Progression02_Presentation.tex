@@ -1,0 +1,161 @@
+% !TEX program = xelatex
+
+\documentclass[xcolor=dvipsnames, xetex,serif]{beamer}
+%\documentclass[handout,xetex,serif]{beamer} %ใช้บรรทัดนี้สำหรับปริ้นเอกสาร
+\usepackage{color,amsmath,graphics,graphicx}
+\usepackage{epsfig,amsfonts,graphics}
+\usepackage{mathrsfs,hyperref}
+\usepackage{subcaption,float,framed,algorithm2e,hyperref}
+%===============================================
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Scale=1.23}
+\XeTeXlinebreaklocale “th_TH” % สำหรับตัดคำ
+\setmainfont[Scale=1.23]{THSarabunNew}
+% 1.23 เท่าคือจาก 12 pt บน LaTeX ให้เท่ากับ 16pt บน Word
+%=====================================================
+%\usepackage{pgfpages} %ใช้บรรทัดนี้สำหรับปริ้นเอกสาร
+%\pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape]
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+ %ใช้บรรทัดนี้สำหรับปริ้นเอกสาร
+
+%%%%%%%%%%%%%%% THEOREM Environments %%%%%%%%%% 					
+\newtheorem{conjecture}[theorem]{บทคาดการณ์}								
+\newtheorem{remark}[theorem]{หมายเหตุ}										
+\numberwithin{equation}{section}							
+\renewcommand\tablename{ตารางที่}
+\renewcommand\figurename{รูปที่}						
+\renewcommand{\bibname}{บรรณานุกรม}						
+\renewcommand{\indexname}{ดรรชนี}
+\setbeamertemplate{caption}[numbered]	
+\setbeamertemplate{theorems}[numbered]				
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mode<presentation>{
+	\usetheme{Madrid}
+	\usecolortheme[named=PineGreen]{structure}}
+ \title[วิธีเชิงตัวเลขสำหรับต่อเติมภาพ]{\normalsize{ขั้นตอนวิธีเชิงตัวเลขชนิดใหม่สำหรับการต่อเติมภาพที่ใช้การแปรผันรวมกับการประยุกต์สำหรับซ่อมแซมภาพจิตรกรรมไทยโบราณและการลบบทบรรยายจากอนิเมะ\\A new numerical algorithm for TV-based image inpainting with its applications for restoring ancient Thai painting images and removing subtitles from animes}}
+ \author[ภัคพล]{ภัคพล พงษ์ทวี}
+ \institute[SU]{
+ 	ภาควิชาคณิตศาสตร์\\
+ 	มหาวิทยาลัยศิลปากร \\}
+ \date[Project Progression]{การนำเสนอความก้าวหน้าโครงงานวิจัย ครั้งที่ 2\\
+ 	9 เมษายน 2562}
+ 
+ \AtBeginSubsection[]{
+ 	\begin{frame}<beamer>
+ 		\frametitle{Outlines}
+ 		\tableofcontents [currentsection,currentsubsection]
+	 \end{frame}
+}
+\begin{document}
+	\begin{frame}
+ 		\titlepage 
+	\end{frame}	 
+	\begin{frame}
+		\frametitle{ตัวแบบการต่อเติมภาพที่ใช้การแปรผันรวม}
+		\begin{align*}
+		\min_{u} \{ \mathcal{J}(u) = \frac{1}{2} \int_{\Omega}\lambda (u-z)^2 d\Omega +  \int_{\Omega}  |\nabla u|  d\Omega \}
+		\end{align*}
+		 \vspace{1cm}
+		\begin{align*}
+		\lambda=\lambda(\mathbf{x}) = \left \{ \begin{array}{ll}  \lambda_0, & x \in \Omega \textbackslash D \\ 0, & x \in D  \end{array} \right . 
+		\end{align*}
+		\let\thefootnote\relax\footnotetext{\tiny{T.F. Chan and J. Shen , “Mathematical models of local non-texture inpaintings”, SIAM Journal on Applied Mathematics, vol. 62, no. 3, pp. 1019–1043, 2001.}}	
+	\end{frame} 
+	\begin{frame}
+		\frametitle{ขั้นตอนวิธีเชิงตัวเลข}
+		\begin{align*}
+			u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+\tau\left(\nabla \cdot\left(\dfrac{\nabla u (\mathbf{x},t_k)}{| \nabla u (\mathbf{x},t_k) | }\right) + \lambda(\mathbf{x})(u (\mathbf{x},t_k)-z(\mathbf{x})) \right)
+		\end{align*}
+		\begin{center}
+		\textcolor{PineGreen}{วิธีที่ 1:} การเดินเวลา (Explicit time marching)
+		\end{center}
+		\begin{align*}
+			- \nabla\cdot\left(\dfrac{\nabla u^{[\nu+1]}}{{| \nabla u |}^{[v]} }\right) + \lambda(u^{[\nu+1]}-z)  = 0,\ u^{[0]}=z
+		\end{align*}
+		\begin{center}
+			\textcolor{PineGreen}{วิธีที่ 2:} ทำซ้ำจุดตรึง (Fixed point iteration)
+		\end{center}
+		\begin{align*}
+			\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
+		\end{align*}
+		\begin{center}
+			\textcolor{PineGreen}{วิธีที่ 3:} สปริทเบรกแมน (Split Bregman)
+		\end{center}
+	\end{frame} 
+	\begin{frame}
+		\frametitle{ปัญหาเชิงตัวเลข}
+			\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.2\linewidth]{images/grad_problem.png}
+			\caption{ตัวอย่างภาพที่เกิดปัญหาเชิงตัวเลข}
+			\label{image:rgb-space}
+			\end{figure}
+			\begin{align*}
+			\tfrac{1}{| \nabla u |}=\tfrac{1}{\sqrt{u_x^2+u_y^2}} \rightarrow \infty
+			\end{align*}
+			\begin{align*}
+			|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
+			\end{align*}
+	\end{frame}
+	\begin{frame}
+		\frametitle{วิธีการสปริทเบรกแมน}
+			\begin{align*}
+		\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
+		\end{align*}
+		$$ \Big \downarrow$$
+		\begin{align*}
+		u^{\text{New}}=\underset{u}{\arg\min} \{ \mathcal{J}_1(u) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w}^{\text{old}} - \nabla u + \boldsymbol{b}^{\text{old}}) d\Omega \}
+		\end{align*}
+		\begin{align*}
+		\boldsymbol{w}^{\text{New}}=\underset{\boldsymbol{w}}{\arg\min} \{ \mathcal{J}_2(\boldsymbol{w}) = \int_{\Omega}  | \boldsymbol{w}|  d\Omega  + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u^{\text{New}} + \boldsymbol{b}^{\text{old}}) d\Omega \}
+		\end{align*}
+		\begin{align*}
+		\boldsymbol{b}^{\text{New}}=\boldsymbol{b}^{\text{old}}+\nabla u^{\text{New}}-\boldsymbol{w}^{\text{New}}
+		\end{align*}
+	\end{frame}  
+	\begin{frame}
+		\frametitle{ประสิทธิภาพของวิธีการเชิงตัวเลขทั้ง 3 วิธี}
+		\begin{table}[H]
+		\centering
+		\captionsetup{justification=centering}
+			\begin{tabular}[ht]{|l|c|c|c|c|}
+				\hline
+				วิธีการ  & เวลาประมวล  (วินาที) & PSNR (dB) & SSIM \\
+				\hline
+				การเดินเวลา & 120.68 & 16.72 & 0.9960 \\
+				การทำซ้ำจุดตรึง & 74.81 & 38.67 & 0.9999 \\
+				การสปริทเบรกแมน & 14.06 & 39.42 & 0.9999  \\
+				\hline
+			\end{tabular}
+		\caption{แสดงการซ่อมแซมเฉลี่ยของวิธีการเชิงตัวเลข \\ โดยที่ $\lambda = 250, \beta = 10^{-5}, \tau = 10^{-5}, \theta = 5 $}
+		\end{table}	
+	\end{frame}
+	\begin{frame}
+		\frametitle{ขั้นตอนวิธีที่พัฒนาขึ้น}
+
+	\end{frame}
+	\begin{frame}
+		\frametitle{ขั้นตอนสำหรับการซ่อมแซมภาพศิลปะไทย}
+	\end{frame}
+	\begin{frame}
+		\frametitle{คำตอบเริ่มต้น}
+		\begin{figure}[H]
+			\centering
+			\begin{subfigure}{0.8\linewidth}
+				\centering
+				\includegraphics[width=1\linewidth]{images/image_inital_solution.png}
+			\end{subfigure}
+			\caption{วิธีการพีระมิดรูปภาพ}
+		\end{figure}
+	\end{frame}
+	\begin{frame}
+		\centering
+		\Huge{ขอขอบคุณ}
+	\end{frame}
+\end{document}
+
+
+
+
+
