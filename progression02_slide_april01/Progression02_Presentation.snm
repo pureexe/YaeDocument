@@ -1,1 +1,6 @@
-\beamer@slide {image:rgb-space}{4}
+\beamer@slide {image:rgb-space}{5}
+\beamer@slide {result:table-thaiart-summary}{17}
+\beamer@slide {image:ssim_location_prev}{20}
+\beamer@slide {sub@image:ssim_location_prev}{20}
+\beamer@slide {image:ssim_location_curr}{20}
+\beamer@slide {sub@image:ssim_location_curr}{20}
