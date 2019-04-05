@@ -50,50 +50,115 @@
 \begin{document}
 	\begin{frame}
  		\titlepage 
-	\end{frame}	 
+    \end{frame}
+    \begin{frame}
+        \frametitle{การต่อเติมภาพ (Image Inpainting)} 
+        \begin{figure}[H]
+            \centering
+            \begin{subfigure}{0.3\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{images/grayscale_inpaint/toinpaint.png}
+                \caption{ภาพที่ต้องการซ่อมแซม}
+                %note{การต่อเติมภาพ เป็นวิธีการประมวลผลภาพชนิดหนึ่งมีเป้าหมายเพื่อซ่อมแซมภาพด้วยการต่อเติมข้อมูลของความเข้มของสีบนบริเวณที่กำหนด (ต่อไปจะเรียกบริเวณนี้ว่าโดเมนต่อเติม) โดยอาศัยข้อมูลของความเข้มของสีที่ปรากฏในภาพ จากภาพต้องการต่อเติมพื้นที่สีขาว ซึ่งเมื่อต่อเติมแล้วจะได้ภาพดังนี้}
+            \end{subfigure}
+            \begin{subfigure}{0.3\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{images/grayscale_inpaint/inpaintdomain.png}
+                \caption{โดเมนต่อเติม}
+            \end{subfigure}
+            \begin{subfigure}{0.3\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{images/grayscale_inpaint/result_splitbergman.png}
+                \caption{ภาพที่ได้รับการซ่อมแซม}
+            \end{subfigure}
+            \caption{ตัวอย่างการซ่อมแซมภาพ}
+            \label{fig1}
+        \end{figure}
+    \end{frame}	 
+    \begin{frame}
+        \frametitle{ภาพเฉดเทา}
+        \begin{itemize}
+            \item โดเมนภาพ (image domain) $\Omega \subset \mathbb{R}^2$ 
+            \item โดเมนต่อเติม (inpainting domain)  $ D \subset \mathbb{R}^2$
+            \item พิกัดทางกายภาพ (physical position) $ \mathbf{x} = (x,y) \in \Omega $ 
+            \item ระดับความเข้มของภาพ (image intensity)  $V \subset [0,\infty)$ 
+            \item ภาพเฉดเทา (grayscale image) $ u: \Omega \rightarrow V,\ z: \Omega \rightarrow V$
+            \item โดยไม่เสียหลักการสำคัญ $ \Omega = [1,n]^2 $ และ $ V = [0,1] $ เมื่อ $n>0$ เป็นจำนวนเต็มบวก 
+        \end{itemize}
+         \begin{figure}[h]
+            \[
+            \includegraphics[width=0.3\linewidth]{images/sample-domain.png}
+            \]
+            \caption{$D$ แทนโดเมนต่อเติม}
+            \label{image:sample-domain}
+        \end{figure}
+        %note{ในการกล่าวถึงขั้นตอนวิธีการต่อเติมภาพ จะเริ่มต้นด้วยการกล่าวทบทวนเกี่ยวกับการต่อเติมภาพเฉดสีเทา โดยขอกำหนดตัวแปรต่างๆ ดังนี้}
+    \end{frame} 
 	\begin{frame}
-		\frametitle{ตัวแบบการต่อเติมภาพที่ใช้การแปรผันรวม}
-		\begin{align*}
-		\min_{u} \{ \mathcal{J}(u) = \frac{1}{2} \int_{\Omega}\lambda (u-z)^2 d\Omega +  \int_{\Omega}  |\nabla u|  d\Omega \}
-		\end{align*}
-		 \vspace{1cm}
-		\begin{align*}
-		\lambda=\lambda(\mathbf{x}) = \left \{ \begin{array}{ll}  \lambda_0, & x \in \Omega \textbackslash D \\ 0, & x \in D  \end{array} \right . 
-		\end{align*}
-		\let\thefootnote\relax\footnotetext{\tiny{T.F. Chan and J. Shen , “Mathematical models of local non-texture inpaintings”, SIAM Journal on Applied Mathematics, vol. 62, no. 3, pp. 1019–1043, 2001.}}	
-	\end{frame} 
+        \frametitle{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม}
+        \begin{align*}
+        \min_{u} \{ \mathcal{J}(u) = \frac{1}{2} \int_{\Omega}\lambda (u-z)^2 d\Omega +  \int_{\Omega}  |\nabla u|  d\Omega \}
+        \end{align*}
+         \vspace{1cm}
+        \begin{align*}
+        \lambda=\lambda(\mathbf{x}) = \left \{ \begin{array}{ll}  \lambda_0, & x \in \Omega \textbackslash D \\ 0, & x \in D  \end{array} \right . 
+        \end{align*}
+        \let\thefootnote\relax\footnotetext{\tiny{T.F. Chan and J. Shen , “Mathematical models of local non-texture inpaintings”, SIAM Journal on Applied Mathematics, vol. 62, no. 3, pp. 1019–1043, 2001.}}	
+    \end{frame}    
+    \begin{frame}
+        \frametitle{วิธีการเชิงตัวเลขสำหรับการกำจัดสัญญาณรบกวน}
+        \begin{itemize}
+            \item[(1)] การเดินเวลาแบบชัดแจ้ง (Explicit time marching)
+            \item[(2)] การทำซ้ำแบบจุดตรึง (Fixed point iteration)
+            \item[(3)] วิธีการสปริทเบรกแมน  (Split Bregman)
+        \end{itemize}
+    \end{frame}
 	\begin{frame}
-		\frametitle{ตัวแบบการต่อเติมภาพเฉดสีเทาที่ใช้การแปรผันรวม (ต่อ)}
+		\frametitle{การเดินเวลาแบบชัดแจ้ง (explicit time marching)}
 		\begin{align*}
 		\min_{u} \{ \mathcal{J}(u) = \frac{1}{2} \int_{\Omega}\lambda (u-z)^2 d\Omega +  \int_{\Omega}  |\nabla u|  d\Omega \}
 		\end{align*}
 		$$ \Big \downarrow$$
 		\begin{align*}
 		\left \{ \begin{array}{ll}  - \nabla \cdot  \Big( \dfrac{\nabla u}{|\nabla u|} \Big) + \lambda (u-z) = 0,  & \hspace{1cm} \mathbf{x} \in (1,n)^2 \\ \dfrac{\partial u}{\partial \boldsymbol{n}} = 0, & \hspace{1cm} x \in \partial \Omega \end{array} \right .
-		\end{align*}			
-	\end{frame} 
-	\begin{frame}
-		\frametitle{ขั้นตอนวิธีเชิงตัวเลข}
-		\begin{align*}
-			u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+\tau\left(\nabla \cdot\left(\dfrac{\nabla u (\mathbf{x},t_k)}{| \nabla u (\mathbf{x},t_k) | }\right) + \lambda(\mathbf{x})(u (\mathbf{x},t_k)-z(\mathbf{x})) \right)
-		\end{align*}
-		\begin{center}
-		\textcolor{PineGreen}{วิธีที่ 1:} การเดินเวลา (Explicit time marching)
-		\end{center}
-		\begin{align*}
-			- \nabla\cdot\left(\dfrac{\nabla u^{[\nu+1]}}{{| \nabla u |}^{[v]} }\right) + \lambda(u^{[\nu+1]}-z)  = 0,\ u^{[0]}=z
-		\end{align*}
-		\begin{center}
-			\textcolor{PineGreen}{วิธีที่ 2:} ทำซ้ำจุดตรึง (Fixed point iteration)
-		\end{center}
-		\begin{align*}
-			\min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b}) d\Omega \}
-		\end{align*}
-		\begin{center}
-			\textcolor{PineGreen}{วิธีที่ 3:} สปริทเบรกแมน (Split Bregman)
-		\end{center}
-	\end{frame} 
-	\begin{frame}
+        \end{align*}
+        \let\thefootnote\relax\footnotetext{\tiny{L. I. Rudin, S. Osher, E. Fatemi, “Nonlinear total variation based noise removal algorithms", Physica D: Nonlinear Phenomena, vol 60, issues 1–4, pp. 259-268, 1992.}}						
+    \end{frame} 
+    \begin{frame}
+        \frametitle{การเดินเวลาแบบชัดแจ้ง (ต่อ)}
+        \begin{align*}
+        u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+\tau\left(\nabla \cdot\left(\dfrac{\nabla u (\mathbf{x},t_k)}{| \nabla u (\mathbf{x},t_k) | }\right) + \lambda(\mathbf{x})(u (\mathbf{x},t_k)-z(\mathbf{x})) \right)
+        \end{align*}
+        \begin{align*}
+        u(\mathbf{x},t_0)=z \hspace{1cm} t_k=t_0+k\tau\ (\tau>0)  \hspace{1cm}  t_0=0
+        \end{align*}
+        \vspace{1cm}
+        \begin{align*}
+            u(\mathbf{x},t_0), u(\mathbf{x},t_1), u(\mathbf{x},t_2), u(\mathbf{x},t_3), ... ,  \textcolor{red}{u(\mathbf{x},t^{*})}
+        \end{align*}
+    \end{frame} 
+    \begin{frame}
+        \frametitle{ข้อจำกัดของการเดินเวลาแบบชัดแจ้ง}
+        \begin{align*}
+        u(\mathbf{x},t_{k+1})=u(\mathbf{x},t_{k})+ \textcolor{red}{\tau}\left(\nabla \cdot\left(\dfrac{\nabla u (\mathbf{x},t_k)}{| \nabla u (\mathbf{x},t_k) | }\right) + \lambda(\mathbf{x})(u (\mathbf{x},t_k)-z(\mathbf{x})) \right)
+        \end{align*}
+        \vspace{1cm}
+        \begin{align*}
+            \textcolor{red}{\tau < 1}
+        \end{align*}
+    \end{frame} 
+    \begin{frame}
+        \frametitle{การทำซ้ำแบบจุดตรึง (fixed-point iteration)}
+        \begin{align*}
+            - \nabla\cdot\left(\dfrac{\nabla u^{[\nu+1]}}{{| \nabla u |}^{[v]} }\right) + \lambda(u^{[\nu+1]}-z)  = 0,\ u^{[0]}=z
+        \end{align*}
+        \vspace{1cm}
+        \begin{align*}
+        u^{[0]}, u^{[1]}, u^{[2]}, u^{[3]}, ..., \textcolor{red}{u^{*}}    
+        \end{align*}
+        \let\thefootnote\relax\footnotetext{\tiny{C.R. Vogel and M.E. Oman,“Iterative methods for total variation denoising", SIAM Journal on Scientific Computing. vol. 17, pp. 227-238, 1996.}}
+    \end{frame} 
+    \begin{frame}
 		\frametitle{ปัญหาเชิงตัวเลข}
 			\begin{figure}[H]
 			\centering
@@ -107,7 +172,22 @@
 			\begin{align*}
 			|\nabla u| \approx| \nabla u |_\beta=\sqrt{u_x^2+u_y^2+\beta},\ 0< \beta \ll 1
 			\end{align*}
-	\end{frame}
+    \end{frame}
+    \begin{frame}
+        \frametitle{วิธีการสปริทเบรกแมน}
+        \begin{align*}
+            \min_{u} \{ \mathcal{J}(u) = \frac{1}{2} \int_{\Omega}\lambda (u-z)^2 d\Omega +  \int_{\Omega}  |\nabla u|  d\Omega \}
+        \end{align*}
+        $$ \Big \downarrow$$
+		\begin{align*}
+		    \min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\boldsymbol{w}| d\Omega \} \hspace{1cm}\text{ เมื่อ } w = \nabla u
+        \end{align*}
+        $$ \Big \downarrow$$
+		\begin{align*}
+		    \min_{u,\boldsymbol{w}} \{ \mathcal{J}(u,\boldsymbol{w}) = \dfrac{1}{2} \int_{\Omega} \lambda(u-z)^2 d\Omega +  \int_{\Omega}  |\boldsymbol{w}|  d\Omega + \frac{\theta}{2} \int_{\Omega} (\boldsymbol{w} - \nabla u + \boldsymbol{b})^2 d\Omega \}
+        \end{align*}
+        \let\thefootnote\relax\footnotetext{\tiny{T. Goldstein and S. Osher,“The Split Bregman Method for L1-Regularized Problems", SIAM Journal on Imaging Sciences. vol. 2, issue 2, pp. 323-343, 2009.}}			
+	\end{frame}  	
 	\begin{frame}
 		\frametitle{วิธีการสปริทเบรกแมน}
 			\begin{align*}
@@ -329,6 +409,17 @@
 				\caption*{{\large จำกัดรอบทำซ้ำที่ชั้น}}
 			\end{subfigure}
 		\end{figure}	
+    \end{frame}
+    \begin{frame}
+		\frametitle{ขั้นตอนวิธีสำหรับการซ่อมแซมภาพศิลปะไทย (ต่อ)}
+		\begin{figure}[H]
+			\centering
+			\begin{subfigure}{0.7\linewidth}
+				\centering
+				\includegraphics[width=1\linewidth]{images/method_thaiart/step_thaiart.png}
+			\end{subfigure}
+			\caption{การทำงานของวิธีที่คิดค้นขึ้น}
+        \end{figure}
 	\end{frame}
 	\begin{frame}
 		\frametitle{ขั้นตอนวิธีสำหรับการซ่อมแซมภาพศิลปะไทย (ต่อ)}

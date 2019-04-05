@@ -1,6 +1,8 @@
-\beamer@slide {image:rgb-space}{5}
-\beamer@slide {result:table-thaiart-summary}{17}
-\beamer@slide {image:ssim_location_prev}{20}
-\beamer@slide {sub@image:ssim_location_prev}{20}
-\beamer@slide {image:ssim_location_curr}{20}
-\beamer@slide {sub@image:ssim_location_curr}{20}
+\beamer@slide {fig1}{2}
+\beamer@slide {image:sample-domain}{3}
+\beamer@slide {image:rgb-space}{10}
+\beamer@slide {result:table-thaiart-summary}{24}
+\beamer@slide {image:ssim_location_prev}{27}
+\beamer@slide {sub@image:ssim_location_prev}{27}
+\beamer@slide {image:ssim_location_curr}{27}
+\beamer@slide {sub@image:ssim_location_curr}{27}
